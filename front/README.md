@@ -210,7 +210,17 @@ mounted () {
 10. 博客评论数的统计，点击提交评论，验证码通过时，后端调用 updateBlog 接口，根据传递的参数只有 comment，就不更改 updateTime
 
 ## 部署
-1. 文件路径出错：在 config 的 index.js 下 build 的设置：assetsPublicPath: './',
+1. 文件路径出错：在 config 的 index.js 下 build 的设置：assetsPublicPath: ‘./’,
+注意，如果是 history 路由 此文件，此字段设置成 assetsPublicPath: ‘/’
+原因如下：
+```
+'./' 是指用户所在的当前目录（相对路径）
+'/' 是指根目录，也就是项目的根目录
+对于 hash 模式，根路径是固定的，就是项目的根目录
+但是 history 模式下，以 / 开头的嵌套路径会被当作根路径
+所以当使用 './' 引入文件，就会找不到文件了
+因为文件本身就是在项目根目录下的，并不在嵌套 history 的路径目录下
+```
 2. 字体路径出错：
 ```
 真实路径应该是
