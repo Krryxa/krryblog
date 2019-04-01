@@ -13,13 +13,19 @@ export default new Router({
       meta: {title: 'Krryblog - 你的美好，我都记得'},
     },
     {
+      path: '/page/:pageIndex',
+      component: () => import('../views/Home'),
+      name: 'homePage',
+      meta: {title: 'Krryblog - 你的美好，我都记得'},
+    },
+    {
       path: '/:id(\\d+)',
       component: () => import('../views/Blog'),
       name: 'blog',
       meta: {title: '你的美好，我都记得'},
     },
     {
-      path: '/category/:id(\\d+)',
+      path: '/category/:id(\\d+):page?',
       component: () => import('../views/Category'),
       name: 'category',
       meta: {title: '你的美好，我都记得'},

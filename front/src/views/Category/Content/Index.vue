@@ -2,7 +2,6 @@
   <section>
     <SectionHeader :title="categoryName" :description="description"></SectionHeader>
     <SectionArticle :blogList="blogList" class="wrapper"></SectionArticle>
-    <Page v-if="blogLen > 9" :total="blogLen" size="small" :page-size="9" show-elevator @on-change="changePage"/>
   </section>
 </template>
 
@@ -17,20 +16,13 @@ export default {
     categoryName: {
       type: String,
     },
-    blogLen: {
-      type: Number,
-    },
   },
   data () {
     return {
       description: '相关内容 —— 存档',
     };
   },
-  methods: {
-    changePage (pageNo) {
-      this.$emit('changePage', pageNo);
-    },
-  },
+  methods: {},
   components: {
     SectionHeader, SectionArticle,
   },

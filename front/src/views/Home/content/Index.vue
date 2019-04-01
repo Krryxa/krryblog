@@ -32,9 +32,10 @@ export default {
         this.blogLen = res.blogLen;
       }
     },
-    changePage (pageNo) {
+    async changePage (pageNo) {
       this.pageNo = pageNo;
-      this.getBlog();
+      await this.getBlog();
+      this.$router.push({ name: 'homePage', params: { 'pageIndex': pageNo } });
     },
   },
   components: {
