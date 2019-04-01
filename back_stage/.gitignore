@@ -1,6 +1,8 @@
 /src/main/resources/jdbc.properties
 /target/
 .DS_Store
+/src/main/webapp/static
+/src/main/webapp/index.html
 
 # ignore eclipse files
 # .project
