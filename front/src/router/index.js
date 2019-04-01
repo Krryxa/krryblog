@@ -25,13 +25,13 @@ export default new Router({
       meta: {title: '你的美好，我都记得'},
     },
     {
-      path: '/category/:id(\\d+):page?',
+      path: '/category/:id(\\d+)/:page?',
       component: () => import('../views/Category'),
       name: 'category',
       meta: {title: '你的美好，我都记得'},
     },
     {
-      path: '/tag/:name:page?',
+      path: '/tag/:name/:page?',
       component: () => import('../views/Tag'),
       name: 'tag',
       meta: {title: '你的美好，我都记得'},
@@ -49,7 +49,7 @@ export default new Router({
       meta: {title: '你的美好，我都记得'},
     },
     {
-      path: '/search/:keyword:page?',
+      path: '/search/:keyword/:page?',
       component: () => import('../views/Search'),
       name: 'search',
       meta: {title: '你的美好，我都记得'},
@@ -61,7 +61,7 @@ export default new Router({
       meta: {title: '管理员登录 - 你的美好，我都记得', keepAlive: true},
     },
     {
-      path: '/backstage/list:page?',
+      path: '/backstage/list/:page?',
       component: () => import('../views/BackstageList'),
       name: 'list',
       meta: {title: '后台中心 - 你的美好，我都记得', requireAuth: true},
