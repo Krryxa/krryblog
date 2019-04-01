@@ -1,7 +1,7 @@
 <template>
   <main v-if="!isNotCategory">
     <Header></Header>
-    <Content :blogList="blogList" :categoryName="categoryName" @changePage="changePage"></Content>
+    <Content :blogList="blogList" :categoryName="categoryName"></Content>
     <Page v-if="blogLen > pageSize" :total="blogLen" size="small" :current="pageNo" :page-size="pageSize" show-elevator @on-change="changePage"/>
     <Footer></Footer>
   </main>
@@ -21,8 +21,9 @@ export default {
       categoryName: '',
       blogLen: 0,
       status: 200,
-      pageNo: 1,
+      pageNo: +this.$route.query.page || 1,
       pageSize: 9,
+      flag: true,
     };
   },
   computed: {
@@ -64,16 +65,18 @@ export default {
     async changePage (pageNo) {
       this.pageNo = pageNo;
       await this.getCategory();
-      this.$router.push({ name: 'category', query: { 'page': pageNo } });
+      this.flag = false;
+      let query = pageNo === 1 ? {} : { 'page': pageNo };
+      this.$router.push({ name: 'category', query: query });
     },
   },
   watch: {
     $route (to, from) {
-      // 如果是点击了另一个分类，才触发 getCategory；并重置 pageNo = 1；同一个分类下改变分页 page 参数，不进入这里
-      if (to.params.id !== from.params.id) {
-        this.pageNo = 1;
+      if (this.flag) {
+        this.pageNo = +to.query.page || 1;
         this.getCategory();
       }
+      this.flag = true;
     },
   },
   components: {

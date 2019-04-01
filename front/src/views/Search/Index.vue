@@ -1,7 +1,8 @@
 <template>
   <main>
     <Header></Header>
-    <Content :blogList="blogList" :keyword="keyword" :blogLen="blogLen" :hasNoResult="hasNoResult" @changePage="changePage"></Content>
+    <Content :blogList="blogList" :keyword="keyword" :hasNoResult="hasNoResult"></Content>
+    <Page v-if="blogLen > pageSize" :total="blogLen" size="small" :current="pageNo" :page-size="pageSize" show-elevator @on-change="changePage"/>
     <Footer></Footer>
   </main>
 </template>
@@ -18,8 +19,9 @@ export default {
       keyword: '',
       blogLen: 0,
       status: 200,
-      pageNo: 1,
+      pageNo: +this.$route.query.page || 1,
       pageSize: 9,
+      flag: true,
     };
   },
   computed: {
@@ -44,14 +46,21 @@ export default {
       this.blogList = res.data;
       this.blogLen = res.blogLen;
     },
-    changePage (pageNo) {
+    async changePage (pageNo) {
       this.pageNo = pageNo;
-      this.getSearch();
+      await this.getSearch();
+      this.flag = false;
+      let query = pageNo === 1 ? {} : { 'page': pageNo };
+      this.$router.push({ name: 'search', query: query });
     },
   },
   watch: {
     $route (to, from) {
-      this.getSearch();
+      if (this.flag) {
+        this.pageNo = +to.query.page || 1;
+        this.getSearch();
+      }
+      this.flag = true;
     },
   },
   components: {

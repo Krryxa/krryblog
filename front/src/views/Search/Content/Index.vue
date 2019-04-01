@@ -3,7 +3,6 @@
     <SectionHeader :title="keyword" :description="description"></SectionHeader>
     <SectionArticle :blogList="blogList" class="wrapper" v-if="!hasNoResult"></SectionArticle>
     <NoResult v-else></NoResult>
-    <Page v-if="blogLen > 9" :total="blogLen" size="small" :page-size="9" show-elevator @on-change="changePage"/>
   </section>
 </template>
 
@@ -19,9 +18,6 @@ export default {
     keyword: {
       type: String,
     },
-    blogLen: {
-      type: Number,
-    },
     hasNoResult: {
       type: Boolean,
     },
@@ -32,9 +28,6 @@ export default {
     };
   },
   methods: {
-    changePage (pageNo) {
-      this.$emit('changePage', pageNo);
-    },
   },
   components: {
     SectionHeader, SectionArticle, NoResult,

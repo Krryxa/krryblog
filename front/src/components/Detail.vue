@@ -13,7 +13,7 @@
         <span ref="commentSpan">{{blog.comment}}</span>
       </div>
       <div class="header-tag" v-if="hasShowTags">
-        <router-link :to="`/tag/${tags}`" v-for="(tags, index) in blogLabel" :key="index">{{tags}}</router-link>
+        <router-link :to="{ name: 'tag', params: { name: tags }}" v-for="(tags, index) in blogLabel" :key="index">{{tags}}</router-link>
       </div>
       <div class="tag-time">
         <Icon type="md-time" />

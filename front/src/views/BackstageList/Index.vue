@@ -1,7 +1,8 @@
 <template>
   <main>
     <Header></Header>
-    <Content :blogList="blogList" :blogLen="blogLen" @statusBlog="statusBlog" @deleteBlog="deleteBlog" @changePage="changePage"></Content>
+    <Content :blogList="blogList" @statusBlog="statusBlog" @deleteBlog="deleteBlog"></Content>
+    <Page v-if="blogLen > pageSize" :total="blogLen" size="small" :current="pageNo" :page-size="pageSize" show-elevator @on-change="changePage"/>
     <Footer></Footer>
   </main>
 </template>
@@ -16,8 +17,9 @@ export default {
     return {
       blogList: [],
       blogLen: 0,
-      pageNo: 1,
+      pageNo: +this.$route.query.page || 1,
       pageSize: 10,
+      flag: true,
     };
   },
   created () {
@@ -62,9 +64,21 @@ export default {
         this.getBlog();
       }
     },
-    changePage (pageNo) {
+    async changePage (pageNo) {
       this.pageNo = pageNo;
-      this.getBlog();
+      await this.getBlog();
+      this.flag = false;
+      let query = pageNo === 1 ? {} : { 'page': pageNo };
+      this.$router.push({ name: 'list', query: query });
+    },
+  },
+  watch: {
+    $route (to, from) {
+      if (this.flag) {
+        this.pageNo = +to.query.page || 1;
+        this.getBlog();
+      }
+      this.flag = true;
     },
   },
   components: {

@@ -32,7 +32,6 @@
       </div>
     </Modal>
     <Table border stripe :columns="columns" :data="blogList"></Table>
-    <Page v-if="blogLen > 10" :total="blogLen" size="small" :page-size="10" show-elevator @on-change="changePage"/>
   </section>
 </template>
 
@@ -44,9 +43,6 @@ export default {
   props: {
     blogList: {
       type: Array,
-    },
-    blogLen: {
-      type: Number,
     },
   },
   mixins: [loading],
@@ -210,9 +206,6 @@ export default {
     },
   },
   methods: {
-    changePage (pageNo) {
-      this.$emit('changePage', pageNo);
-    },
     showDialog () {
       this.showModel = true;
       this.userForm['newName'] = this.userName;

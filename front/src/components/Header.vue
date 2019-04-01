@@ -141,7 +141,7 @@ export default {
       if (this.keyWord !== '') {
         console.log(this.keyWord);
         console.log('search api...');
-        this.$router.push(`/search/${this.keyWord}`);
+        this.$router.push({name: 'search', params: { keyword: this.keyWord }});
         this.keyWord = '';
       } else {
         this.$refs.searchInp.focus();

@@ -1,7 +1,8 @@
 <template>
   <main v-if="!isNotCategory">
     <Header></Header>
-    <Content :blogList="blogList" :TagName="TagName" :blogLen="blogLen" @changePage="changePage"></Content>
+    <Content :blogList="blogList" :TagName="TagName"></Content>
+    <Page v-if="blogLen > pageSize" :total="blogLen" size="small" :current="pageNo" :page-size="pageSize" show-elevator @on-change="changePage"/>
     <Footer></Footer>
   </main>
   <NotFound v-else></NotFound>
@@ -20,8 +21,9 @@ export default {
       TagName: '',
       blogLen: 0,
       status: 200,
-      pageNo: 1,
+      pageNo: +this.$route.query.page || 1,
       pageSize: 9,
+      flag: true,
     };
   },
   computed: {
@@ -49,14 +51,21 @@ export default {
         document.title = `${this.TagName} - ${document.title}`;
       }
     },
-    changePage (pageNo) {
+    async changePage (pageNo) {
       this.pageNo = pageNo;
-      this.getTags();
+      await this.getTags();
+      this.flag = false;
+      let query = pageNo === 1 ? {} : { 'page': pageNo };
+      this.$router.push({ name: 'tag', query: query });
     },
   },
   watch: {
     $route (to, from) {
-      this.getTags();
+      if (this.flag) {
+        this.pageNo = +to.query.page || 1;
+        this.getTags();
+      }
+      this.flag = true;
     },
   },
   components: {
