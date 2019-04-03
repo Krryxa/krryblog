@@ -7,9 +7,6 @@
 </template>
 
 <script>
-import SectionHeader from '@/components/SectionHeader';
-import SectionArticle from '@/components/SectionArticle';
-import NoResult from './NoResult';
 export default {
   props: {
     blogList: {
@@ -30,7 +27,9 @@ export default {
   methods: {
   },
   components: {
-    SectionHeader, SectionArticle, NoResult,
+    SectionHeader: () => import('@/components/SectionHeader'),
+    SectionArticle: () => import('@/components/SectionArticle'),
+    NoResult: () => import('./NoResult'),
   },
 };
 </script>

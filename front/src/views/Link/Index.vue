@@ -9,9 +9,6 @@
 </template>
 
 <script>
-import SectionHeader from '@/components/SectionHeader';
-import Detail from '@/components/Detail';
-import NotFound from '@/components/NotFound';
 import Service from '@/service';
 export default {
   data () {
@@ -45,7 +42,9 @@ export default {
     },
   },
   components: {
-    NotFound, SectionHeader, Detail,
+    SectionHeader: () => import('@/components/SectionHeader'),
+    Detail: () => import('@/components/Detail'),
+    NotFound: () => import('@/components/NotFound'),
   },
 };
 </script>

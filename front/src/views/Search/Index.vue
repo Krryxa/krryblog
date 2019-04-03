@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import Content from './Content';
 import Service from '@/service';
 export default {
   data () {
@@ -62,7 +61,7 @@ export default {
     },
   },
   components: {
-    Content,
+    Content: () => import('./Content'),
   },
 };
 </script>

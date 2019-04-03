@@ -45,7 +45,6 @@ import { mavonEditor } from 'mavon-editor';
 import 'mavon-editor/dist/css/index.css';
 import '@/assets/css/markdown.css';
 import '@/assets/css/github.css';
-import uploadImg from './UploadImg';
 import Service from '@/service';
 import { loading } from '@/mixins/loading';
 export default {
@@ -182,7 +181,8 @@ export default {
     },
   },
   components: {
-    uploadImg, mavonEditor,
+    uploadImg: () => import('./UploadImg'),
+    mavonEditor,
   },
 };
 </script>

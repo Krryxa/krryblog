@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import NotFound from '@/components/NotFound';
-import Content from './Content';
 import Service from '@/service';
 export default {
   data () {
@@ -78,7 +76,8 @@ export default {
     },
   },
   components: {
-    NotFound, Content,
+    NotFound: () => import('@/components/NotFound'),
+    Content: () => import('./Content'),
   },
 };
 </script>

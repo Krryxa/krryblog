@@ -7,14 +7,13 @@
 </template>
 
 <script>
-import Content from './Content';
 export default {
   data () {
     return {
     };
   },
   components: {
-    Content,
+    Content: () => import('./Content'),
   },
 };
 </script>

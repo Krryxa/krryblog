@@ -8,8 +8,6 @@
 </template>
 
 <script>
-import Detail from '@/components/Detail';
-import NotFound from '@/components/NotFound';
 import Service from '@/service';
 export default {
   data () {
@@ -44,7 +42,8 @@ export default {
     },
   },
   components: {
-    NotFound, Detail,
+    NotFound: () => import('@/components/NotFound'),
+    Detail: () => import('@/components/Detail'),
   },
 };
 </script>

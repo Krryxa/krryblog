@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import SectionArticle from '@/components/SectionArticle';
 import Service from '@/service';
 export default {
   data () {
@@ -54,7 +53,7 @@ export default {
     },
   },
   components: {
-    SectionArticle,
+    SectionArticle: () => import('@/components/SectionArticle'),
   },
 };
 </script>
