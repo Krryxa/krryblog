@@ -10,6 +10,13 @@ import store from './store';
 // import 'iview/dist/styles/iview.css';
 // import 'animate.css';
 
+// 加载全局组件
+import components from './components';
+// 注册全局组件
+Object.keys(components).forEach(key => {
+  Vue.component(key, components[key]);
+});
+
 // 以下配置 Valine 评论插件
 // Register AV objects to the global
 window.AV = require('leancloud-storage');

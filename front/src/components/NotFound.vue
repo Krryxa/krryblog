@@ -1,6 +1,6 @@
 <template>
   <main>
-    <Header></Header>
+    <my-header></my-header>
     <section>
       <p class="number">404</p>
       <p>很抱歉，找不到页面~~</p>
@@ -8,20 +8,17 @@
         <Button type="error">返回首页</Button>
       </router-link>
     </section>
-    <Footer></Footer>
+    <my-footer></my-footer>
   </main>
 </template>
 
 <script>
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 export default {
   data () {
     return {
     };
   },
   components: {
-    Header, Footer,
   },
 };
 </script>

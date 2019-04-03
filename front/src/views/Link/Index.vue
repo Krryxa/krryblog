@@ -1,16 +1,14 @@
 <template>
   <main v-if="!isNoBlog">
-    <Header></Header>
+    <my-header></my-header>
     <SectionHeader :title="blog.title" :description="description"></SectionHeader>
     <Detail :blog="blog" :isNoBlog="isNoBlog"></Detail>
-    <Footer></Footer>
+    <my-footer></my-footer>
   </main>
   <NotFound v-else></NotFound>
 </template>
 
 <script>
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import SectionHeader from '@/components/SectionHeader';
 import Detail from '@/components/Detail';
 import NotFound from '@/components/NotFound';
@@ -47,7 +45,7 @@ export default {
     },
   },
   components: {
-    Header, Footer, NotFound, SectionHeader, Detail,
+    NotFound, SectionHeader, Detail,
   },
 };
 </script>

@@ -1,15 +1,13 @@
 <template>
   <main>
-    <Header></Header>
+    <my-header></my-header>
     <Content :blogList="blogList" :keyword="keyword" :hasNoResult="hasNoResult"></Content>
     <Page v-if="blogLen > pageSize" :total="blogLen" size="small" :current="pageNo" :page-size="pageSize" show-elevator @on-change="changePage"/>
-    <Footer></Footer>
+    <my-footer></my-footer>
   </main>
 </template>
 
 <script>
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import Content from './Content';
 import Service from '@/service';
 export default {
@@ -64,7 +62,7 @@ export default {
     },
   },
   components: {
-    Header, Footer, Content,
+    Content,
   },
 };
 </script>

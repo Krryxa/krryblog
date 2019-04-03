@@ -1,16 +1,14 @@
 <template>
   <main v-if="!isNotCategory">
-    <Header></Header>
+    <my-header></my-header>
     <Content :blogList="blogList" :categoryName="categoryName"></Content>
     <Page v-if="blogLen > pageSize" :total="blogLen" size="small" :current="pageNo" :page-size="pageSize" show-elevator @on-change="changePage"/>
-    <Footer></Footer>
+    <my-footer></my-footer>
   </main>
   <NotFound v-else></NotFound>
 </template>
 
 <script>
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import NotFound from '@/components/NotFound';
 import Content from './Content';
 import Service from '@/service';
@@ -80,7 +78,7 @@ export default {
     },
   },
   components: {
-    Header, Footer, NotFound, Content,
+    NotFound, Content,
   },
 };
 </script>

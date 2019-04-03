@@ -36,7 +36,7 @@
         <Button style="margin-left: 50px" size="large" @click="back">返回</Button>
       </div>
     </section>
-    <Footer></Footer>
+    <my-footer></my-footer>
   </main>
 </template>
 
@@ -45,8 +45,6 @@ import { mavonEditor } from 'mavon-editor';
 import 'mavon-editor/dist/css/index.css';
 import '@/assets/css/markdown.css';
 import '@/assets/css/github.css';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import uploadImg from './UploadImg';
 import Service from '@/service';
 import { loading } from '@/mixins/loading';
@@ -184,7 +182,7 @@ export default {
     },
   },
   components: {
-    Header, Footer, uploadImg, mavonEditor,
+    uploadImg, mavonEditor,
   },
 };
 </script>

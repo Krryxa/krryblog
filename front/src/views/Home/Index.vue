@@ -1,14 +1,12 @@
 <template>
   <div>
-    <Header></Header>
+    <my-header></my-header>
     <Content></Content>
-    <Footer></Footer>
+    <my-footer></my-footer>
   </div>
 </template>
 
 <script>
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import Content from './Content';
 export default {
   data () {
@@ -16,7 +14,7 @@ export default {
     };
   },
   components: {
-    Header, Footer, Content,
+    Content,
   },
 };
 </script>
