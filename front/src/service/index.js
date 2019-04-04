@@ -29,6 +29,10 @@ export default {
     let res = await Api.updateCommonBlog(reqData);
     return res;
   },
+  async deleteBlogCover (id, reqData) {
+    let res = await Api.deleteBlogCover(id, reqData);
+    return res;
+  },
   async getLinkOrAbout (reqData) {
     let res = await Api.fetchLinkOrAbout(reqData);
     return res;

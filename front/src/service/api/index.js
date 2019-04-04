@@ -25,6 +25,9 @@ export default {
   updateCommonBlog (reqData) {
     return Ax.post('/krryblog/blog/updateCommonBlog', qs.stringify(reqData));
   },
+  deleteBlogCover (id, reqData) {
+    return Ax.post(`/krryblog/blog/deleteBlogCover/${id}`, qs.stringify(reqData));
+  },
   fetchLinkOrAbout (reqData) {
     return Ax.get('/krryblog/krry/getLinkOrAbout', {params: reqData});
   },

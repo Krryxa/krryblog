@@ -3,6 +3,8 @@ package com.krry.service;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.krry.entity.Blog;
 import com.krry.entity.Classify;
 import com.krry.entity.Params;
@@ -55,5 +57,11 @@ public interface IBlogService {
 	 * @param blog
 	 */
 	public String updateCommonBlog(Blog blog);
+	
+	/**
+	 * 删除博客封面
+	 * @param id
+	 */
+	public String deleteBlogCover(int id);
 	
 }

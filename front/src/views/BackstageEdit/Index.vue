@@ -13,7 +13,7 @@
           <Input v-model.trim="description" :autosize="{minRows: 4,maxRows: 10}" style="width: 460px" type="textarea" :rows="4" placeholder="为博客的写上简单描述吧~~" />
         </FormItem>
         <!-- upload image -->
-        <uploadImg :defaultList="defaultUploadList" :uploadImgUrl="uploadImgUrl" :imgName="imgName" @changeImg="changeImg"></uploadImg>
+        <uploadImg :id="id" :defaultList="defaultUploadList" :uploadImgUrl="uploadImgUrl" :imgName="imgName" @changeImg="changeImg"></uploadImg>
         <FormItem label="分类存档：">
           <RadioGroup v-model="classifyId">
             <Radio :label="item.id" v-for="(item, index) in classifyList" :key="index">
@@ -51,7 +51,7 @@ export default {
   mixins: [loading],
   data () {
     return {
-      id: 0,
+      id: this.$route.params.id || 0,
       title: '',
       markdownDesc: '',
       translateDesc: '',
@@ -80,35 +80,33 @@ export default {
     },
   },
   created () {
-    this.getBlogInfo();
+    if (this.id) {
+      this.getBlogInfo();
+    }
   },
   methods: {
     async getBlogInfo () {
-      let id = this.$route.params['id'];
       // get blog when edit
-      if (id !== undefined) {
-        document.title = document.title.replace('新增', '编辑');
+      document.title = document.title.replace('新增', '编辑');
 
-        this.id = this.$route.params['id'];
-        this.imgName = this.$route.params['imgName'];
-        this.uploadImgUrl = this.$route.params['uploadImgUrl'];
-        this.defaultUploadList = [{
-          name: this.imgName,
-          url: window.location.origin + '/krryblog/' + this.uploadImgUrl,
-        }];
+      this.imgName = this.$route.params['imgName'];
+      this.uploadImgUrl = this.$route.params['uploadImgUrl'];
+      this.defaultUploadList = [{
+        name: this.imgName,
+        url: window.location.origin + '/krryblog/' + this.uploadImgUrl,
+      }];
 
-        let res = await Service.getEditBlogDetail(this.id);
-        let status = res.status;
-        let blogObj = res.data;
-        // 404 的标题在 axios 拦截器已经定义
-        if (status !== 404) {
-          this.title = blogObj['title'];
-          this.markdownDesc = blogObj['content_md'];
-          this.statusFlag = !!blogObj['status'];
-          this.description = blogObj['description'];
-          this.classifyId = blogObj['classifyId'];
-          this.label = blogObj['label'];
-        }
+      let res = await Service.getEditBlogDetail(this.id);
+      let status = res.status;
+      let blogObj = res.data;
+      // 404 的标题在 axios 拦截器已经定义
+      if (status !== 404) {
+        this.title = blogObj['title'];
+        this.markdownDesc = blogObj['content_md'];
+        this.statusFlag = !!blogObj['status'];
+        this.description = blogObj['description'];
+        this.classifyId = blogObj['classifyId'];
+        this.label = blogObj['label'];
       }
     },
 
@@ -249,6 +247,10 @@ section {
         }
       }
     }
+  }
+
+  .ivu-upload-list-remove {
+    display: none;
   }
 }
 </style>

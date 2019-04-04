@@ -34,8 +34,12 @@
 </template>
 
 <script>
+import Service from '@/service';
 export default {
   props: {
+    id: {
+      type: Number,
+    },
     uploadImgUrl: {
       type: String,
     },
@@ -77,8 +81,26 @@ export default {
       this.visible = true;
     },
     handleRemove (file) {
-      const fileList = this.$refs.upload.fileList;
-      this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+      this.$Modal.confirm({
+        title: '提示',
+        content: '确定要删除博客封面图片吗？',
+        loading: true,
+        onOk: async () => {
+          let res = await Service.deleteBlogCover(this.id, {
+            filePath: this.uploadImgUrl,
+          });
+          this.$Modal.remove();
+          if (res === 'success') {
+            this.$Message.success('删除成功！');
+            // 清空图片区域
+            this.$emit('changeImg', '', '');
+            const fileList = this.$refs.upload.fileList;
+            this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+          } else {
+            this.$Message.error('删除失败！');
+          }
+        },
+      });
     },
     handleSuccess (res, file) {
       if (res !== null) {

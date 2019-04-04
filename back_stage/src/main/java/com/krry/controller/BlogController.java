@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.krry.entity.Blog;
 import com.krry.entity.Params;
 import com.krry.service.IBlogService;
+import com.krry.util.DeleteFileUtil;
 import com.krry.util.UploadUtil;
 
 /**
@@ -147,6 +148,25 @@ public class BlogController {
 	public String updateCommonBlog(Blog blog){
 		
 		String msg = blogService.updateCommonBlog(blog);
+		
+		return msg;
+	}
+	
+	/**
+	 * 删除博客封面
+	 * @param id
+	 * @param filePath
+	 */
+	@ResponseBody
+	@RequestMapping("/deleteBlogCover/{id}")
+	public String deleteBlogCover(@PathVariable("id")Integer id, String filePath, HttpServletRequest request) {
+		
+		String msg = DeleteFileUtil.deleteFile(filePath, request);
+		
+		// 文件删除成功后，如果不是新增博客（新增博客传入的id 为 0），再调用 sql 删除该条数据的图片地址
+		if (msg.equals("success") && id != 0) {
+			msg = blogService.deleteBlogCover(id);
+		}
 		
 		return msg;
 	}

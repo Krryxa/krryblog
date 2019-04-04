@@ -183,6 +183,17 @@
 	    )
 	</insert>
 	
+	<!-- 删除博客封面 -->
+	<update id="deleteBlogCover">
+		update
+			blog
+		set
+			imageName = "",
+			image = ""
+		where
+			id = #{id}
+	</update>
+	
 	<!-- 修改博客 -->
 	<update id="updateBlog"  parameterType="Blog">
 		update
