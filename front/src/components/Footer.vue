@@ -11,7 +11,10 @@
       </span>
       <span class="footer-flot sec-footer-flot">｜</span>
       <p class="link-git">
-        <span class="name">Copyright © 2019 乐诗</span>&nbsp;
+        <span class="name">
+          Copyright © 2019&nbsp;
+          <a target="_blank" href="https://ainyi.com">ainyi.com</a>&nbsp;
+        </span>
         <span class="github">
           <a target="_blank" href="https://github.com/Krryxa"><Icon type="logo-github" /></a>
         </span>

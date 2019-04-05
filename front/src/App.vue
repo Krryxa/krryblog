@@ -253,6 +253,20 @@ scrollbar[orient="vertical"] {
     margin-left: 15% !important;
     margin-right: 15% !important;
   }
+  /* 底部响应式 */
+  footer .container .link-git {
+    position: absolute !important;
+    top: 40px !important;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  footer .container .footer-flot {
+    top: 64% !important;
+  }
+  footer .container .sec-footer-flot {
+    display: none !important;
+  }
 }
 
 @media screen and (max-width: 408px) {
@@ -316,20 +330,6 @@ scrollbar[orient="vertical"] {
     height: 34px !important;
     top: 18px !important;
     z-index: 1;
-  }
-  /* 底部响应式 */
-  footer .container .link-git {
-    position: absolute !important;
-    top: 40px !important;
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
-  footer .container .footer-flot {
-    top: 64% !important;
-  }
-  footer .container .sec-footer-flot {
-    display: none !important;
   }
 }
 
