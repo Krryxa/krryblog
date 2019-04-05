@@ -57,7 +57,11 @@ router.beforeEach((to, from, next) => {
 });
 
 router.afterEach((to, from) => {
-  iView.LoadingBar.finish();
+  if (to.name === 'NotFound') {
+    iView.LoadingBar.error();
+  } else {
+    iView.LoadingBar.finish();
+  }
   let title = to.meta.title;
   document.title = title;
 });
