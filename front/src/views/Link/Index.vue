@@ -5,7 +5,7 @@
     <Detail :blog="blog" :isNoBlog="isNoBlog"></Detail>
     <my-footer></my-footer>
   </main>
-  <NotFound v-else></NotFound>
+  <not-found v-else></not-found>
 </template>
 
 <script>
@@ -44,7 +44,6 @@ export default {
   components: {
     SectionHeader: () => import('@/components/SectionHeader'),
     Detail: () => import('@/components/Detail'),
-    NotFound: () => import('@/components/NotFound'),
   },
 };
 </script>

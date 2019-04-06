@@ -1,11 +1,11 @@
 <template>
-  <main v-if="!isNotCategory">
+  <main v-if="!isEmpty">
     <my-header></my-header>
     <Content :blogList="blogList" :TagName="TagName"></Content>
     <Page v-if="blogLen > pageSize" :total="blogLen" size="small" :current="pageNo" :page-size="pageSize" show-elevator @on-change="changePage"/>
     <my-footer></my-footer>
   </main>
-  <NotFound v-else></NotFound>
+  <not-found v-else></not-found>
 </template>
 
 <script>
@@ -23,7 +23,7 @@ export default {
     };
   },
   computed: {
-    isNotCategory () {
+    isEmpty () {
       return this.status === 404;
     },
   },
@@ -65,7 +65,6 @@ export default {
     },
   },
   components: {
-    NotFound: () => import('@/components/NotFound'),
     Content: () => import('./Content'),
   },
 };

@@ -5,7 +5,7 @@
     <Page v-if="blogLen > pageSize" :total="blogLen" size="small" :current="pageNo" :page-size="pageSize" show-elevator @on-change="changePage"/>
     <my-footer></my-footer>
   </main>
-  <NotFound v-else></NotFound>
+  <not-found v-else></not-found>
 </template>
 
 <script>
@@ -51,11 +51,11 @@ export default {
         this.categoryName = res.categoryName;
         document.title = `${this.categoryName} - ${document.title}`;
 
-        if (this.status === 406) {
-          // 分类下没有发布过任何博客的情况
-          // TODO
-          console.log('分类下没有发布过任何博客的情况');
-        }
+        // if (this.status === 406) {
+        //   // 分类下没有发布过任何博客的情况
+        //   // TODO
+        //   console.log('分类下没有发布过任何博客的情况');
+        // }
       }
     },
     async changePage (pageNo) {
@@ -76,7 +76,6 @@ export default {
     },
   },
   components: {
-    NotFound: () => import('@/components/NotFound'),
     Content: () => import('./Content'),
   },
 };

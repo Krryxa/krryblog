@@ -1,10 +1,11 @@
 <template>
-  <main>
+  <main v-if="!isEmpty">
     <my-header></my-header>
     <Content :blogList="blogList" @statusBlog="statusBlog" @deleteBlog="deleteBlog"></Content>
     <Page v-if="blogLen > pageSize" :total="blogLen" size="small" :current="pageNo" :page-size="pageSize" show-elevator @on-change="changePage"/>
     <my-footer></my-footer>
   </main>
+  <not-found v-else></not-found>
 </template>
 
 <script>
@@ -14,6 +15,7 @@ export default {
     return {
       blogList: [],
       blogLen: 0,
+      status: 200,
       pageNo: +this.$route.query.page || 1,
       pageSize: 10,
       flag: true,
@@ -21,6 +23,11 @@ export default {
   },
   created () {
     this.getBlog();
+  },
+  computed: {
+    isEmpty () {
+      return this.status === 404;
+    },
   },
   methods: {
     async getBlog () {

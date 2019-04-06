@@ -13,7 +13,7 @@ export default new Router({
       meta: {title: 'Krryblog - 你的美好，我都记得'},
     },
     {
-      path: '/page/:pageIndex',
+      path: '/page/:pageIndex(\\d+)',
       component: () => import('@/views/Home'),
       name: 'homePage',
       meta: {title: 'Krryblog - 你的美好，我都记得'},
@@ -71,6 +71,12 @@ export default new Router({
       component: () => import('@/views/BackstageEdit'),
       name: 'edit',
       meta: {title: '新增博客 - 你的美好，我都记得', requireAuth: true},
+    },
+    {
+      path: '/error',
+      component: () => import('@/components/NotFound'),
+      name: 'error',
+      meta: {title: '404 - 找不到页面'},
     },
     {
       path: '*',

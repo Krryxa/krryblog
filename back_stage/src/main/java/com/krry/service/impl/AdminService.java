@@ -164,7 +164,7 @@ public class AdminService implements IAdminService{
 			}
 			resData.put("status", 200);
 		} else {
-			// TODO
+			resData.put("status", 404);
 		}
 		// 用PageInfo对结果进行包装
         PageInfo<Blog> pageInfo = new PageInfo<Blog>(blogList);

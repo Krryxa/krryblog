@@ -66,7 +66,7 @@ public class BlogService implements IBlogService{
 			}
 			resData.put("status", 200);
 		} else {
-			// TODO
+			resData.put("status", 404);
 		}
 		// 用PageInfo对结果进行包装
         PageInfo<Blog> pageInfo = new PageInfo<Blog>(blogList);
@@ -177,9 +177,8 @@ public class BlogService implements IBlogService{
 				}
 				resData.put("status", 200);
 			} else {
-				// TODO
-				// 某分类没有发表过博客的情况
-				resData.put("status", 406);
+				// 某分类没有发表过博客的情况，或者分页博客数量为空
+				resData.put("status", 404);
 			}
 		} else {
 			// 分类id出错

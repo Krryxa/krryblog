@@ -4,7 +4,7 @@
     <Detail :blog="blog"></Detail>
     <my-footer></my-footer>
   </main>
-  <NotFound v-else></NotFound>
+  <not-found v-else></not-found>
 </template>
 
 <script>
@@ -42,7 +42,6 @@ export default {
     },
   },
   components: {
-    NotFound: () => import('@/components/NotFound'),
     Detail: () => import('@/components/Detail'),
   },
 };

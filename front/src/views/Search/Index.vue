@@ -41,7 +41,7 @@ export default {
       let res = await Service.getBlogByKeyword(reqData);
       this.status = res.status;
       this.blogList = res.data;
-      this.blogLen = res.blogLen;
+      this.blogLen = this.hasNoResult ? 0 : res.blogLen;
     },
     async changePage (pageNo) {
       this.pageNo = pageNo;

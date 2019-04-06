@@ -27,9 +27,11 @@ export default {
         pageSize: this.pageSize,
       };
       let res = await Service.getBlog(reqData);
-      if (res.status === 200) {
+      if (res.status !== 404) {
         this.blogList = res.data;
         this.blogLen = res.blogLen;
+      } else {
+        this.$router.push({ name: 'error' });
       }
     },
     async changePage (pageNo) {
