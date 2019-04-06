@@ -27,7 +27,6 @@ Vue.config.productionTip = false;
 // Vue.use(mavonEditor);
 
 router.beforeEach((to, from, next) => {
-  iView.LoadingBar.start();
   let toRouteName = to.name;
   let username = sessionStorage.getItem('username');
   let id = sessionStorage.getItem('id');
@@ -59,8 +58,6 @@ router.beforeEach((to, from, next) => {
 router.afterEach((to, from) => {
   if (to.name === 'NotFound') {
     iView.LoadingBar.error();
-  } else {
-    iView.LoadingBar.finish();
   }
   let title = to.meta.title;
   document.title = title;
