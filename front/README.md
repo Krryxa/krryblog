@@ -30,18 +30,21 @@ npm run e2e
 npm test
 ```
 
-## 需求分析
-代码需求：eslint
+## requirement analysis
+Code specification：eslint
 
-个人音乐博客的主要内容分为三大模块：管理员-游客-音乐、多界面的博客系统。
-1. 游客模块，本模块由浏览、搜索、评论博客组成，游客可通过博客首页、分类或搜索功能浏览博客，也可以对每一篇博客进行评论互动。
-2. 管理员模块，本模块由个人信息管理、发布、管理编辑博客组成，管理员可在后台界面进行发布、管理、编辑博客（支持 Markdown）。
-3. 音乐模块，本模块由音乐播放器组成，任何人访问本博客，都可进行选择、播放、暂停博客平台的背景音乐。
+The main content of personal music blog is divided into three modules: administrator-tourists-music, multi-interface blog system.
+
+1. Tourist module, which is composed of browsing, searching and commenting blog, visitors can browse blog through blog homepage, classification or search function, and can also comment on each blog.
+
+2. Administrator module, this module is composed of personal information management, publishing and editing blog. Administrators can publish, manage and edit blog in the background interface (support Markdown).
+
+3. Music module, this module is composed of music player. Anyone who visits this blog can choose, play and suspend the background music of the blog platform.
 
 ![](https://raw.githubusercontent.com/Krryxa/WORK-LEARNING/master/images/my/requestImage.jpg)
 
 
-## 安装依赖
+## Installation dependency
 ```bash
 npm install stylus-loader css-loader style-loader --save-dev
 npm install axios
@@ -49,7 +52,7 @@ npm install vuex --save
 npm install sass-loader --save
 npm install node-sass --save
 ```
-- 本项目使用 iview 的 ui 框架
+- This project uses iView
 ```bash
 npm install iview --save
 npm install iview-loader --save-dev
