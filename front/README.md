@@ -41,8 +41,6 @@ The main content of personal music blog is divided into three modules: administr
 
 3. Music module, this module is composed of music player. Anyone who visits this blog can choose, play and suspend the background music of the blog platform.
 
-![](https://raw.githubusercontent.com/Krryxa/WORK-LEARNING/master/images/my/requestImage.jpg)
-
 
 ## Installation dependency
 ```bash
