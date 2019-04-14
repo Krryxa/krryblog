@@ -6,6 +6,7 @@
     </keep-alive>
     <!-- 正常访问走下面，不需要缓存 -->
     <router-view v-if="!$route.meta.keepAlive"></router-view>
+    <music></music>
   </div>
 </template>
 
@@ -13,6 +14,9 @@
 import { mapActions } from 'vuex';
 export default {
   name: 'App',
+  components: {
+    Music: () => import('@/components/Music'),
+  },
   data () {
     return {
       classifyList: [],
