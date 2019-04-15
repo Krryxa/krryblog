@@ -2,10 +2,10 @@
   <section>
     <!--播放器-->
     <audio ref="audio" @ended="next"></audio>
-    <div class="title" :class="!firstTime && (isPlay ? 'titleIn' : 'titleOut')">{{ musicTitle }}</div>
-    <div class="music" :class="{ playing: isPlay }" @click="!isTransition && (isPlay ? pause() : play())">
+    <div class="music" :class="{ playing: isPlay }" :title="isPlay ? '暂停' : '播放'" @click="!isTransition && (isPlay ? pause() : play())">
       <img src="@/assets/pic/music.svg" width="25" height="25">
     </div>
+    <div class="title" :class="!firstTime && (isPlay ? 'titleIn' : 'titleOut')">{{ musicTitle }}</div>
   </section>
 </template>
 
@@ -101,11 +101,11 @@ section {
     right: 66px;
     margin-top: 3.5px;
     position: absolute;
-    color:rgba(255, 97, 92, 0.8);
+    color:rgba(255, 97, 92, 1);
   }
   .titleIn {
     visibility: visible;
-    animation: bounceInRight 1s linear;
+    animation: bounceInRight 1s linear, outText 12s linear forwards;
   }
   .titleOut {
     visibility: visible;
@@ -118,12 +118,20 @@ section {
     right: 28px;
   }
   .playing {
-    animation: play 1.5s infinite linear;
+    animation: play 1.8s infinite linear;
   }
 }
 @keyframes play {
   100% {
     transform: rotate(360deg);
+  }
+}
+@keyframes outText {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.3;
   }
 }
 </style>
