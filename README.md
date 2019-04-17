@@ -1,5 +1,7 @@
 # krryblog
 
+> Statement: Front-end and back-end configuration files, package.json have been ignored
+
 ## tec
 1. vue、iview、markdown
 2. java、ssm、maven
