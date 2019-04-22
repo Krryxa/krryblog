@@ -105,7 +105,7 @@ section {
   }
   .titleIn {
     visibility: visible;
-    animation: bounceInRight 1s linear, outText 12s linear forwards;
+    animation: bounceInRight 1s linear, outText 10s linear forwards;
   }
   .titleOut {
     visibility: visible;
@@ -116,6 +116,12 @@ section {
     cursor: url(../assets/pic/cursor.cur), pointer !important;
     position: absolute;
     right: 28px;
+    img {
+      animation: outBtn 4s linear forwards;
+      &:hover {
+        animation: inBtn 1s forwards;
+      }
+    }
   }
   .playing {
     animation: play 1.8s infinite linear;
@@ -132,6 +138,22 @@ section {
   }
   to {
     opacity: 0.3;
+  }
+}
+@keyframes outBtn {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.6;
+  }
+}
+@keyframes inBtn {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 1;
   }
 }
 </style>
