@@ -45,7 +45,7 @@ import { mavonEditor } from 'mavon-editor';
 import 'mavon-editor/dist/css/index.css';
 import '@/assets/css/markdown.css';
 import '@/assets/css/github.css';
-import Service from '@/service';
+import { getEditBlogDetail, updateBlog, addBlog } from '@/service';
 import { loading } from '@/mixins/loading';
 export default {
   mixins: [loading],
@@ -96,7 +96,7 @@ export default {
         url: window.location.origin + '/krryblog/' + this.uploadImgUrl,
       }];
 
-      let res = await Service.getEditBlogDetail(this.id);
+      let res = await getEditBlogDetail(this.id);
       let status = res.status;
       let blogObj = res.data;
       // 404 的标题在 axios 拦截器已经定义
@@ -147,14 +147,14 @@ export default {
         console.log('是编辑，id：' + this.id);
         reqData = Object.assign({}, reqData, {id: this.id});
         console.log(reqData);
-        let msg = await Service.updateBlog(reqData);
+        let msg = await updateBlog(reqData);
         if (msg === 'success') {
           this.$router.push(`/${this.id}`);
         } else {
           this.$Message.error('出错了呢，修改失败...');
         }
       } else {
-        let id = await Service.addBlog(reqData);
+        let id = await addBlog(reqData);
         console.log('保存的id：' + id);
         this.$router.push(`/${id}`);
       }

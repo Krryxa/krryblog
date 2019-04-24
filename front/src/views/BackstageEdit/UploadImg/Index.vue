@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import Service from '@/service';
+import { deleteBlogCover } from '@/service';
 export default {
   props: {
     id: {
@@ -86,7 +86,7 @@ export default {
         content: '确定要删除博客封面图片吗？',
         loading: true,
         onOk: async () => {
-          let res = await Service.deleteBlogCover(this.id, {
+          let res = await deleteBlogCover(this.id, {
             filePath: this.uploadImgUrl,
           });
           this.$Modal.remove();

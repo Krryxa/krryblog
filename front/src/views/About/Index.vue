@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Service from '@/service';
+import { getLinkOrAbout } from '@/service';
 export default {
   data () {
     return {
@@ -32,7 +32,7 @@ export default {
         title: '关于我',
       };
       // fetch about api
-      let res = await Service.getLinkOrAbout(reqData);
+      let res = await getLinkOrAbout(reqData);
       this.status = res.status;
       // 404 的标题在 axios 拦截器已经定义
       if (this.status !== 404) {

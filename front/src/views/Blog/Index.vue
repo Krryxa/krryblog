@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Service from '@/service';
+import { getBlogDetail } from '@/service';
 export default {
   data () {
     return {
@@ -27,7 +27,7 @@ export default {
   methods: {
     async getBlogDetail () {
       let id = this.$route.params['id'];
-      let res = await Service.getBlogDetail(id);
+      let res = await getBlogDetail(id);
       this.status = res.status;
       this.blog = res.data;
       // 404 的标题在 axios 拦截器已经定义

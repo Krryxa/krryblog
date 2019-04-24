@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Service from '@/service';
+import { getAllBlog } from '@/service';
 export default {
   data () {
     return {
@@ -35,7 +35,7 @@ export default {
         pageNo: this.pageNo,
         pageSize: this.pageSize,
       };
-      let res = await Service.getAllBlog(reqData);
+      let res = await getAllBlog(reqData);
       this.status = res.status;
       // 404 的标题在 axios 拦截器已经定义
       if (this.status !== 404) {

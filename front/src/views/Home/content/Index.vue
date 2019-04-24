@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Service from '@/service';
+import { getBlog } from '@/service';
 export default {
   data () {
     return {
@@ -26,7 +26,7 @@ export default {
         pageNo: this.pageNo,
         pageSize: this.pageSize,
       };
-      let res = await Service.getBlog(reqData);
+      let res = await getBlog(reqData);
       if (res.status !== 404) {
         this.blogList = res.data;
         this.blogLen = res.blogLen;

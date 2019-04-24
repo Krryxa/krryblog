@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import Service from '@/service';
+import { updateUser, updateBlog } from '@/service';
 import { loading } from '@/mixins/loading';
 import { PERSON_MODIFY_RULE } from '@/views/service/rules';
 export default {
@@ -226,7 +226,7 @@ export default {
               password: this.userForm['newPW'],
             });
           }
-          let res = await Service.updateUser(reqData);
+          let res = await updateUser(reqData);
           this.$Spin.hide();
           if (res !== 'success') {
             this.$Message.error(res);
@@ -254,7 +254,7 @@ export default {
         id: id,
         status: val ? 1 : 0,
       };
-      let msg = await Service.updateBlog(reqData);
+      let msg = await updateBlog(reqData);
       if (msg === 'success') {
         // 同步已查询出来的数据
         this.$emit('statusBlog', reqData);
@@ -282,7 +282,7 @@ export default {
         id: id,
         isDelete: 1,
       };
-      let msg = await Service.updateBlog(reqData);
+      let msg = await updateBlog(reqData);
       if (msg === 'success') {
         // refresh local data
         this.$emit('deleteBlog', id);

@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import Service from '@/service';
+import { getLogin } from '@/service';
 import { loading } from '@/mixins/loading';
 export default {
   mixins: [loading],
@@ -43,7 +43,7 @@ export default {
       }
     },
     async submit (reqData) {
-      let res = await Service.getLogin(reqData);
+      let res = await getLogin(reqData);
       if (!res.includes('success')) {
         this.$Message.warning(res);
       } else {

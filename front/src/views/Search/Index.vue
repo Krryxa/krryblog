@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Service from '@/service';
+import { getBlogByKeyword } from '@/service';
 export default {
   data () {
     return {
@@ -38,7 +38,7 @@ export default {
         pageSize: this.pageSize,
         keyword: this.keyword,
       };
-      let res = await Service.getBlogByKeyword(reqData);
+      let res = await getBlogByKeyword(reqData);
       this.status = res.status;
       this.blogList = res.data;
       this.blogLen = this.hasNoResult ? 0 : res.blogLen;
