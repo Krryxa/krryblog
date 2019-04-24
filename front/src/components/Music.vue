@@ -34,7 +34,7 @@ export default {
         '可爱女人-周杰伦.m4a',
         '青花瓷-周杰伦.m4a',
         '说好的幸福呢-周杰伦.m4a',
-        '夏天的风-温岚.m4a'
+        '夏天的风-温岚.m4a',
       ],
       isTransition: false,
       currIndex: 0,
