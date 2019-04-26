@@ -20,7 +20,6 @@ export default {
       musicList: [
         'Don Coi(Instrumental).mp4',
         `Girl's Talk.mp4`,
-        'if....mp4',
         'Lazy Afternoon.mp4',
         'tear in pink rain.mp4',
         '李幸倪- 月球下的人.mp4',
