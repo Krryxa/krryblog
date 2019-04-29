@@ -169,13 +169,14 @@ section {
     }
 
     .top-icon {
-      width: 37px;
-      height: 37px;
+      width: 36px;
+      opacity: 0.86;
+      height: 36px;
       position: absolute;
       left: -7px;
       top: -4px;
       text-align: center;
-      line-height: 37px;
+      line-height: 36px;
       color: #fff;
       background: url('../assets/pic/tag.png');
       background-size: cover;
