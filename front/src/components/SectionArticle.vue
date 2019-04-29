@@ -1,7 +1,7 @@
 <template>
   <section ref="blogSection" class="section-article">
     <article v-for="(val, index) in blogShowList" :key="index">
-      <span v-if="val.isTop" class="top-icon"><Icon type="md-star" /></span>
+      <span v-if="val.isTop && isHome" class="top-icon"><i class="iconfont icon-Up-1" /></span>
       <div class='bg-container'>
         <div class="bg-img" :style="val.id | setLink({background: `url(${basePath}${val.image}) 0% 0% / cover`})"></div>
       </div>
@@ -91,14 +91,17 @@ export default {
   },
   created () {
     if (this.blogList.length > 0) {
-      this.blogShowList = this.handleIsTopData(this.blogList);
+      this.blogShowList = this.blogList;
     }
   },
   computed: {
+    isHome () {
+      return this.$route.name === 'home' || this.$route.name === 'homePage';
+    },
   },
   watch: {
     blogList (newVal, oldVal) {
-      this.blogShowList = this.handleIsTopData(newVal);
+      this.blogShowList = newVal;
       if (oldVal.length !== 0) {
         // 共用组件，每次数据变化产生过渡效果
         this.$refs.blogSection.style['display'] = 'none';
@@ -109,17 +112,17 @@ export default {
     },
   },
   methods: {
-    handleIsTopData (data) {
-      let topData = [];
-      data = data.filter(item => {
-        if (item.isTop) {
-          topData.push(item);
-          return false;
-        }
-        return true;
-      });
-      return [...topData, ...data];
-    },
+    // handleIsTopData (data) {
+    //   let topData = [];
+    //   data = data.filter(item => {
+    //     if (item.isTop) {
+    //       topData.push(item);
+    //       return false;
+    //     }
+    //     return true;
+    //   });
+    //   return [...topData, ...data];
+    // },
   },
   components: {
   },
@@ -168,15 +171,18 @@ section {
     .top-icon {
       width: 20px;
       height: 26px;
-      background: #ff8a2c;
+      background: #ff801a;
       position: absolute;
       left: 0px;
       top: 0px;
       border-radius: 0px 0px 5px 0px;
       text-align: center;
-      line-height: 23px;
+      line-height: 26px;
       color: #fff;
-      font-size: 16px;
+
+      i {
+        font-size: 12px;
+      }
     }
 
     .bg-container {
