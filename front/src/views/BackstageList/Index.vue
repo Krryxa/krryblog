@@ -1,7 +1,7 @@
 <template>
   <main v-if="!isEmpty">
     <my-header></my-header>
-    <Content :blogList="blogList" @statusBlog="statusBlog" @deleteBlog="deleteBlog"></Content>
+    <Content :blogList="blogList" @handleChangeBlog="handleChangeBlog" @deleteBlog="deleteBlog"></Content>
     <Page v-if="blogLen > pageSize" :total="blogLen" size="small" :current="pageNo" :page-size="pageSize" show-elevator @on-change="changePage"/>
     <my-footer></my-footer>
   </main>
@@ -50,12 +50,13 @@ export default {
         this.blogLen = res.blogLen;
       }
     },
-    statusBlog (reqData) {
+    handleChangeBlog (reqData) {
+      let params = Object.keys(reqData).filter(item => item !== 'id');
       let id = reqData.id;
-      let status = reqData.status;
+      let key = params[0];
       for (let val of this.blogList) {
         if (val.id === id) {
-          val.status = status;
+          val[key] = reqData[key];
           break;
         }
       }

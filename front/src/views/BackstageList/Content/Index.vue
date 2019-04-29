@@ -58,11 +58,11 @@ export default {
       },
       rule: PERSON_MODIFY_RULE.call(this),
       columns: [
-        {
-          type: 'selection',
-          width: 60,
-          align: 'center',
-        },
+        // {
+        //   type: 'selection',
+        //   width: 60,
+        //   align: 'center',
+        // },
         {
           title: 'ID',
           width: 60,
@@ -70,7 +70,7 @@ export default {
         },
         {
           title: '标题',
-          width: 140,
+          width: 157,
           key: 'title',
           render: (h, params) => {
             return h('router-link', {
@@ -94,11 +94,12 @@ export default {
         },
         {
           title: '作者',
+          width: 70,
           key: 'userName',
         },
         {
           title: '标签',
-          width: 90,
+          width: 110,
           key: 'label',
         },
         {
@@ -148,9 +149,40 @@ export default {
           },
         },
         {
+          title: '置顶',
+          width: 80,
+          key: 'isTop',
+          align: 'center',
+          render: (h, params) => {
+            return h('i-switch', {
+              props: {
+                value: !!params.row.isTop,
+              },
+              on: {
+                'on-change': val => {
+                  this.setIsTop(params.row.id, val);
+                },
+              },
+            }, [
+              h('Icon', {
+                props: {
+                  type: 'md-checkmark',
+                },
+                slot: 'open',
+              }),
+              h('Icon', {
+                props: {
+                  type: 'md-close',
+                },
+                slot: 'close',
+              }),
+            ]);
+          },
+        },
+        {
           title: '操作',
           key: 'action',
-          width: 130,
+          width: 127,
           align: 'center',
           render: (h, params) => {
             return h('div', {
@@ -257,7 +289,25 @@ export default {
       let msg = await updateBlog(reqData);
       if (msg === 'success') {
         // 同步已查询出来的数据
-        this.$emit('statusBlog', reqData);
+        this.$emit('handleChangeBlog', reqData);
+        this.$Message.success('Modified success!');
+      } else {
+        this.$Message.error('Error, Failure to Modify...');
+      }
+      this.$Spin.hide();
+    },
+    // 设置置顶状态
+    async setIsTop (id, val) {
+      console.log(id, val);
+      this.openLoading('正在置顶~~');
+      let reqData = {
+        id: id,
+        isTop: val ? 1 : 0,
+      };
+      let msg = await updateBlog(reqData);
+      if (msg === 'success') {
+        // 同步已查询出来的数据
+        this.$emit('handleChangeBlog', reqData);
         this.$Message.success('Modified success!');
       } else {
         this.$Message.error('Error, Failure to Modify...');
@@ -302,7 +352,7 @@ export default {
 section {
   animation: fadeIn .6s linear;
   padding: 90px 0 0px;
-  width: 1020px;
+  width: 1080px;
   margin: 0 auto;
 
   h1 {

@@ -18,7 +18,8 @@
 		b.createTime,
 		b.updateTime,
 		b.status,
-		b.isDelete
+		b.isDelete,
+		b.isTop
 	</sql>
 	
 	<!-- 查询已发布的博客 -->
@@ -162,7 +163,8 @@
 			createTime,
 			updateTime,
 			status,
-			isDelete
+			isDelete,
+			isTop
 	    )
 	    values(
 	    	#{userId},
@@ -179,7 +181,8 @@
 			#{createTime},
 			#{updateTime},
 			#{status},
-			#{isDelete}
+			#{isDelete},
+			#{isTop}
 	    )
 	</insert>
 	
@@ -213,6 +216,7 @@
 			<if test="@com.krry.util.TmStringUtils@isNotEmpty(updateTime)">updateTime=#{updateTime},</if>
 			<if test="@com.krry.util.TmStringUtils@isNotEmpty(status)">status=#{status},</if>
 			<if test="@com.krry.util.TmStringUtils@isNotEmpty(isDelete)">isDelete=#{isDelete},</if>
+			<if test="@com.krry.util.TmStringUtils@isNotEmpty(isTop)">isTop=#{isTop},</if>
 		</trim>
 		where
 			id = #{id}

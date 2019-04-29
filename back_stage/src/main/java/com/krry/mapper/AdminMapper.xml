@@ -18,7 +18,8 @@
 		b.createTime,
 		b.updateTime,
 		b.status,
-		b.isDelete
+		b.isDelete,
+		b.isTop
 	</sql>
 	
 	

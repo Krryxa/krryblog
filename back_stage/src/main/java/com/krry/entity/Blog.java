@@ -20,6 +20,7 @@ public class Blog {
 	private String updateTime;
 	private Integer status;
 	private Integer isDelete;
+	private Integer isTop;
 	
 	public Integer getId() {
 		return id;
@@ -128,6 +129,12 @@ public class Blog {
 	}
 	public void setIsDelete(Integer isDelete) {
 		this.isDelete = isDelete;
+	}
+	public Integer getIsTop() {
+		return isTop;
+	}
+	public void setIsTop(Integer isTop) {
+		this.isTop = isTop;
 	}
 	
 	

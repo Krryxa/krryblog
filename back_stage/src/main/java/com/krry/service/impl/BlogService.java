@@ -210,6 +210,7 @@ public class BlogService implements IBlogService{
 		blog.setCreateTime(date);
 		blog.setUpdateTime(date);
 		blog.setIsDelete(0);
+		blog.setIsTop(0);
 		
 		blogMapper.addBlog(blog);
 		int id = blog.getId();
