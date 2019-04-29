@@ -1,6 +1,7 @@
 <template>
   <section ref="blogSection" class="section-article">
     <article v-for="(val, index) in blogShowList" :key="index">
+      <span v-if="val.isTop" class="top-icon"><Icon type="md-star" /></span>
       <div class='bg-container'>
         <div class="bg-img" :style="val.id | setLink({background: `url(${basePath}${val.image}) 0% 0% / cover`})"></div>
       </div>
@@ -90,14 +91,14 @@ export default {
   },
   created () {
     if (this.blogList.length > 0) {
-      this.blogShowList = this.blogList;
+      this.blogShowList = this.handleIsTopData(this.blogList);
     }
   },
   computed: {
   },
   watch: {
     blogList (newVal, oldVal) {
-      this.blogShowList = newVal;
+      this.blogShowList = this.handleIsTopData(newVal);
       if (oldVal.length !== 0) {
         // 共用组件，每次数据变化产生过渡效果
         this.$refs.blogSection.style['display'] = 'none';
@@ -105,6 +106,19 @@ export default {
           this.$refs.blogSection.style['display'] = 'block';
         }, 0);
       }
+    },
+  },
+  methods: {
+    handleIsTopData (data) {
+      let topData = [];
+      data = data.filter(item => {
+        if (item.isTop) {
+          topData.push(item);
+          return false;
+        }
+        return true;
+      });
+      return [...topData, ...data];
     },
   },
   components: {
@@ -124,7 +138,7 @@ section {
     height: 340px;
     float: left;
     position: relative;
-    border-radius: 4px;
+    border-radius: 5px;
     background: rgba(255, 255, 255, 0.5);
     box-sizing: border-box;
     margin: 20px;
@@ -151,11 +165,25 @@ section {
       }
     }
 
+    .top-icon {
+      width: 20px;
+      height: 26px;
+      background: #ff8a2c;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      border-radius: 0px 0px 5px 0px;
+      text-align: center;
+      line-height: 23px;
+      color: #fff;
+      font-size: 16px;
+    }
+
     .bg-container {
       &::before {
         content: "Loading...";
         position: absolute;
-        border-radius: 4px 4px 0 0;
+        border-radius: 5px 5px 0 0;
         width: 100%;
         left: 0;
         background-color: rgba(169, 169, 169, 0.75);
@@ -169,7 +197,7 @@ section {
       &::after {
         content: "";
         position: absolute;
-        border-radius: 4px 4px 0 0;
+        border-radius: 5px 5px 0 0;
         width: 100%;
         left: 0;
         background-color: rgba(255, 255, 255, 0);
@@ -180,7 +208,7 @@ section {
       .bg-img {
         transition: all .5s ease;
         height: 230px;
-        border-radius: 4px 4px 0 0;
+        border-radius: 5px 5px 0 0;
       }
     }
 
