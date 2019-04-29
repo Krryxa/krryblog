@@ -169,19 +169,20 @@ section {
     }
 
     .top-icon {
-      width: 20px;
-      height: 26px;
-      background: #ff801a;
+      width: 37px;
+      height: 37px;
       position: absolute;
-      left: 0px;
-      top: 0px;
-      border-radius: 0px 0px 5px 0px;
+      left: -7px;
+      top: -4px;
       text-align: center;
-      line-height: 26px;
+      line-height: 37px;
       color: #fff;
+      background: url('../assets/pic/tag.png');
+      background-size: cover;
 
       i {
-        font-size: 12px;
+        font-size: 16px;
+        margin-left: 1px;
       }
     }
 
