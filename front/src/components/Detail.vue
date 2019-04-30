@@ -232,8 +232,8 @@ article {
     }
     .header-tag {
       width: 85%;
-      margin-top: 14px;
       a {
+        margin-top: 14px;
         color: #fff;
         border: 1px solid #f16d71;
         border-radius: 15px;

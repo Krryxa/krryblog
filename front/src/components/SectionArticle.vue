@@ -183,7 +183,6 @@ section {
 
       i {
         font-size: 16px;
-        margin-left: 1px;
       }
     }
 
