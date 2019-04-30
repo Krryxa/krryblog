@@ -32,12 +32,12 @@ export default {
 .header {
   background: url(../assets/pic/category.jpg) no-repeat;
   background-size: cover;
-  padding: 96px 0 30px;
+  padding: 96px 0 28px;
   text-align: center;
 
   h1 {
     position: relative;
-    font-weight: 100;
+    font-weight: 400;
     font-size: 30px;
     margin: 0 auto;
     margin-bottom: 10px;
@@ -52,7 +52,7 @@ export default {
     }
     .e-right {
       right: 2px;
-      top: -12px;
+      top: -10px;
       position: relative;
     }
     .text {
@@ -65,8 +65,8 @@ export default {
   }
 
   h4 {
-    font-weight: 100;
-    font-size: 15px;
+    font-weight: 400;
+    font-size: 16px;
     color: rgba(255,255,255,0.54);
   }
 }

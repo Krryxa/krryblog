@@ -15,7 +15,7 @@ export default {
     return {
       blog: {},
       status: 200,
-      description: 'Network correlation',
+      description: 'Website link',
     };
   },
   computed: {
