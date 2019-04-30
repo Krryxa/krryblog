@@ -42,7 +42,7 @@ export default {
     margin: 0 auto;
     margin-bottom: 10px;
     letter-spacing: .1em;
-    color: #fff;
+    color: rgba(255, 255, 255, 0.89);
     text-shadow: 0 4px 8px rgba(7, 17, 27, 0.4);
 
     .e-left {
