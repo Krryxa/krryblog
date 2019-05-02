@@ -54,11 +54,11 @@ export default {
   },
 
   /**
-   * 修改博客评论数 +1
+   * 修改博客，不改变 updateTime
    * @param {*} reqData
    */
-  updateCommonBlog (reqData) {
-    return Ax.post('/krryblog/blog/updateCommonBlog', qs.stringify(reqData));
+  updateBlogNoTime (reqData) {
+    return Ax.post('/krryblog/blog/updateBlogNoTime', qs.stringify(reqData));
   },
 
   /**

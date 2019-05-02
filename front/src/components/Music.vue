@@ -18,7 +18,6 @@ export default {
       isPlay: false,
       firstTime: true, // 是否是第一次播放
       musicList: [
-        'Don Coi(Instrumental).mp4',
         `Girl's Talk.mp4`,
         'Lazy Afternoon.mp4',
         'tear in pink rain.mp4',
@@ -34,6 +33,11 @@ export default {
         '青花瓷-周杰伦.m4a',
         '说好的幸福呢-周杰伦.m4a',
         '夏天的风-温岚.m4a',
+        'Better me- AGA.mp4',
+        '圆 - AGA.mp4',
+        '一加一 - AGA.mp4',
+        'Begin Again - Taylor Swift.mp3',
+        '棠梨煎雪 - 银临.mp4',
       ],
       isTransition: false,
       currIndex: 0,

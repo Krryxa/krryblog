@@ -55,11 +55,11 @@ export async function updateBlog (reqData) {
 };
 
 /**
- * 修改博客评论数 +1
+ * 修改博客，不改变 updateTime
  * @param {*} reqData
  */
-export async function updateCommonBlog (reqData) {
-  let res = await Api.updateCommonBlog(reqData);
+export async function updateBlogNoTime (reqData) {
+  let res = await Api.updateBlogNoTime(reqData);
   return res;
 };
 

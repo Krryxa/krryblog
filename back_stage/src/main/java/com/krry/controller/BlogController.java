@@ -139,15 +139,15 @@ public class BlogController {
 	}
 	
 	/**
-	 * 博客评论数+1
+	 * 修改博客，不改变 updateTime
 	 * @param blog
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/updateCommonBlog")
-	public String updateCommonBlog(Blog blog){
+	@RequestMapping("/updateBlogNoTime")
+	public String updateBlogNoTime(Blog blog){
 		
-		String msg = blogService.updateCommonBlog(blog);
+		String msg = blogService.updateBlogNoTime(blog);
 		
 		return msg;
 	}

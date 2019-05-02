@@ -237,11 +237,11 @@ public class BlogService implements IBlogService{
 	
 	
 	/**
-	 * 博客评论数+1
+	 * 修改博客，不改变 updateTime
 	 * @param blog
 	 * @return
 	 */
-	public String updateCommonBlog(Blog blog) {
+	public String updateBlogNoTime(Blog blog) {
 		
 		blogMapper.updateBlog(blog);
 		

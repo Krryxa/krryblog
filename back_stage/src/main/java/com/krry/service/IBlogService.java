@@ -53,10 +53,10 @@ public interface IBlogService {
 	public String updateBlog(Blog blog);
 	
 	/**
-	 * 博客评论数+1
+	 * 修改博客，不改变 updateTime
 	 * @param blog
 	 */
-	public String updateCommonBlog(Blog blog);
+	public String updateBlogNoTime(Blog blog);
 	
 	/**
 	 * 删除博客封面

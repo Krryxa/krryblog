@@ -44,7 +44,7 @@ import '@/assets/css/markdown.css';
 import '@/assets/css/github.css';
 import Catalog from '@/util/catalog.js';
 import Valine from 'valine';
-import { updateCommonBlog } from '@/service';
+import { updateBlogNoTime } from '@/service';
 export default {
   props: {
     blog: {
@@ -183,7 +183,7 @@ export default {
             id: this.blog['id'],
             comment: ++commentCount,
           };
-          updateCommonBlog(reqData);
+          updateBlogNoTime(reqData);
           // 设置当前评论量
           this.$refs.commentSpan.innerText = commentCount;
           // 移除评论按钮
