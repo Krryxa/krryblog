@@ -233,6 +233,15 @@ section {
     cursor: url(../../assets/pic/cursor.cur), pointer !important;
   }
 
+  .content-input-wrapper {
+    padding: unset !important;
+
+    textarea {
+      font-size: 14px !important;
+      padding: 8px 25px 15px 25px;
+    }
+  }
+
   .ivu-form-item {
     .ivu-form-item-label {
       font-size: 14px;
