@@ -184,8 +184,10 @@ export default {
             comment: ++commentCount,
           };
           updateBlogNoTime(reqData);
-          // 设置当前评论量
-          this.$refs.commentSpan.innerText = commentCount;
+          // 需要展示头部的文章，就设置当前评论量
+          if (this.hasShowHeader) {
+            this.$refs.commentSpan.innerText = commentCount;
+          }
           // 移除评论按钮
           buttonContainer.removeChild(this.submitBtn);
         }
