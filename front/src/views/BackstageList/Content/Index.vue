@@ -4,7 +4,8 @@
     <router-link :to="{name: 'edit'}">
       <Button type="success" class="add-button">Add</Button>
     </router-link>
-    <a href="javascript:void(0)" @click="showDialog" class="modify-buttom">修改个人信息</a>
+    <a href="javascript:void(0)" @click="Logout" class="modify-buttom">Logout</a>
+    <a href="javascript:void(0)" @click="showDialog" class="modify-buttom">Modify Personal Information</a>
     <Modal
       width="400"
       v-model="showModel"
@@ -65,12 +66,12 @@ export default {
         // },
         {
           title: 'ID',
-          width: 60,
+          width: 50,
           key: 'id',
         },
         {
-          title: '标题',
-          width: 157,
+          title: 'Title',
+          width: 153,
           key: 'title',
           render: (h, params) => {
             return h('router-link', {
@@ -81,7 +82,7 @@ export default {
           },
         },
         {
-          title: '存档',
+          title: 'Archive',
           width: 97,
           key: 'classify',
           render: (h, params) => {
@@ -93,32 +94,32 @@ export default {
           },
         },
         {
-          title: '作者',
-          width: 70,
+          title: 'Author',
+          width: 76,
           key: 'userName',
         },
         {
-          title: '标签',
-          width: 110,
+          title: 'Label',
+          width: 107,
           key: 'label',
         },
         {
-          title: '点击 / 评论',
-          width: 97,
+          title: 'Clicks \xa0\xa0/Comment',
+          width: 94,
           key: 'hitComment',
         },
         {
-          title: '发表时间',
-          width: 100,
+          title: 'CreateTime',
+          width: 104,
           key: 'createTime',
         },
         {
-          title: '最后更新',
-          width: 100,
+          title: 'UpdateTime',
+          width: 107,
           key: 'updateTime',
         },
         {
-          title: '状态',
+          title: 'Status',
           width: 80,
           key: 'status',
           align: 'center',
@@ -149,8 +150,8 @@ export default {
           },
         },
         {
-          title: '置顶',
-          width: 80,
+          title: 'Topping',
+          width: 83,
           key: 'isTop',
           align: 'center',
           render: (h, params) => {
@@ -180,7 +181,7 @@ export default {
           },
         },
         {
-          title: '操作',
+          title: 'Operation',
           key: 'action',
           width: 127,
           align: 'center',
@@ -242,11 +243,24 @@ export default {
       this.showModel = true;
       this.userForm['newName'] = this.userName;
     },
+    Logout () {
+      this.$Modal.confirm({
+        title: 'notification~',
+        content: `<p>Do you want to logout ？</p>`,
+        okText: 'Confirm',
+        cancelText: 'Cancel',
+        onOk: () => {
+          this.$store.dispatch('user/CLEARUSER');
+          sessionStorage.clear();
+          this.$router.push('/');
+        },
+      });
+    },
     // 确认修改个人信息
     confirmUser () {
       this.$refs['userForm'].validate(async (valid) => {
         if (valid) {
-          this.openLoading('正在修改~~');
+          this.openLoading('Modifying~~');
           let reqData = {
             id: this.userId,
             name: this.userForm['newName'],
@@ -281,7 +295,7 @@ export default {
     // 设置发布状态
     async setStatus (id, val) {
       console.log(id, val);
-      this.openLoading('正在修改~~');
+      this.openLoading('Modifying~~');
       let reqData = {
         id: id,
         status: val ? 1 : 0,
@@ -299,7 +313,7 @@ export default {
     // 设置置顶状态
     async setIsTop (id, val) {
       console.log(id, val);
-      this.openLoading('正在置顶~~');
+      this.openLoading('Topping~~');
       let reqData = {
         id: id,
         isTop: val ? 1 : 0,
@@ -318,7 +332,7 @@ export default {
       console.log('删除id：' + id);
       this.$Modal.confirm({
         title: 'notification~',
-        content: `<p>是否删除博客 “ ${title} ” ？</p>`,
+        content: `<p>Do you want to delete the blog “${title}” ？</p>`,
         okText: 'Confirm',
         cancelText: 'Cancel',
         onOk: () => {
@@ -327,7 +341,7 @@ export default {
       });
     },
     async remove (id) {
-      this.openLoading('正在删除~~');
+      this.openLoading('Deleting~~');
       let reqData = {
         id: id,
         isDelete: 1,
@@ -370,6 +384,7 @@ section {
 
   .modify-buttom {
     float: right;
+    margin-left: 16px;
   }
 
   .ivu-table-wrapper {

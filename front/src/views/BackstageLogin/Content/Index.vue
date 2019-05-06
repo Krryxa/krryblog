@@ -60,7 +60,7 @@ export default {
       this.$Spin.hide();
     },
     back () {
-      window.history.go(-1);
+      this.$router.push('/');
     },
   },
   components: {

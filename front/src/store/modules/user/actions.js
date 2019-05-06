@@ -9,4 +9,8 @@ export default {
   async [Types.SETUSERID] ({ commit }, id) {
     commit(Types.SETUSERID, id);
   },
+  // 清空用户信息
+  async [Types.CLEARUSER] ({ commit }) {
+    commit(Types.CLEARUSER);
+  },
 };

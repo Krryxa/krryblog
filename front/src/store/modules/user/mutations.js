@@ -9,4 +9,9 @@ export default {
   [Types.SETUSERID] (state, id) {
     state.id = id;
   },
+  // 清空用户信息
+  [Types.CLEARUSER] (state) {
+    state.id = '';
+    state.username = '';
+  },
 };
