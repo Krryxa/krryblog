@@ -100,7 +100,7 @@ export default {
         },
         {
           title: 'Label',
-          width: 107,
+          width: 109,
           key: 'label',
         },
         {
@@ -120,7 +120,7 @@ export default {
         },
         {
           title: 'Status',
-          width: 80,
+          width: 79,
           key: 'status',
           align: 'center',
           render: (h, params) => {
@@ -150,8 +150,8 @@ export default {
           },
         },
         {
-          title: 'Topping',
-          width: 83,
+          title: 'Top',
+          width: 79,
           key: 'isTop',
           align: 'center',
           render: (h, params) => {
@@ -183,7 +183,7 @@ export default {
         {
           title: 'Operation',
           key: 'action',
-          width: 127,
+          width: 130,
           align: 'center',
           render: (h, params) => {
             return h('div', {
@@ -208,7 +208,7 @@ export default {
                   style: {
                     marginRight: '10px',
                   },
-                }, '修改'),
+                }, 'MOD'),
               ]),
               h('Button', {
                 props: {
@@ -220,7 +220,7 @@ export default {
                     this.beforeRemove(params.row['id'], params.row['title']);
                   },
                 },
-              }, '删除'),
+              }, 'DEL'),
             ]);
           },
         },
@@ -313,11 +313,12 @@ export default {
     // 设置置顶状态
     async setIsTop (id, val) {
       console.log(id, val);
-      this.openLoading('Topping~~');
       let reqData = {
         id: id,
         isTop: val ? 1 : 0,
       };
+      let loadMsg = reqData.isTop ? 'Topping~~' : 'No topping~~';
+      this.openLoading(loadMsg);
       let msg = await updateBlogNoTime(reqData);
       if (msg === 'success') {
         // 同步已查询出来的数据
@@ -384,7 +385,7 @@ section {
 
   .modify-buttom {
     float: right;
-    margin-left: 16px;
+    margin-left: 18px;
   }
 
   .ivu-table-wrapper {

@@ -27,8 +27,11 @@
         </template>
       </div>
     </Upload>
-    <Modal title="View Image" v-model="visible">
-      <img :src="previewImg" v-if="visible" style="width: 100%">
+    <Modal title="View Image" v-model="visible" width="760">
+      <img :src="previewImg" style="width: 100%">
+      <div slot="footer">
+        <Button type="primary" size="large" @click="visible = false">Confirm</Button>
+      </div>
     </Modal>
   </FormItem>
 </template>

@@ -45,10 +45,10 @@ public class AdminService implements IAdminService{
 			if (realUser.getPassword().equals(user.getPassword())) {
 				return "success " + realUser.getId();
 			} else {
-				return "密码错误哦~";
+				return "The password is wrong~";
 			}
 		} else {
-			return "用户名不存在哦~";
+			return "The username does not exist~";
 		}
 	}
 

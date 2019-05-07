@@ -2,7 +2,7 @@
   <section class="login">
     <h1>Login</h1>
     <Form :label-width="73" label-position="top">
-      <FormItem label="name">
+      <FormItem label="username">
         <Input v-model.trim="name" @keyup.enter.native="beforeSubmit" placeholder="Enter name..."/>
       </FormItem>
       <FormItem label="password">
@@ -30,11 +30,11 @@ export default {
   methods: {
     beforeSubmit () {
       if (this.name === '') {
-        this.$Message.warning('先输入用户名哦~~');
+        this.$Message.warning('Please enter your username first~~');
       } else if (this.password === '') {
-        this.$Message.warning('先输入密码哦~~');
+        this.$Message.warning('Please enter your password first~~');
       } else {
-        this.openLoading('正在登录~~');
+        this.openLoading('Loading~~');
         let reqData = {
           name: this.name,
           password: this.password,
