@@ -33,7 +33,9 @@
       <p>最后编辑时间：{{blog.updateTime}}</p>
     </div>
     <aside id="directory"></aside>
-    <div id="zooms" class="zoom-shadow"></div>
+    <div id="zooms" class="zoom-shadow">
+      <img ref="zoomImg" class="zoom-big-img" />
+    </div>
     <p class="comments-desc" v-if="isloaded"><span>发表评论</span></p>
     <div id="vcomments" ref="vcomments"></div>
   </article>
@@ -82,7 +84,6 @@ export default {
     // 加载目录和评论插件
     if (JSON.stringify(this.blog) !== '{}' && this.blog !== null) {
       this.getCatalogZoomsComment();
-      this.getComment();
     }
     // 这里使用深度监听 blog 对象的属性变化
     this.$watch('blog', this.getCatalogZoomsComment, {
@@ -106,24 +107,20 @@ export default {
       // 事件委托，处理全部 img 标签的点击事件
       let blog = document.getElementById('blog');
       let zooms = document.getElementById('zooms');
+      let zoomImg = this.$refs.zoomImg;
       let target = '';
       blog.addEventListener('click', ev => {
         let eve = ev || window.event;
         target = eve.target || eve.srcElement;
-        if (target.nodeName.toLowerCase() === 'img' && target.className !== 'zoom-big-img') {
+        if (target.nodeName.toLowerCase() === 'img') {
+          zoomImg.src = target.src;
           zooms.style.visibility = 'visible';
           zooms.style.opacity = '1';
-          target.className = 'zoom-big-img';
-        } else if (target.className === 'zoom-big-img') {
-          zooms.style.visibility = 'hidden';
-          zooms.style.opacity = '0';
-          target.className = '';
         }
       });
       zooms.addEventListener('click', ev => {
         zooms.style.visibility = 'hidden';
         zooms.style.opacity = '0';
-        target.className = '';
       });
       // 加载评论系统
       this.getComment();

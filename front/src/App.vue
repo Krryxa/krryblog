@@ -435,6 +435,9 @@ scrollbar[orient="vertical"] {
       cursor: zoom-in;
       transition: .3s;
     }
+  }
+
+  .zoom-shadow {
     .zoom-big-img {
       z-index: 1501;
       position: fixed;

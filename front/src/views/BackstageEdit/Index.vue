@@ -256,6 +256,11 @@ section {
         }
       }
     }
+    .v-note-img-wrapper {
+      img {
+        cursor: zoom-out;
+      }
+    }
   }
 
   .ivu-upload-list-remove {
