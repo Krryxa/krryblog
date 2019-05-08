@@ -259,6 +259,8 @@ section {
     .v-note-img-wrapper {
       img {
         cursor: zoom-out;
+        max-width: 86%;
+        max-height: 86%;
       }
     }
   }

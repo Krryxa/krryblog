@@ -442,6 +442,8 @@ scrollbar[orient="vertical"] {
       z-index: 1501;
       position: fixed;
       cursor: zoom-out;
+      max-width: 86%;
+      max-height: 86%;
       margin: auto;
       left: 0;
       right: 0;
