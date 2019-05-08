@@ -99,6 +99,7 @@ img {
 
 /* 回到顶部 */
 .ivu-back-top {
+  z-index: 1009;
   display: block;
   visibility: hidden;
   opacity: 0;
@@ -434,22 +435,6 @@ scrollbar[orient="vertical"] {
     img {
       cursor: zoom-in;
       transition: .3s;
-    }
-  }
-
-  .zoom-shadow {
-    .zoom-big-img {
-      z-index: 1501;
-      position: fixed;
-      cursor: zoom-out;
-      max-width: 86%;
-      max-height: 86%;
-      margin: auto;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      transform: scale(1);
     }
   }
 }

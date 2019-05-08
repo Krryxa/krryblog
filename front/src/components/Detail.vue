@@ -301,6 +301,19 @@ article {
   transition: .3s;
   background: rgba(0, 0, 0 , .6);
   opacity: 0;
+
+  .zoom-big-img {
+    position: fixed;
+    cursor: zoom-out;
+    max-width: 86%;
+    max-height: 86%;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transform: scale(1);
+  }
 }
 </style>
 <style lang="scss">
