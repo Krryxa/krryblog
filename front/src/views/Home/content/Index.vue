@@ -26,10 +26,10 @@ export default {
     }
   },
   created() {
-    this.getBlog()
+    this.getBlogList()
   },
   methods: {
-    async getBlog() {
+    async getBlogList() {
       let reqData = {
         pageNo: this.pageNo,
         pageSize: this.pageSize
@@ -44,7 +44,7 @@ export default {
     },
     async changePage(pageNo) {
       this.pageNo = pageNo
-      await this.getBlog()
+      await this.getBlogList()
       this.flag = false
       if (pageNo === 1) {
         this.$router.push({ name: 'home' })
@@ -57,7 +57,7 @@ export default {
     $route(to, from) {
       if (this.flag) {
         this.pageNo = +to.params.pageIndex || 1
-        this.getBlog()
+        this.getBlogList()
       }
       this.flag = true
     }

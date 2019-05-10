@@ -22,10 +22,10 @@ export default {
     }
   },
   created() {
-    this.getBlogDetail()
+    this.getBlog()
   },
   methods: {
-    async getBlogDetail() {
+    async getBlog() {
       let id = this.$route.params['id']
       let res = await getBlogDetail(id)
       this.status = res.status
@@ -38,7 +38,7 @@ export default {
   },
   watch: {
     $route(to, from) {
-      this.getBlogDetail()
+      this.getBlog()
     }
   },
   components: {
