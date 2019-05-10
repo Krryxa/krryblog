@@ -14,18 +14,16 @@
 
 <script>
 export default {
-  data () {
-    return {
-    };
+  data() {
+    return {}
   },
-  components: {
-  },
-};
+  components: {}
+}
 </script>
 
 <style lang='scss' scoped>
 section {
-  animation: fadeIn .6s linear;
+  animation: fadeIn 0.6s linear;
   padding: 170px 0;
   margin: 0 auto;
   text-align: center;
@@ -35,7 +33,8 @@ section {
     font-size: 98px;
     font-weight: 700;
     line-height: 150px;
-    text-shadow: rgba(61,61,61,0.3) 1px 1px, rgba(61,61,61,0.2) 2px 2px, rgba(61,61,61,0.3) 3px 3px;
+    text-shadow: rgba(61, 61, 61, 0.3) 1px 1px, rgba(61, 61, 61, 0.2) 2px 2px,
+      rgba(61, 61, 61, 0.3) 3px 3px;
   }
   p {
     font-size: 30px;

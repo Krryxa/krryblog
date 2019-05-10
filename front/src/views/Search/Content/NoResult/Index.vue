@@ -1,7 +1,8 @@
 <template>
   <section>
     <div class="search-box">
-      <input type="text"
+      <input
+        type="text"
         ref="search"
         v-model.trim="keyWord"
         @keyup.enter="search"
@@ -9,12 +10,12 @@
         :maxlength="30"
         autocomplete="off"
         size="large"
-        class="inp-search" />
+        class="inp-search"
+      >
       <button class="inp-btn" @click="search">Search</button>
       <div class="clear"></div>
     </div>
-    <p class="msg">Sorry，没找到你想要的~~</p>
-    您可以换个关键词&nbsp;
+    <p class="msg">Sorry，没找到你想要的~~</p>您可以换个关键词&nbsp;
     <span class="border-line rep-search" @click="focusSearch">重新搜索</span>
     &nbsp;或&nbsp;
     <router-link to="/" class="border-line">返回首页</router-link>
@@ -23,34 +24,33 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      keyWord: '',
-    };
+      keyWord: ''
+    }
   },
   methods: {
-    search () {
+    search() {
       // 不需要去掉字符串中间的空格，两边的空格在 v-model.trim 已经去掉
       // this.keyWord = this.keyWord.replace(/\s*/g, '');
       if (this.keyWord !== '') {
-        console.log(this.keyWord);
-        console.log('search api...');
-        this.$router.push({name: 'search', params: { keyword: this.keyWord }});
-        this.keyWord = '';
+        console.log(this.keyWord)
+        console.log('search api...')
+        this.$router.push({ name: 'search', params: { keyword: this.keyWord } })
+        this.keyWord = ''
       }
     },
-    focusSearch () {
-      this.$refs.search.focus();
-    },
+    focusSearch() {
+      this.$refs.search.focus()
+    }
   },
-  components: {
-  },
-};
+  components: {}
+}
 </script>
 
 <style lang='scss' scoped>
 section {
-  animation: fadeIn .6s linear;
+  animation: fadeIn 0.6s linear;
   padding: 70px 0;
   text-align: center;
   line-height: 70px;
@@ -77,7 +77,7 @@ section {
     }
 
     .inp-search {
-      transition: .3s;
+      transition: 0.3s;
       float: left;
       margin: 0 auto;
       width: 80%;
@@ -95,7 +95,7 @@ section {
       }
     }
     .inp-btn {
-      transition: .3s;
+      transition: 0.3s;
       float: left;
       width: 20%;
       height: 38px;
@@ -110,7 +110,7 @@ section {
     }
   }
   .border-line {
-    transition: .3s;
+    transition: 0.3s;
     border-bottom: 1px solid #ccc;
 
     &:hover {

@@ -23,10 +23,12 @@ module.exports = {
   rules: {
     // iView 将标签渲染为原生 html 标签时，由于这些标签是自闭合的，所以有 end 标签会报错
     'vue/no-parsing-error': [2, { 'x-invalid-end-tag': false }],
-    // 必须要分号结尾
-    'semi': ['error', 'always'],
-    // 多行的对象字面量项尾必须有逗号
-    'comma-dangle': ['error', 'always-multiline'],
+    // // 必须要分号结尾
+    // 'semi': ['error', 'always'],
+    // // 多行的对象字面量项尾必须有逗号
+    // 'comma-dangle': ['error', 'always-multiline'],
+    // 方法定义前面不需要空格
+    'space-before-function-paren': 0,
     // allow async-await
     'generator-star-spacing': 'off',
     // allow debugger during development

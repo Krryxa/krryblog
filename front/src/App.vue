@@ -11,39 +11,41 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from 'vuex'
 export default {
   name: 'App',
   components: {
-    Music: () => import('@/components/Music'),
+    Music: () => import('@/components/Music')
   },
-  data () {
+  data() {
     return {
-      classifyList: [],
-    };
+      classifyList: []
+    }
   },
-  created () {
-    this.getClassifyList();
+  created() {
+    this.getClassifyList()
   },
   methods: {
     // 将 `this.setClassify()` 映射为 `this.$store.dispatch('blog/SETCLASSIFY')`
     ...mapActions({
-      setClassify: 'blog/SETCLASSIFY',
+      setClassify: 'blog/SETCLASSIFY'
     }),
-    getClassifyList () {
+    getClassifyList() {
       // 调用 vuex 中的 action 保存分类信息
-      this.setClassify();
-    },
-  },
-};
+      this.setClassify()
+    }
+  }
+}
 </script>
 
 <style>
-html, body {
+html,
+body {
   height: 100%;
   cursor: url(./assets/pic/pointer.cur), default;
 }
-a, button {
+a,
+button {
   cursor: url(./assets/pic/cursor.cur), pointer !important;
 }
 a {
@@ -51,7 +53,7 @@ a {
 }
 a:hover {
   color: #eb5055 !important;
-  transition: .3s;
+  transition: 0.3s;
 }
 ul li {
   list-style: none;
@@ -69,11 +71,12 @@ img {
   clear: both;
 }
 .animated {
-  animation-duration: .5s;
+  animation-duration: 0.5s;
 }
 
 /* 遮罩层 */
-.ivu-modal-mask, .ivu-modal-wrap {
+.ivu-modal-mask,
+.ivu-modal-wrap {
   z-index: 1010 !important;
 }
 
@@ -92,7 +95,8 @@ img {
 .hljs {
   font-size: 16px;
 }
-.hljs-comment, .hljs-quote {
+.hljs-comment,
+.hljs-quote {
   font-style: normal !important;
   font-weight: bold;
 }
@@ -104,7 +108,7 @@ img {
   visibility: hidden;
   opacity: 0;
   bottom: 0 !important;
-  transition: .4s ease;
+  transition: 0.4s ease;
   right: unset !important;
   margin-left: 1020px;
   cursor: url(./assets/pic/cursor.cur), pointer !important;
@@ -174,11 +178,20 @@ img {
   border-radius: 2em;
 }
 ::-webkit-scrollbar-track-piece {
-  background:#fff;
+  background: #fff;
 }
 ::-webkit-scrollbar-thumb {
   background-color: #ff8b18;
-  background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,.4) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.4) 75%,transparent 75%,transparent);
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.4) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.4) 75%,
+    transparent 75%,
+    transparent
+  );
   -webkit-border-radius: 2em;
   -moz-border-radius: 2em;
   border-radius: 2em;
@@ -191,30 +204,30 @@ img {
   background: #535353;
 }
 ::-webkit-scrollbar-resizer {
-  background: #FF0BEE;
+  background: #ff0bee;
 }
 scrollbar {
   -moz-appearance: none !important;
-  background: rgb(0,255,0) !important;
+  background: rgb(0, 255, 0) !important;
 }
 scrollbarbutton {
   -moz-appearance: none !important;
-  background-color: rgb(0,0,255) !important;
+  background-color: rgb(0, 0, 255) !important;
 }
 scrollbarbutton:hover {
   -moz-appearance: none !important;
-  background-color: rgb(255,0,0) !important;
+  background-color: rgb(255, 0, 0) !important;
 }
 /* 隐藏上下箭头 */
 scrollbarbutton {
   display: none !important;
 }
 /* 纵向滚动条宽度 */
-scrollbar[orient="vertical"] {
+scrollbar[orient='vertical'] {
   min-width: 12px !important;
 }
 ::selection {
-  background: #FF5252;
+  background: #ff5252;
   color: #fff;
 }
 
@@ -382,11 +395,12 @@ scrollbar[orient="vertical"] {
 <style lang="scss">
 /* 博客详情页样式 */
 .detail-article {
-  .content, .v-show-content {
+  .content,
+  .v-show-content {
     mark {
       background-color: #fff5f5;
       color: #ff502c;
-      padding: .065em .4em;
+      padding: 0.065em 0.4em;
       border-radius: 6px;
     }
     p {
@@ -395,13 +409,16 @@ scrollbar[orient="vertical"] {
     ul li {
       list-style: initial;
     }
-    ul, ol {
+    ul,
+    ol {
       padding-left: 1em;
       li {
         font-size: 14px !important;
       }
     }
-    h1, h2, h3 {
+    h1,
+    h2,
+    h3 {
       position: relative;
       font-weight: 400;
       font-size: 1.34em;
@@ -434,7 +451,7 @@ scrollbar[orient="vertical"] {
     }
     img {
       cursor: zoom-in;
-      transition: .3s;
+      transition: 0.3s;
     }
   }
 }

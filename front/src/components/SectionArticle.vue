@@ -1,9 +1,14 @@
 <template>
   <section ref="blogSection" class="section-article">
     <article v-for="(val, index) in blogShowList" :key="index">
-      <span v-if="val.isTop && isHome" class="top-icon"><i class="iconfont icon-Up-1" /></span>
-      <div class='bg-container'>
-        <div class="bg-img" :style="val.id | setLink({background: `url(${basePath}${val.image}) 0% 0% / cover`})"></div>
+      <span v-if="val.isTop && isHome" class="top-icon">
+        <i class="iconfont icon-Up-1"/>
+      </span>
+      <div class="bg-container">
+        <div
+          class="bg-img"
+          :style="val.id | setLink({background: `url(${basePath}${val.image}) 0% 0% / cover`})"
+        ></div>
       </div>
       <!-- 这里使用命名路由，效果与下面一样，使用过滤器控制骨架屏的链接 -->
       <router-link :to="val.id | setLink({name: 'blog', params: {id: val.id, title: val.title}})">
@@ -20,11 +25,11 @@
         </router-link>
         <div class="desc-bottom">
           <div :class="{'d-detail': true, 'hidden-detail': !val.id}">
-            <Icon type="md-calendar" />
+            <Icon type="md-calendar"/>
             <span>{{val.createTime}}</span>
-            <Icon type="md-eye" />
+            <Icon type="md-eye"/>
             <span>{{val.hit}}</span>
-            <Icon type="md-chatboxes" />
+            <Icon type="md-chatboxes"/>
             <span>{{val.comment}}</span>
           </div>
           <router-link :to="val.id | setLink(`/category/${val.classifyId}`)">
@@ -43,10 +48,10 @@
 export default {
   props: {
     blogList: {
-      type: Array,
-    },
+      type: Array
+    }
   },
-  data () {
+  data() {
     return {
       basePath: window.location.origin + '/',
       blogShowList: [
@@ -59,57 +64,59 @@ export default {
           createTime: '2018-08-23',
           hit: 20,
           comment: 20,
-          classifyId: 1,
-        }, {
-          classify: '',
-          title: '',
-          description: '',
-          id: '',
-          image: '',
-          createTime: '2018-08-23',
-          hit: 20,
-          comment: 20,
-          classifyId: 2,
-        }, {
-          classify: '',
-          title: '',
-          description: '',
-          id: '',
-          image: '',
-          createTime: '2018-08-23',
-          hit: 20,
-          comment: 20,
-          classifyId: 3,
+          classifyId: 1
         },
-      ],
-    };
+        {
+          classify: '',
+          title: '',
+          description: '',
+          id: '',
+          image: '',
+          createTime: '2018-08-23',
+          hit: 20,
+          comment: 20,
+          classifyId: 2
+        },
+        {
+          classify: '',
+          title: '',
+          description: '',
+          id: '',
+          image: '',
+          createTime: '2018-08-23',
+          hit: 20,
+          comment: 20,
+          classifyId: 3
+        }
+      ]
+    }
   },
   filters: {
-    setLink (id, link) {
-      return id ? link : '';
-    },
+    setLink(id, link) {
+      return id ? link : ''
+    }
   },
-  created () {
+  created() {
     if (this.blogList.length > 0) {
-      this.blogShowList = this.blogList;
+      this.blogShowList = this.blogList
     }
   },
   computed: {
-    isHome () {
-      return this.$route.name === 'home' || this.$route.name === 'homePage';
-    },
+    isHome() {
+      return this.$route.name === 'home' || this.$route.name === 'homePage'
+    }
   },
   watch: {
-    blogList (newVal, oldVal) {
-      this.blogShowList = newVal;
+    blogList(newVal, oldVal) {
+      this.blogShowList = newVal
       if (oldVal.length !== 0) {
         // 共用组件，每次数据变化产生过渡效果
-        this.$refs.blogSection.style['display'] = 'none';
+        this.$refs.blogSection.style['display'] = 'none'
         setTimeout(() => {
-          this.$refs.blogSection.style['display'] = 'block';
-        }, 0);
+          this.$refs.blogSection.style['display'] = 'block'
+        }, 0)
       }
-    },
+    }
   },
   methods: {
     // handleIsTopData (data) {
@@ -124,14 +131,13 @@ export default {
     //   return [...topData, ...data];
     // },
   },
-  components: {
-  },
-};
+  components: {}
+}
 </script>
 
 <style lang='scss' scoped>
 section {
-  animation: fadeIn .6s linear;
+  animation: fadeIn 0.6s linear;
   max-width: 960px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -145,7 +151,7 @@ section {
     background: rgba(255, 255, 255, 0.5);
     box-sizing: border-box;
     margin: 20px;
-    box-shadow: 0 2px 9px 0 rgba(0, 0, 0, .08);
+    box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.08);
     overflow: hidden;
 
     &:hover {
@@ -158,10 +164,10 @@ section {
       }
 
       .bg-cover {
-        background-color: rgba(0, 0, 0, .5);
-        transition: .5s;
+        background-color: rgba(0, 0, 0, 0.5);
+        transition: 0.5s;
         p {
-          transition: .5s;
+          transition: 0.5s;
           margin-top: 0px;
           opacity: 1;
         }
@@ -188,7 +194,7 @@ section {
 
     .bg-container {
       &::before {
-        content: "Loading...";
+        content: 'Loading...';
         position: absolute;
         border-radius: 5px 5px 0 0;
         width: 100%;
@@ -202,7 +208,7 @@ section {
       }
 
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         border-radius: 5px 5px 0 0;
         width: 100%;
@@ -213,7 +219,7 @@ section {
       }
 
       .bg-img {
-        transition: all .5s ease;
+        transition: all 0.5s ease;
         height: 230px;
         border-radius: 5px 5px 0 0;
       }
@@ -255,9 +261,9 @@ section {
       background-color: #fff;
     }
     .right-bgcover {
-      transform: rotate(-10deg) translate(10px,-30px);
-      opacity: .7;
-      background-color: rgba(0, 0, 0, .5) !important;
+      transform: rotate(-10deg) translate(10px, -30px);
+      opacity: 0.7;
+      background-color: rgba(0, 0, 0, 0.5) !important;
     }
 
     .desc {
@@ -300,7 +306,6 @@ section {
               margin-left: 12px;
             }
           }
-
         }
         .hidden-detail {
           span {

@@ -9,24 +9,23 @@
 export default {
   props: {
     blogList: {
-      type: Array,
+      type: Array
     },
     TagName: {
-      type: String,
-    },
+      type: String
+    }
   },
-  data () {
+  data() {
     return {
-      description: '相关内容 —— 标签',
-    };
+      description: '相关内容 —— 标签'
+    }
   },
-  methods: {
-  },
+  methods: {},
   components: {
     SectionHeader: () => import('@/components/SectionHeader'),
-    SectionArticle: () => import('@/components/SectionArticle'),
-  },
-};
+    SectionArticle: () => import('@/components/SectionArticle')
+  }
+}
 </script>
 
 <style lang='scss' scoped>

@@ -6,7 +6,12 @@
         <Input v-model.trim="name" @keyup.enter.native="beforeSubmit" placeholder="Enter name..."/>
       </FormItem>
       <FormItem label="password">
-        <Input v-model.trim="password" @keyup.enter.native="beforeSubmit" type="password" placeholder="Enter password..."/>
+        <Input
+          v-model.trim="password"
+          @keyup.enter.native="beforeSubmit"
+          type="password"
+          placeholder="Enter password..."
+        />
       </FormItem>
       <FormItem class="my-button">
         <Button type="primary" @click="beforeSubmit">Submit</Button>
@@ -17,60 +22,59 @@
 </template>
 
 <script>
-import { getLogin } from '@/service';
-import { loading } from '@/mixins/loading';
+import { getLogin } from '@/service'
+import { loading } from '@/mixins/loading'
 export default {
   mixins: [loading],
-  data () {
+  data() {
     return {
       name: '',
-      password: '',
-    };
+      password: ''
+    }
   },
   methods: {
-    beforeSubmit () {
+    beforeSubmit() {
       if (this.name === '') {
-        this.$Message.warning('Please enter your username first~~');
+        this.$Message.warning('Please enter your username first~~')
       } else if (this.password === '') {
-        this.$Message.warning('Please enter your password first~~');
+        this.$Message.warning('Please enter your password first~~')
       } else {
-        this.openLoading('Loading~~');
+        this.openLoading('Loading~~')
         let reqData = {
           name: this.name,
-          password: this.password,
-        };
-        this.submit(reqData);
+          password: this.password
+        }
+        this.submit(reqData)
       }
     },
-    async submit (reqData) {
-      let res = await getLogin(reqData);
+    async submit(reqData) {
+      let res = await getLogin(reqData)
       if (!res.includes('success')) {
-        this.$Message.warning(res);
+        this.$Message.warning(res)
       } else {
         // 成功登录
-        console.log('成功登录');
+        console.log('成功登录')
         // 成功登录的返回值是 success+空格+用户id
-        let userId = +res.split(' ')[1];
-        sessionStorage.setItem('id', userId);
-        sessionStorage.setItem('username', this.name);
-        this.$store.dispatch('user/SETUSERID', userId);
-        this.$store.dispatch('user/SETUSERNAME', this.name);
-        this.$router.push({name: 'list'});
+        let userId = +res.split(' ')[1]
+        sessionStorage.setItem('id', userId)
+        sessionStorage.setItem('username', this.name)
+        this.$store.dispatch('user/SETUSERID', userId)
+        this.$store.dispatch('user/SETUSERNAME', this.name)
+        this.$router.push({ name: 'list' })
       }
-      this.$Spin.hide();
+      this.$Spin.hide()
     },
-    back () {
-      this.$router.push('/');
-    },
+    back() {
+      this.$router.push('/')
+    }
   },
-  components: {
-  },
-};
+  components: {}
+}
 </script>
 
 <style lang='scss' scoped>
 section {
-  animation: fadeIn .6s linear;
+  animation: fadeIn 0.6s linear;
   padding: 130px 50px 30px;
 
   h1 {

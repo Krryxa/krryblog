@@ -13,19 +13,17 @@
 export default {
   props: {
     title: {
-      type: String,
+      type: String
     },
     description: {
-      type: String,
-    },
+      type: String
+    }
   },
-  data () {
-    return {
-    };
+  data() {
+    return {}
   },
-  components: {
-  },
-};
+  components: {}
+}
 </script>
 
 <style lang='scss' scoped>
@@ -41,7 +39,7 @@ export default {
     font-size: 30px;
     margin: 0 auto;
     margin-bottom: 10px;
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;
     color: rgba(255, 255, 255, 0.89);
     text-shadow: 0 4px 8px rgba(7, 17, 27, 0.4);
 
@@ -67,7 +65,7 @@ export default {
   h4 {
     font-weight: 400;
     font-size: 16px;
-    color: rgba(255,255,255,0.54);
+    color: rgba(255, 255, 255, 0.54);
   }
 }
 </style>

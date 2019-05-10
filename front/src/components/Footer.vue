@@ -7,7 +7,10 @@
       </span>
       <span class="footer-flot fir-footer-flot">｜</span>
       <span class="footer-flot sec-desc-footer">
-        <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44081102000040" target="_blank">粤公网安备44081102000040号</a>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44081102000040"
+          target="_blank"
+        >粤公网安备44081102000040号</a>
       </span>
       <span class="footer-flot sec-footer-flot">｜</span>
       <p class="link-git">
@@ -16,7 +19,9 @@
           <a target="_blank" href="https://ainyi.com">ainyi.com</a>&nbsp;
         </span>
         <span class="github">
-          <a target="_blank" href="https://github.com/Krryxa"><Icon type="logo-github" /></a>
+          <a target="_blank" href="https://github.com/Krryxa">
+            <Icon type="logo-github"/>
+          </a>
         </span>
       </p>
       <BackTop :height="600" :bottom="60"></BackTop>
@@ -26,13 +31,11 @@
 
 <script>
 export default {
-  data () {
-    return {
-    };
+  data() {
+    return {}
   },
-  components: {
-  },
-};
+  components: {}
+}
 </script>
 
 <style lang='scss' scoped>

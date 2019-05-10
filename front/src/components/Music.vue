@@ -2,7 +2,12 @@
   <section>
     <!--播放器-->
     <audio ref="audio" @ended="next"></audio>
-    <div class="music" :class="{ playing: isPlay }" :title="isPlay ? '暂停' : '播放'" @click="!isTransition && (isPlay ? pause() : play())">
+    <div
+      class="music"
+      :class="{ playing: isPlay }"
+      :title="isPlay ? '暂停' : '播放'"
+      @click="!isTransition && (isPlay ? pause() : play())"
+    >
       <img src="@/assets/pic/music.svg" width="25" height="25">
     </div>
     <div class="title" :class="!firstTime && (isPlay ? 'titleIn' : 'titleOut')">{{ musicTitle }}</div>
@@ -11,7 +16,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       // basePath: window.location.origin + '/',
       basePath: 'https://ainyi.com/',
@@ -37,64 +42,63 @@ export default {
         '圆 - AGA.mp4',
         '一加一 - AGA.mp4',
         'Begin Again - Taylor Swift.mp3',
-        '棠梨煎雪 - 银临.mp4',
+        '棠梨煎雪 - 银临.mp4'
       ],
       isTransition: false,
-      currIndex: 0,
-    };
+      currIndex: 0
+    }
   },
   computed: {
-    audio () {
-      return this.$refs.audio;
+    audio() {
+      return this.$refs.audio
     },
-    musicTitle () {
-      let allTitle = this.musicList[this.currIndex];
-      return allTitle.substr(0, allTitle.lastIndexOf('.'));
+    musicTitle() {
+      let allTitle = this.musicList[this.currIndex]
+      return allTitle.substr(0, allTitle.lastIndexOf('.'))
     },
-    musicLen () {
-      return this.musicList.length;
+    musicLen() {
+      return this.musicList.length
     },
-    musicLink () {
-      return `${this.basePath}music/${this.musicList[this.currIndex]}`;
-    },
+    musicLink() {
+      return `${this.basePath}music/${this.musicList[this.currIndex]}`
+    }
   },
-  created () {
-  },
-  mounted () {
-    this.init();
+  created() {},
+  mounted() {
+    this.init()
   },
   methods: {
-    init () {
-      this.musicList = this.randomArray(this.musicList);
-      this.audio.src = this.musicLink;
-      this.audio.volume = 0.5;
+    init() {
+      this.musicList = this.randomArray(this.musicList)
+      this.audio.src = this.musicLink
+      this.audio.volume = 0.5
     },
-    play () {
-      this.firstTime = false;
-      this.audio.play();
-      this.isPlay = true;
+    play() {
+      this.firstTime = false
+      this.audio.play()
+      this.isPlay = true
     },
-    pause () {
-      this.audio.pause();
-      this.isPlay = false;
+    pause() {
+      this.audio.pause()
+      this.isPlay = false
     },
-    next () {
-      this.pause();
-      this.isTransition = true;
+    next() {
+      this.pause()
+      this.isTransition = true
       setTimeout(() => {
-        this.currIndex = this.currIndex === this.musicLen - 1 ? 0 : ++this.currIndex;
-        this.audio.src = this.musicLink;
-        this.play();
-        this.isTransition = false;
-      }, 1000);
+        this.currIndex =
+          this.currIndex === this.musicLen - 1 ? 0 : ++this.currIndex
+        this.audio.src = this.musicLink
+        this.play()
+        this.isTransition = false
+      }, 1000)
     },
-    randomArray (arr) {
-      return arr.sort(() => 0.5 - Math.random());
-    },
+    randomArray(arr) {
+      return arr.sort(() => 0.5 - Math.random())
+    }
   },
-  components: {
-  },
-};
+  components: {}
+}
 </script>
 
 <style lang='scss' scoped>
@@ -113,7 +117,7 @@ section {
     right: 66px;
     margin-top: 3.5px;
     position: absolute;
-    color:rgba(255, 97, 92, 1);
+    color: rgba(255, 97, 92, 1);
   }
   .titleIn {
     visibility: visible;

@@ -2,16 +2,24 @@
   <main v-if="!isEmpty">
     <my-header></my-header>
     <Content :blogList="blogList" :TagName="TagName"></Content>
-    <Page v-if="blogLen > pageSize" :total="blogLen" size="small" :current="pageNo" :page-size="pageSize" show-elevator @on-change="changePage"/>
+    <Page
+      v-if="blogLen > pageSize"
+      :total="blogLen"
+      size="small"
+      :current="pageNo"
+      :page-size="pageSize"
+      show-elevator
+      @on-change="changePage"
+    />
     <my-footer></my-footer>
   </main>
   <not-found v-else></not-found>
 </template>
 
 <script>
-import { getBlogByTag } from '@/service';
+import { getBlogByTag } from '@/service'
 export default {
-  data () {
+  data() {
     return {
       blogList: [],
       TagName: '',
@@ -19,57 +27,56 @@ export default {
       status: 200,
       pageNo: +this.$route.query.page || 1,
       pageSize: 9,
-      flag: true,
-    };
+      flag: true
+    }
   },
   computed: {
-    isEmpty () {
-      return this.status === 404;
-    },
+    isEmpty() {
+      return this.status === 404
+    }
   },
-  created () {
-    this.getTags();
+  created() {
+    this.getTags()
   },
   methods: {
-    async getTags () {
-      this.TagName = this.$route.params['name'];
+    async getTags() {
+      this.TagName = this.$route.params['name']
       let reqData = {
         pageNo: this.pageNo,
         pageSize: this.pageSize,
-        tag: this.TagName,
-      };
-      let res = await getBlogByTag(reqData);
-      this.status = res.status;
+        tag: this.TagName
+      }
+      let res = await getBlogByTag(reqData)
+      this.status = res.status
       // 404 的标题在 axios 拦截器已经定义
       if (this.status !== 404) {
-        this.blogList = res.data;
-        this.blogLen = res.blogLen;
-        document.title = `${this.TagName} - ${document.title}`;
+        this.blogList = res.data
+        this.blogLen = res.blogLen
+        document.title = `${this.TagName} - ${document.title}`
       }
     },
-    async changePage (pageNo) {
-      this.pageNo = pageNo;
-      await this.getTags();
-      this.flag = false;
-      let query = pageNo === 1 ? {} : { 'page': pageNo };
-      this.$router.push({ name: 'tag', query: query });
-    },
+    async changePage(pageNo) {
+      this.pageNo = pageNo
+      await this.getTags()
+      this.flag = false
+      let query = pageNo === 1 ? {} : { page: pageNo }
+      this.$router.push({ name: 'tag', query: query })
+    }
   },
   watch: {
-    $route (to, from) {
+    $route(to, from) {
       if (this.flag) {
-        this.pageNo = +to.query.page || 1;
-        this.getTags();
+        this.pageNo = +to.query.page || 1
+        this.getTags()
       }
-      this.flag = true;
-    },
+      this.flag = true
+    }
   },
   components: {
-    Content: () => import('./Content'),
-  },
-};
+    Content: () => import('./Content')
+  }
+}
 </script>
 
 <style lang='scss' scoped>
-
 </style>

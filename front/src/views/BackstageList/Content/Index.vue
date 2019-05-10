@@ -5,25 +5,52 @@
       <Button type="success" class="add-button">Add</Button>
     </router-link>
     <a href="javascript:void(0)" @click="Logout" class="modify-buttom">Logout</a>
-    <a href="javascript:void(0)" @click="showDialog" class="modify-buttom">Modify Personal Information</a>
-    <Modal
-      width="400"
-      v-model="showModel"
-      title="Modifying personal information">
+    <a
+      href="javascript:void(0)"
+      @click="showDialog"
+      class="modify-buttom"
+    >Modify Personal Information</a>
+    <Modal width="400" v-model="showModel" title="Modifying personal information">
       <Form :model="userForm" :rules="rule" label-position="top" class="user-form" ref="userForm">
         <FormItem label="User Name" prop="newName">
-          <i-input v-model="userForm.newName" autocomplete="off" :maxlength="10" width="100" placeholder="Please enter your name..."></i-input>
+          <i-input
+            v-model="userForm.newName"
+            autocomplete="off"
+            :maxlength="10"
+            width="100"
+            placeholder="Please enter your name..."
+          ></i-input>
         </FormItem>
-        <p class="text-right"><a href="javascript:void(0)" @click="showPW = !showPW">{{showPWmsg}}</a></p>
+        <p class="text-right">
+          <a href="javascript:void(0)" @click="showPW = !showPW">{{showPWmsg}}</a>
+        </p>
         <template v-if="showPW">
           <FormItem label="Original Password" prop="originPW">
-            <i-input v-model="userForm.originPW" type="password" autocomplete="off" :maxlength="20" placeholder="Please enter your original password..."></i-input>
+            <i-input
+              v-model="userForm.originPW"
+              type="password"
+              autocomplete="off"
+              :maxlength="20"
+              placeholder="Please enter your original password..."
+            ></i-input>
           </FormItem>
           <FormItem label="New Password" prop="newPW">
-            <i-input v-model="userForm.newPW" type="password" autocomplete="off" :maxlength="20" placeholder="Please enter your new password..."></i-input>
+            <i-input
+              v-model="userForm.newPW"
+              type="password"
+              autocomplete="off"
+              :maxlength="20"
+              placeholder="Please enter your new password..."
+            ></i-input>
           </FormItem>
           <FormItem label="Repeat The New Password" prop="reNewPW">
-            <i-input v-model="userForm.reNewPW" type="password" autocomplete="off" :maxlength="20" placeholder="Please repeat enter your new password..."></i-input>
+            <i-input
+              v-model="userForm.reNewPW"
+              type="password"
+              autocomplete="off"
+              :maxlength="20"
+              placeholder="Please repeat enter your new password..."
+            ></i-input>
           </FormItem>
         </template>
       </Form>
@@ -37,17 +64,17 @@
 </template>
 
 <script>
-import { updateUser, updateBlogNoTime } from '@/service';
-import { loading } from '@/mixins/loading';
-import { PERSON_MODIFY_RULE } from '@/views/service/rules';
+import { updateUser, updateBlogNoTime } from '@/service'
+import { loading } from '@/mixins/loading'
+import { PERSON_MODIFY_RULE } from '@/views/service/rules'
 export default {
   props: {
     blogList: {
-      type: Array,
-    },
+      type: Array
+    }
   },
   mixins: [loading],
-  data () {
+  data() {
     return {
       showModel: false,
       showPW: false,
@@ -55,7 +82,7 @@ export default {
         newName: '',
         originPW: '',
         newPW: '',
-        reNewPW: '',
+        reNewPW: ''
       },
       rule: PERSON_MODIFY_RULE.call(this),
       columns: [
@@ -67,56 +94,64 @@ export default {
         {
           title: 'ID',
           width: 50,
-          key: 'id',
+          key: 'id'
         },
         {
           title: 'Title',
           width: 153,
           key: 'title',
           render: (h, params) => {
-            return h('router-link', {
-              props: {
-                to: `/${params.row.id}`,
+            return h(
+              'router-link',
+              {
+                props: {
+                  to: `/${params.row.id}`
+                }
               },
-            }, params.row.title);
-          },
+              params.row.title
+            )
+          }
         },
         {
           title: 'Archive',
           width: 97,
           key: 'classify',
           render: (h, params) => {
-            return h('router-link', {
-              props: {
-                to: `/category/${params.row.classifyId}`,
+            return h(
+              'router-link',
+              {
+                props: {
+                  to: `/category/${params.row.classifyId}`
+                }
               },
-            }, params.row.classify);
-          },
+              params.row.classify
+            )
+          }
         },
         {
           title: 'Author',
           width: 76,
-          key: 'userName',
+          key: 'userName'
         },
         {
           title: 'Label',
           width: 109,
-          key: 'label',
+          key: 'label'
         },
         {
           title: 'Clicks \xa0\xa0/Comment',
           width: 94,
-          key: 'hitComment',
+          key: 'hitComment'
         },
         {
           title: 'CreateTime',
           width: 104,
-          key: 'createTime',
+          key: 'createTime'
         },
         {
           title: 'UpdateTime',
           width: 107,
-          key: 'updateTime',
+          key: 'updateTime'
         },
         {
           title: 'Status',
@@ -124,30 +159,34 @@ export default {
           key: 'status',
           align: 'center',
           render: (h, params) => {
-            return h('i-switch', {
-              props: {
-                value: !!params.row.status,
-              },
-              on: {
-                'on-change': val => {
-                  this.setStatus(params.row.id, val);
-                },
-              },
-            }, [
-              h('Icon', {
+            return h(
+              'i-switch',
+              {
                 props: {
-                  type: 'md-checkmark',
+                  value: !!params.row.status
                 },
-                slot: 'open',
-              }),
-              h('Icon', {
-                props: {
-                  type: 'md-close',
-                },
-                slot: 'close',
-              }),
-            ]);
-          },
+                on: {
+                  'on-change': val => {
+                    this.setStatus(params.row.id, val)
+                  }
+                }
+              },
+              [
+                h('Icon', {
+                  props: {
+                    type: 'md-checkmark'
+                  },
+                  slot: 'open'
+                }),
+                h('Icon', {
+                  props: {
+                    type: 'md-close'
+                  },
+                  slot: 'close'
+                })
+              ]
+            )
+          }
         },
         {
           title: 'Top',
@@ -155,30 +194,34 @@ export default {
           key: 'isTop',
           align: 'center',
           render: (h, params) => {
-            return h('i-switch', {
-              props: {
-                value: !!params.row.isTop,
-              },
-              on: {
-                'on-change': val => {
-                  this.setIsTop(params.row.id, val);
-                },
-              },
-            }, [
-              h('Icon', {
+            return h(
+              'i-switch',
+              {
                 props: {
-                  type: 'md-checkmark',
+                  value: !!params.row.isTop
                 },
-                slot: 'open',
-              }),
-              h('Icon', {
-                props: {
-                  type: 'md-close',
-                },
-                slot: 'close',
-              }),
-            ]);
-          },
+                on: {
+                  'on-change': val => {
+                    this.setIsTop(params.row.id, val)
+                  }
+                }
+              },
+              [
+                h('Icon', {
+                  props: {
+                    type: 'md-checkmark'
+                  },
+                  slot: 'open'
+                }),
+                h('Icon', {
+                  props: {
+                    type: 'md-close'
+                  },
+                  slot: 'close'
+                })
+              ]
+            )
+          }
         },
         {
           title: 'Operation',
@@ -186,186 +229,196 @@ export default {
           width: 130,
           align: 'center',
           render: (h, params) => {
-            return h('div', {
-            }, [
-              h('router-link', {
-                props: {
-                  to: {
-                    name: 'edit',
-                    params: {
-                      id: params.row.id,
-                      imgName: params.row.imageName,
-                      uploadImgUrl: params.row.image,
-                    },
-                  },
-                },
-              }, [
-                h('Button', {
+            return h('div', {}, [
+              h(
+                'router-link',
+                {
                   props: {
-                    type: 'primary',
-                    size: 'small',
-                  },
-                  style: {
-                    marginRight: '10px',
-                  },
-                }, 'MOD'),
-              ]),
-              h('Button', {
-                props: {
-                  type: 'error',
-                  size: 'small',
+                    to: {
+                      name: 'edit',
+                      params: {
+                        id: params.row.id,
+                        imgName: params.row.imageName,
+                        uploadImgUrl: params.row.image
+                      }
+                    }
+                  }
                 },
-                on: {
-                  click: () => {
-                    this.beforeRemove(params.row['id'], params.row['title']);
+                [
+                  h(
+                    'Button',
+                    {
+                      props: {
+                        type: 'primary',
+                        size: 'small'
+                      },
+                      style: {
+                        marginRight: '10px'
+                      }
+                    },
+                    'MOD'
+                  )
+                ]
+              ),
+              h(
+                'Button',
+                {
+                  props: {
+                    type: 'error',
+                    size: 'small'
                   },
+                  on: {
+                    click: () => {
+                      this.beforeRemove(params.row['id'], params.row['title'])
+                    }
+                  }
                 },
-              }, 'DEL'),
-            ]);
-          },
-        },
-      ],
-    };
+                'DEL'
+              )
+            ])
+          }
+        }
+      ]
+    }
   },
   computed: {
-    userName () {
-      return this.$store.getters['user/username'];
+    userName() {
+      return this.$store.getters['user/username']
     },
-    userId () {
-      return this.$store.getters['user/id'];
+    userId() {
+      return this.$store.getters['user/id']
     },
-    showPWmsg () {
-      return this.showPW ? 'Pick up, No modify password' : 'Modify password';
-    },
+    showPWmsg() {
+      return this.showPW ? 'Pick up, No modify password' : 'Modify password'
+    }
   },
   methods: {
-    showDialog () {
-      this.showModel = true;
-      this.userForm['newName'] = this.userName;
+    showDialog() {
+      this.showModel = true
+      this.userForm['newName'] = this.userName
     },
-    Logout () {
+    Logout() {
       this.$Modal.confirm({
         title: 'notification~',
         content: `<p>Do you want to logout ？</p>`,
         okText: 'Confirm',
         cancelText: 'Cancel',
         onOk: () => {
-          this.$store.dispatch('user/CLEARUSER');
-          sessionStorage.clear();
-          this.$router.push('/');
-        },
-      });
+          this.$store.dispatch('user/CLEARUSER')
+          sessionStorage.clear()
+          this.$router.push('/')
+        }
+      })
     },
     // 确认修改个人信息
-    confirmUser () {
-      this.$refs['userForm'].validate(async (valid) => {
+    confirmUser() {
+      this.$refs['userForm'].validate(async valid => {
         if (valid) {
-          this.openLoading('Modifying~~');
+          this.openLoading('Modifying~~')
           let reqData = {
             id: this.userId,
-            name: this.userForm['newName'],
-          };
+            name: this.userForm['newName']
+          }
           if (this.showPW) {
             // 如果修改密码
             reqData = Object.assign({}, reqData, {
               originWord: this.userForm['originPW'],
-              password: this.userForm['newPW'],
-            });
+              password: this.userForm['newPW']
+            })
           }
-          let res = await updateUser(reqData);
-          this.$Spin.hide();
+          let res = await updateUser(reqData)
+          this.$Spin.hide()
           if (res !== 'success') {
-            this.$Message.error(res);
+            this.$Message.error(res)
           } else {
             // 修改成功，更改 session 和 vuex 中的数据
-            sessionStorage.setItem('username', reqData.name);
-            this.$store.dispatch('user/SETUSERNAME', reqData.name);
-            this.$Message.success('Modified success!');
-            this.cancel();
+            sessionStorage.setItem('username', reqData.name)
+            this.$store.dispatch('user/SETUSERNAME', reqData.name)
+            this.$Message.success('Modified success!')
+            this.cancel()
           }
         } else {
         }
-      });
+      })
     },
-    cancel () {
-      this.showModel = false;
-      this.$refs['userForm'].resetFields();
-      this.showPW = false;
+    cancel() {
+      this.showModel = false
+      this.$refs['userForm'].resetFields()
+      this.showPW = false
     },
     // 设置发布状态
-    async setStatus (id, val) {
-      console.log(id, val);
-      this.openLoading('Modifying~~');
+    async setStatus(id, val) {
+      console.log(id, val)
+      this.openLoading('Modifying~~')
       let reqData = {
         id: id,
-        status: val ? 1 : 0,
-      };
-      let msg = await updateBlogNoTime(reqData);
+        status: val ? 1 : 0
+      }
+      let msg = await updateBlogNoTime(reqData)
       if (msg === 'success') {
         // 同步已查询出来的数据
-        this.$emit('handleChangeBlog', reqData);
-        this.$Message.success('Modified success!');
+        this.$emit('handleChangeBlog', reqData)
+        this.$Message.success('Modified success!')
       } else {
-        this.$Message.error('Error, Failure to Modify...');
+        this.$Message.error('Error, Failure to Modify...')
       }
-      this.$Spin.hide();
+      this.$Spin.hide()
     },
     // 设置置顶状态
-    async setIsTop (id, val) {
-      console.log(id, val);
+    async setIsTop(id, val) {
+      console.log(id, val)
       let reqData = {
         id: id,
-        isTop: val ? 1 : 0,
-      };
-      let loadMsg = reqData.isTop ? 'Topping~~' : 'No topping~~';
-      this.openLoading(loadMsg);
-      let msg = await updateBlogNoTime(reqData);
+        isTop: val ? 1 : 0
+      }
+      let loadMsg = reqData.isTop ? 'Topping~~' : 'No topping~~'
+      this.openLoading(loadMsg)
+      let msg = await updateBlogNoTime(reqData)
       if (msg === 'success') {
         // 同步已查询出来的数据
-        this.$emit('handleChangeBlog', reqData);
-        this.$Message.success('Modified success!');
+        this.$emit('handleChangeBlog', reqData)
+        this.$Message.success('Modified success!')
       } else {
-        this.$Message.error('Error, Failure to Modify...');
+        this.$Message.error('Error, Failure to Modify...')
       }
-      this.$Spin.hide();
+      this.$Spin.hide()
     },
-    beforeRemove (id, title) {
-      console.log('删除id：' + id);
+    beforeRemove(id, title) {
+      console.log('删除id：' + id)
       this.$Modal.confirm({
         title: 'notification~',
         content: `<p>Do you want to delete the blog “${title}” ？</p>`,
         okText: 'Confirm',
         cancelText: 'Cancel',
         onOk: () => {
-          this.remove(id);
-        },
-      });
+          this.remove(id)
+        }
+      })
     },
-    async remove (id) {
-      this.openLoading('Deleting~~');
+    async remove(id) {
+      this.openLoading('Deleting~~')
       let reqData = {
         id: id,
-        isDelete: 1,
-      };
-      let msg = await updateBlogNoTime(reqData);
+        isDelete: 1
+      }
+      let msg = await updateBlogNoTime(reqData)
       if (msg === 'success') {
         // refresh local data
-        this.$emit('deleteBlog', id);
-        this.$Message.success('Delete successful!');
+        this.$emit('deleteBlog', id)
+        this.$Message.success('Delete successful!')
       } else {
-        this.$Message.error('Error, Failure to delete...');
+        this.$Message.error('Error, Failure to delete...')
       }
-      this.$Spin.hide();
-    },
+      this.$Spin.hide()
+    }
   },
-  components: {
-  },
-};
+  components: {}
+}
 </script>
 
 <style lang='scss' scoped>
 section {
-  animation: fadeIn .6s linear;
+  animation: fadeIn 0.6s linear;
   padding: 90px 0 0px;
   width: 1080px;
   margin: 0 auto;

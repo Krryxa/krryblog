@@ -2,19 +2,21 @@
   <header class="head-page">
     <div class="container">
       <div class="home left">
-        <Icon type="md-headset" />
+        <Icon type="md-headset"/>
         <router-link to="/">Krryblog</router-link>
       </div>
-      <div class="nav-coll-menu" ref="collMenuNavFar" :class="{'nav-coll-menu-padd': isVisibleNavFar}">
+      <div
+        class="nav-coll-menu"
+        ref="collMenuNavFar"
+        :class="{'nav-coll-menu-padd': isVisibleNavFar}"
+      >
         <span class="icon-menu cross" :class="{'icon-menu-close': isVisibleNavFar}">
           <span class="middle"></span>
         </span>
         <span class="click-fun" @click="closeCollMenu"></span>
         <ul class="nav-far" :class="{'visible-nav-far': isVisibleNavFar}">
           <router-link to="/">
-            <li>
-              首页
-            </li>
+            <li>首页</li>
           </router-link>
           <li class="sub-item">
             存档
@@ -34,17 +36,13 @@
                 <router-link to="#">二次元</router-link>
               </li>
             </ul>
-          </li> -->
+          </li>-->
           <!-- 可使用命名路由 -->
           <router-link :to="{name: 'link'}">
-            <li>
-              友链
-            </li>
+            <li>友链</li>
           </router-link>
           <router-link to="/about">
-            <li>
-              关于
-            </li>
+            <li>关于</li>
           </router-link>
         </ul>
       </div>
@@ -52,13 +50,11 @@
         <ul class="nav-far">
           <router-link to="/">
             <li>
-              <Icon type="ios-home" />
-              首页
+              <Icon type="ios-home"/>首页
             </li>
           </router-link>
           <li class="sub-item">
-            <Icon type="ios-list-box" />
-            存档
+            <Icon type="ios-list-box"/>存档
             <ul class="nav-child">
               <li v-for="(item, index) in classifyList" :key="index">
                 <router-link :to="`/category/${item.id}`">{{item.name}}</router-link>
@@ -76,24 +72,31 @@
                 <router-link to="#">二次元</router-link>
               </li>
             </ul>
-          </li> -->
+          </li>-->
           <!-- 可使用命名路由 -->
           <router-link :to="{name: 'link'}">
             <li>
-              <Icon type="ios-link" style="font-weight: bold;"/>
-              友链
+              <Icon type="ios-link" style="font-weight: bold;"/>友链
             </li>
           </router-link>
           <router-link to="/about">
             <li>
-              <Icon type="md-heart" />
-              关于
+              <Icon type="md-heart"/>关于
             </li>
           </router-link>
         </ul>
         <div class="search" @mouseover="focusInp">
           <Icon type="md-search" @click="search"/>
-          <input type="text" class="s-inp" ref="searchInp" v-model.trim="keyWord" @keyup.enter="search" placeholder="查找你喜欢的内容..." maxlength="30" autocomplete="off">
+          <input
+            type="text"
+            class="s-inp"
+            ref="searchInp"
+            v-model.trim="keyWord"
+            @keyup.enter="search"
+            placeholder="查找你喜欢的内容..."
+            maxlength="30"
+            autocomplete="off"
+          >
         </div>
       </div>
     </div>
@@ -103,58 +106,57 @@
 <script>
 // import Headroom from 'headroom';
 export default {
-  data () {
+  data() {
     return {
       keyWord: '',
-      isVisibleNavFar: false,
-    };
+      isVisibleNavFar: false
+    }
   },
   computed: {
     // 从接口查询出分类
-    classifyList () {
-      return this.$store.getters['blog/classify'];
-    },
+    classifyList() {
+      return this.$store.getters['blog/classify']
+    }
   },
-  created () {
-  },
-  mounted () {
+  created() {},
+  mounted() {
     // 获取页面元素
-    let myElement = document.querySelector('header');
+    let myElement = document.querySelector('header')
     let headroom = new Headroom(myElement, { // eslint-disable-line
-      'tolerance': 5,
-      'offset': 80,
-      'classes': {
-        'initial': 'animated',
-        'pinned': 'slideInDown',
-        'unpinned': 'slideOutUp',
-      },
-    });
-    headroom.init();
+      tolerance: 5,
+      offset: 80,
+      classes: {
+        initial: 'animated',
+        pinned: 'slideInDown',
+        unpinned: 'slideOutUp'
+      }
+    })
+    headroom.init()
     this.$refs.collMenuNavFar.onmouseleave = () => {
-      this.isVisibleNavFar = false;
-    };
+      this.isVisibleNavFar = false
+    }
   },
   methods: {
-    search () {
+    search() {
       // 不需要去掉字符串中间的空格，两边的空格在 v-model.trim 已经去掉
       // this.keyWord = this.keyWord.replace(/\s*/g, '');
       if (this.keyWord !== '') {
-        console.log(this.keyWord);
-        console.log('search api...');
-        this.$router.push({name: 'search', params: { keyword: this.keyWord }});
-        this.keyWord = '';
+        console.log(this.keyWord)
+        console.log('search api...')
+        this.$router.push({ name: 'search', params: { keyword: this.keyWord } })
+        this.keyWord = ''
       } else {
-        this.$refs.searchInp.focus();
+        this.$refs.searchInp.focus()
       }
     },
-    focusInp () {
+    focusInp() {
       setTimeout(() => {
-        this.$refs.searchInp.focus();
-      }, 100);
+        this.$refs.searchInp.focus()
+      }, 100)
     },
-    closeCollMenu () {
-      this.isVisibleNavFar = !this.isVisibleNavFar;
-    },
+    closeCollMenu() {
+      this.isVisibleNavFar = !this.isVisibleNavFar
+    }
     // littleThem () {
     //   this.$Message.info('已经是当前主题哦~');
     // },
@@ -162,20 +164,19 @@ export default {
     //   this.$Message.error('该主题暂时未完成~ QAQ');
     // },
   },
-  components: {
-  },
-};
+  components: {}
+}
 </script>
 
 <style lang='scss' scoped>
 header {
-  background: rgba(255, 255, 255, .94);
+  background: rgba(255, 255, 255, 0.94);
   width: 100%;
   height: 70px;
   position: fixed;
   top: 0;
   z-index: 1;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, .1);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 
   .container {
     width: 1080px;
@@ -213,7 +214,7 @@ header {
           float: left;
           margin: 0 16px;
           &:hover {
-            transition: .4s;
+            transition: 0.4s;
             color: #eb5055;
             cursor: url(../assets/pic/cursor.cur), pointer !important;
           }
@@ -226,19 +227,19 @@ header {
           &.sub-item {
             &:hover > .nav-child {
               visibility: visible;
-              opacity: .98;
+              opacity: 0.98;
               top: 100%;
               // transition: all .3s ease-in-out;
             }
             .nav-child {
               z-index: 1501;
               visibility: hidden;
-              background: rgba(255, 255, 255, .94);
+              background: rgba(255, 255, 255, 0.94);
               opacity: 0;
               top: 80%;
               position: absolute;
               box-shadow: 0 0 10px 0 #cacaca;
-              transition: all .3s ease-in-out;
+              transition: all 0.3s ease-in-out;
               li {
                 float: none;
                 margin: 0;
@@ -249,7 +250,7 @@ header {
                   display: block;
                   height: 50px;
                   line-height: 20px;
-                  transition: .4s;
+                  transition: 0.4s;
 
                   &:hover {
                     padding-left: 32px;
@@ -263,7 +264,7 @@ header {
       .search {
         &:hover {
           color: #eb5055;
-          transition: .4s;
+          transition: 0.4s;
 
           .s-inp {
             width: 100%;
@@ -286,7 +287,7 @@ header {
         }
 
         .s-inp {
-          transition: .6s;
+          transition: 0.6s;
           visibility: hidden;
           opacity: 0;
           font-size: 12px;
@@ -354,15 +355,16 @@ header {
         display: inline-block;
         width: 20px;
         height: 16px;
-        transition: all .4s ease-in-out;
-        transition-timing-function: cubic-bezier(.61,.04,.17,1.32);
+        transition: all 0.4s ease-in-out;
+        transition-timing-function: cubic-bezier(0.61, 0.04, 0.17, 1.32);
 
-        &::before, &::after {
+        &::before,
+        &::after {
           position: absolute;
           width: 20px;
           height: 2px;
           content: '';
-          transition: all .4s ease-in-out;
+          transition: all 0.4s ease-in-out;
           transform-origin: 50% 50% 0;
           background: #313131;
         }
@@ -380,7 +382,7 @@ header {
           width: 20px;
           height: 2px;
           margin-top: -1px;
-          transition: all .4s ease-in-out;
+          transition: all 0.4s ease-in-out;
           background: #313131;
         }
       }
@@ -388,11 +390,11 @@ header {
       .visible-nav-far {
         visibility: visible !important;
         margin-top: 24px !important;
-        opacity: .96 !important;
+        opacity: 0.96 !important;
       }
       .nav-far {
         opacity: 0;
-        transition: .4s;
+        transition: 0.4s;
         visibility: hidden;
         width: 130px;
         margin-top: 0;
@@ -404,9 +406,9 @@ header {
           position: relative;
           padding: 0 22px;
           line-height: 50px;
-          transition: .4s;
+          transition: 0.4s;
           &:hover {
-            transition: .4s;
+            transition: 0.4s;
             padding: 0 32px;
             color: #eb5055;
             cursor: url(../assets/pic/cursor.cur), pointer !important;
@@ -420,7 +422,7 @@ header {
           &.sub-item {
             &:hover > .nav-child {
               visibility: visible;
-              opacity: .98;
+              opacity: 0.98;
               top: 100%;
               // transition: all .3s ease-in-out;
             }
@@ -428,12 +430,12 @@ header {
               left: 60px;
               z-index: 1501;
               visibility: hidden;
-              background: rgba(255, 255, 255, .94);
+              background: rgba(255, 255, 255, 0.94);
               opacity: 0;
               top: 38px;
               position: absolute;
               box-shadow: 0 0 4px 0 #d4d4d4;
-              transition: all .3s ease-in-out;
+              transition: all 0.3s ease-in-out;
               li {
                 padding: 0;
                 float: none;
@@ -445,7 +447,7 @@ header {
                   display: block;
                   height: 50px;
                   line-height: 20px;
-                  transition: .4s;
+                  transition: 0.4s;
 
                   &:hover {
                     padding-left: 32px;

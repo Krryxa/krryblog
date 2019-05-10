@@ -10,28 +10,27 @@
 export default {
   props: {
     blogList: {
-      type: Array,
+      type: Array
     },
     keyword: {
-      type: String,
+      type: String
     },
     hasNoResult: {
-      type: Boolean,
-    },
+      type: Boolean
+    }
   },
-  data () {
+  data() {
     return {
-      description: '相关内容 —— 搜索',
-    };
+      description: '相关内容 —— 搜索'
+    }
   },
-  methods: {
-  },
+  methods: {},
   components: {
     SectionHeader: () => import('@/components/SectionHeader'),
     SectionArticle: () => import('@/components/SectionArticle'),
-    NoResult: () => import('./NoResult'),
-  },
-};
+    NoResult: () => import('./NoResult')
+  }
+}
 </script>
 
 <style lang='scss' scoped>

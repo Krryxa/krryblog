@@ -7,13 +7,39 @@
         <BreadcrumbItem>博客编辑页</BreadcrumbItem>
       </Breadcrumb>
       <Form>
-        <input type="text" maxlength="36" class="blog-title" v-model.trim="title" placeholder="博客标题..." style="width: 100%" />
-        <mavon-editor :value="markdownDesc" @save="markdownSave" codeStyle="vs2015" placeholder="编辑内容，支持 Markdown" class="detail-article"></mavon-editor>
+        <input
+          type="text"
+          maxlength="36"
+          class="blog-title"
+          v-model.trim="title"
+          placeholder="博客标题..."
+          style="width: 100%"
+        >
+        <mavon-editor
+          :value="markdownDesc"
+          @save="markdownSave"
+          codeStyle="vs2015"
+          placeholder="编辑内容，支持 Markdown"
+          class="detail-article"
+        ></mavon-editor>
         <FormItem label="博客描述：" style="padding-top: 42px">
-          <Input v-model.trim="description" :autosize="{minRows: 4,maxRows: 10}" style="width: 460px" type="textarea" :rows="4" placeholder="为博客的写上简单描述吧~~" />
+          <Input
+            v-model.trim="description"
+            :autosize="{minRows: 4,maxRows: 10}"
+            style="width: 460px"
+            type="textarea"
+            :rows="4"
+            placeholder="为博客的写上简单描述吧~~"
+          />
         </FormItem>
         <!-- upload image -->
-        <uploadImg :id="id" :defaultList="defaultUploadList" :uploadImgUrl="uploadImgUrl" :imgName="imgName" @changeImg="changeImg"></uploadImg>
+        <uploadImg
+          :id="id"
+          :defaultList="defaultUploadList"
+          :uploadImgUrl="uploadImgUrl"
+          :imgName="imgName"
+          @changeImg="changeImg"
+        ></uploadImg>
         <FormItem label="分类存档：">
           <RadioGroup v-model="classifyId">
             <Radio :label="item.id" v-for="(item, index) in classifyList" :key="index">
@@ -22,7 +48,12 @@
           </RadioGroup>
         </FormItem>
         <FormItem label="个性标签：">
-          <Input v-model.trim="label" placeholder="为博客添加标签吧~~ 英文逗号 , 分割" :maxlength="60" style="width: 360px" />
+          <Input
+            v-model.trim="label"
+            placeholder="为博客添加标签吧~~ 英文逗号 , 分割"
+            :maxlength="60"
+            style="width: 360px"
+          />
         </FormItem>
         <FormItem label="是否发布：">
           <i-switch size="large" v-model="statusFlag">
@@ -41,15 +72,15 @@
 </template>
 
 <script>
-import { mavonEditor } from 'mavon-editor';
-import 'mavon-editor/dist/css/index.css';
-import '@/assets/css/markdown.css';
-import '@/assets/css/github.css';
-import { getEditBlogDetail, updateBlog, addBlog } from '@/service';
-import { loading } from '@/mixins/loading';
+import { mavonEditor } from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+import '@/assets/css/markdown.css'
+import '@/assets/css/github.css'
+import { getEditBlogDetail, updateBlog, addBlog } from '@/service'
+import { loading } from '@/mixins/loading'
 export default {
   mixins: [loading],
-  data () {
+  data() {
     return {
       id: this.$route.params.id || 0,
       title: '',
@@ -63,104 +94,106 @@ export default {
 
       statusFlag: true,
 
-      defaultUploadList: [],
-    };
+      defaultUploadList: []
+    }
   },
   computed: {
-    status () {
-      return +this.statusFlag;
+    status() {
+      return +this.statusFlag
     },
     // 从接口查询出分类
-    classifyList () {
-      return this.$store.getters['blog/classify'];
+    classifyList() {
+      return this.$store.getters['blog/classify']
     },
     // 获取用户 ID
-    userId () {
-      return this.$store.getters['user/id'];
-    },
+    userId() {
+      return this.$store.getters['user/id']
+    }
   },
-  created () {
+  created() {
     if (this.id) {
-      this.getBlogInfo();
+      this.getBlogInfo()
     }
   },
   methods: {
-    async getBlogInfo () {
+    async getBlogInfo() {
       // get blog when edit
-      document.title = document.title.replace('新增', '编辑');
+      document.title = document.title.replace('新增', '编辑')
 
-      this.imgName = this.$route.params['imgName'];
-      this.uploadImgUrl = this.$route.params['uploadImgUrl'];
-      this.defaultUploadList = [{
-        name: this.imgName,
-        url: window.location.origin + '/krryblog/' + this.uploadImgUrl,
-      }];
+      this.imgName = this.$route.params['imgName']
+      this.uploadImgUrl = this.$route.params['uploadImgUrl']
+      this.defaultUploadList = [
+        {
+          name: this.imgName,
+          url: window.location.origin + '/krryblog/' + this.uploadImgUrl
+        }
+      ]
 
-      let res = await getEditBlogDetail(this.id);
-      let status = res.status;
-      let blogObj = res.data;
+      let res = await getEditBlogDetail(this.id)
+      let status = res.status
+      let blogObj = res.data
       // 404 的标题在 axios 拦截器已经定义
       if (status !== 404) {
-        this.title = blogObj['title'];
-        this.markdownDesc = blogObj['content_md'];
-        this.statusFlag = !!blogObj['status'];
-        this.description = blogObj['description'];
-        this.classifyId = blogObj['classifyId'];
-        this.label = blogObj['label'];
+        this.title = blogObj['title']
+        this.markdownDesc = blogObj['content_md']
+        this.statusFlag = !!blogObj['status']
+        this.description = blogObj['description']
+        this.classifyId = blogObj['classifyId']
+        this.label = blogObj['label']
       }
     },
 
     // markdown save
-    markdownSave (value, render) {
-      this.markdownDesc = value;
-      this.translateDesc = render;
+    markdownSave(value, render) {
+      this.markdownDesc = value
+      this.translateDesc = render
     },
 
     // from child
-    changeImg (name, url) {
-      this.imgName = name;
-      this.uploadImgUrl = url;
+    changeImg(name, url) {
+      this.imgName = name
+      this.uploadImgUrl = url
     },
 
     // save and commit
-    beforeCommit () {
-      let markdownSaveBtn = document.getElementsByClassName('fa-mavon-floppy-o');
-      markdownSaveBtn[0].click();
+    beforeCommit() {
+      let markdownSaveBtn = document.getElementsByClassName('fa-mavon-floppy-o')
+      markdownSaveBtn[0].click()
       if (this.title === '') {
-        this.$Message.warning('先输入博客标题哦~~');
+        this.$Message.warning('先输入博客标题哦~~')
       } else if (this.translateDesc.trim() === '') {
-        this.$Message.warning('先输入博客内容哦~~');
+        this.$Message.warning('先输入博客内容哦~~')
       } else if (this.description === '') {
-        this.$Message.warning('先简单描述一下博客哦~~');
+        this.$Message.warning('先简单描述一下博客哦~~')
       } else if (this.uploadImgUrl === '') {
-        this.$Message.warning('先上传封面图片哦~~');
+        this.$Message.warning('先上传封面图片哦~~')
       } else {
-        let reqData = this.convertParams();
-        this.commit(reqData);
+        let reqData = this.convertParams()
+        this.commit(reqData)
       }
     },
-    async commit (reqData) {
-      console.log(reqData);
-      this.openLoading('正在保存~~');
+    async commit(reqData) {
+      console.log(reqData)
+      this.openLoading('正在保存~~')
       if (this.id > 0) {
         // is edit
-        console.log('是编辑，id：' + this.id);
-        reqData = Object.assign({}, reqData, {id: this.id});
-        console.log(reqData);
-        let msg = await updateBlog(reqData);
+        console.log('是编辑，id：' + this.id)
+        reqData = Object.assign({}, reqData, { id: this.id })
+        console.log(reqData)
+        let msg = await updateBlog(reqData)
         if (msg === 'success') {
-          this.$router.push(`/${this.id}`);
+          this.$router.push(`/${this.id}`)
         } else {
-          this.$Message.error('出错了呢，修改失败...');
+          this.$Message.error('出错了呢，修改失败...')
         }
       } else {
-        let id = await addBlog(reqData);
-        console.log('保存的id：' + id);
-        this.$router.push(`/${id}`);
+        let id = await addBlog(reqData)
+        console.log('保存的id：' + id)
+        this.$router.push(`/${id}`)
       }
-      this.$Spin.hide();
+      this.$Spin.hide()
     },
-    convertParams () {
+    convertParams() {
       return {
         userId: this.userId,
         title: this.title,
@@ -171,23 +204,23 @@ export default {
         image: this.uploadImgUrl,
         classifyId: this.classifyId,
         label: this.label,
-        status: this.status,
-      };
+        status: this.status
+      }
     },
-    back () {
-      window.history.back(-1);
-    },
+    back() {
+      window.history.back(-1)
+    }
   },
   components: {
     uploadImg: () => import('./UploadImg'),
-    mavonEditor,
-  },
-};
+    mavonEditor
+  }
+}
 </script>
 
 <style lang='scss' scoped>
 section {
-  animation: fadeIn .6s linear;
+  animation: fadeIn 0.6s linear;
   padding: 50px;
 
   .ivu-breadcrumb {
@@ -229,7 +262,10 @@ section {
 </style>
 <style lang="scss">
 .add-blog {
-  .v-note-wrapper .v-note-op .v-left-item .op-icon, .op-icon input, .ivu-radio, .ivu-radio-input {
+  .v-note-wrapper .v-note-op .v-left-item .op-icon,
+  .op-icon input,
+  .ivu-radio,
+  .ivu-radio-input {
     cursor: url(../../assets/pic/cursor.cur), pointer !important;
   }
 

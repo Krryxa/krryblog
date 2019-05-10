@@ -1,16 +1,16 @@
-import * as Types from './mutations-type.js';
+import * as Types from './mutations-type.js'
 
 export default {
   // 设置用户名
-  async [Types.SETUSERNAME] ({ commit }, name) {
-    commit(Types.SETUSERNAME, name);
+  async [Types.SETUSERNAME]({ commit }, name) {
+    commit(Types.SETUSERNAME, name)
   },
   // 设置用户 ID
-  async [Types.SETUSERID] ({ commit }, id) {
-    commit(Types.SETUSERID, id);
+  async [Types.SETUSERID]({ commit }, id) {
+    commit(Types.SETUSERID, id)
   },
   // 清空用户信息
-  async [Types.CLEARUSER] ({ commit }) {
-    commit(Types.CLEARUSER);
-  },
-};
+  async [Types.CLEARUSER]({ commit }) {
+    commit(Types.CLEARUSER)
+  }
+}

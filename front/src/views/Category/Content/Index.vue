@@ -9,23 +9,23 @@
 export default {
   props: {
     blogList: {
-      type: Array,
+      type: Array
     },
     categoryName: {
-      type: String,
-    },
+      type: String
+    }
   },
-  data () {
+  data() {
     return {
-      description: '相关内容 —— 存档',
-    };
+      description: '相关内容 —— 存档'
+    }
   },
   methods: {},
   components: {
     SectionHeader: () => import('@/components/SectionHeader'),
-    SectionArticle: () => import('@/components/SectionArticle'),
-  },
-};
+    SectionArticle: () => import('@/components/SectionArticle')
+  }
+}
 </script>
 
 <style lang='scss' scoped>

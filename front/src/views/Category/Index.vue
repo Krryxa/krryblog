@@ -2,16 +2,24 @@
   <main v-if="!isNotCategory">
     <my-header></my-header>
     <Content :blogList="blogList" :categoryName="categoryName"></Content>
-    <Page v-if="blogLen > pageSize" :total="blogLen" size="small" :current="pageNo" :page-size="pageSize" show-elevator @on-change="changePage"/>
+    <Page
+      v-if="blogLen > pageSize"
+      :total="blogLen"
+      size="small"
+      :current="pageNo"
+      :page-size="pageSize"
+      show-elevator
+      @on-change="changePage"
+    />
     <my-footer></my-footer>
   </main>
   <not-found v-else></not-found>
 </template>
 
 <script>
-import { getBlogByClassifyId } from '@/service';
+import { getBlogByClassifyId } from '@/service'
 export default {
-  data () {
+  data() {
     return {
       blogList: [],
       categoryName: '',
@@ -19,37 +27,37 @@ export default {
       status: 200,
       pageNo: +this.$route.query.page || 1,
       pageSize: 9,
-      flag: true,
-    };
+      flag: true
+    }
   },
   computed: {
-    isNotCategory () {
-      return this.status === 404;
-    },
+    isNotCategory() {
+      return this.status === 404
+    }
   },
-  created () {
-    this.getCategory();
+  created() {
+    this.getCategory()
   },
   methods: {
-    async getCategory () {
-      let id = this.$route.params['id'];
+    async getCategory() {
+      let id = this.$route.params['id']
       // 不在这个范围内的分类 id 是 404 页面
       if (id < 1 || id > 4) {
-        this.status = 404;
+        this.status = 404
       }
       let reqData = {
         pageNo: this.pageNo,
-        pageSize: this.pageSize,
-      };
-      let res = await getBlogByClassifyId(id, reqData);
-      this.status = res.status;
+        pageSize: this.pageSize
+      }
+      let res = await getBlogByClassifyId(id, reqData)
+      this.status = res.status
 
       // 404 的标题在 axios 拦截器已经定义
       if (this.status !== 404) {
-        this.blogList = res.data;
-        this.blogLen = res.blogLen;
-        this.categoryName = res.categoryName;
-        document.title = `${this.categoryName} - ${document.title}`;
+        this.blogList = res.data
+        this.blogLen = res.blogLen
+        this.categoryName = res.categoryName
+        document.title = `${this.categoryName} - ${document.title}`
 
         // if (this.status === 406) {
         //   // 分类下没有发布过任何博客的情况
@@ -58,29 +66,28 @@ export default {
         // }
       }
     },
-    async changePage (pageNo) {
-      this.pageNo = pageNo;
-      await this.getCategory();
-      this.flag = false;
-      let query = pageNo === 1 ? {} : { 'page': pageNo };
-      this.$router.push({ name: 'category', query: query });
-    },
+    async changePage(pageNo) {
+      this.pageNo = pageNo
+      await this.getCategory()
+      this.flag = false
+      let query = pageNo === 1 ? {} : { page: pageNo }
+      this.$router.push({ name: 'category', query: query })
+    }
   },
   watch: {
-    $route (to, from) {
+    $route(to, from) {
       if (this.flag) {
-        this.pageNo = +to.query.page || 1;
-        this.getCategory();
+        this.pageNo = +to.query.page || 1
+        this.getCategory()
       }
-      this.flag = true;
-    },
+      this.flag = true
+    }
   },
   components: {
-    Content: () => import('./Content'),
-  },
-};
+    Content: () => import('./Content')
+  }
+}
 </script>
 
 <style lang='scss' scoped>
-
 </style>

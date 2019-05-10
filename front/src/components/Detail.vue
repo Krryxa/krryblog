@@ -3,130 +3,144 @@
     <div class="art-header" v-if="hasShowHeader">
       <h1>{{blog.title}}</h1>
       <div class="header-info">
-        <Icon type="md-pricetags" />
+        <Icon type="md-pricetags"/>
         <router-link :to="`/category/${blog.classifyId}`">{{blog.classify}}</router-link>
-        <Icon type="md-calendar" />
+        <Icon type="md-calendar"/>
         {{blog.createTime | subTime(0)}}
-        <Icon type="md-eye" />
+        <Icon type="md-eye"/>
         {{blog.hit}}
-        <Icon type="md-chatboxes" />
+        <Icon type="md-chatboxes"/>
         <span ref="commentSpan">{{blog.comment}}</span>
       </div>
       <div class="header-tag" v-if="hasShowTags">
-        <router-link :to="{ name: 'tag', params: { name: tags }}" v-for="(tags, index) in blogLabel" :key="index">{{tags}}</router-link>
+        <router-link
+          :to="{ name: 'tag', params: { name: tags }}"
+          v-for="(tags, index) in blogLabel"
+          :key="index"
+        >{{tags}}</router-link>
       </div>
       <div class="tag-time">
-        <Icon type="md-time" />
+        <Icon type="md-time"/>
         {{blog.createTime | subTime(1)}}
       </div>
     </div>
-    <router-link class="modifyBtn" :style="hasShowHeader || 'margin-top: -15px;'" v-if="isLogined" :to="{
+    <router-link
+      class="modifyBtn"
+      :style="hasShowHeader || 'margin-top: -15px;'"
+      v-if="isLogined"
+      :to="{
       name: 'edit',
       params: {
         id: blog.id,
         imgName: blog.imageName,
         uploadImgUrl: blog.image
-      }}">修改</router-link>
+      }}"
+    >修改</router-link>
     <div id="blog" class="content markdown-body" v-html="blog.content_hm"></div>
     <div class="content-footer">
-      <p>本文由 <router-link to="/">{{blog.userName}}</router-link> 创作，转载请注明</p>
+      <p>
+        本文由
+        <router-link to="/">{{blog.userName}}</router-link>创作，转载请注明
+      </p>
       <p>最后编辑时间：{{blog.updateTime}}</p>
     </div>
     <aside id="directory"></aside>
     <div id="zooms" class="zoom-shadow">
-      <img ref="zoomImg" class="zoom-big-img" />
+      <img ref="zoomImg" class="zoom-big-img">
     </div>
-    <p class="comments-desc" v-if="isloaded"><span>发表评论</span></p>
+    <p class="comments-desc" v-if="isloaded">
+      <span>发表评论</span>
+    </p>
     <div id="vcomments" ref="vcomments"></div>
   </article>
 </template>
 
 <script>
-import '@/assets/css/markdown.css';
-import '@/assets/css/github.css';
-import Catalog from '@/util/catalog.js';
-import Valine from 'valine';
-import { updateBlogNoTime } from '@/service';
+import '@/assets/css/markdown.css'
+import '@/assets/css/github.css'
+import Catalog from '@/util/catalog.js'
+import Valine from 'valine'
+import { updateBlogNoTime } from '@/service'
 export default {
   props: {
     blog: {
-      type: Object,
-    },
+      type: Object
+    }
   },
   filters: {
     // 2018-09-20 11:33:46 取年月日、取时分秒
-    subTime (time, index) {
-      return time ? time.split(' ')[index] : '';
-    },
+    subTime(time, index) {
+      return time ? time.split(' ')[index] : ''
+    }
   },
-  data () {
+  data() {
     return {
       isloaded: false,
-      submitBtn: null,
-    };
+      submitBtn: null
+    }
   },
   computed: {
-    blogLabel () {
-      return this.blog['label'] ? this.blog['label'].split(',') : [];
+    blogLabel() {
+      return this.blog['label'] ? this.blog['label'].split(',') : []
     },
-    hasShowTags () {
-      return this.blogLabel.length > 0;
+    hasShowTags() {
+      return this.blogLabel.length > 0
     },
-    hasShowHeader () {
+    hasShowHeader() {
       // 当标题是 关于我 或 友情链接，不显示文章头部信息
-      return this.blog.title !== '关于我' && this.blog.title !== '友情链接';
+      return this.blog.title !== '关于我' && this.blog.title !== '友情链接'
     },
-    isLogined () {
-      return sessionStorage.getItem('username') !== null;
-    },
+    isLogined() {
+      return sessionStorage.getItem('username') !== null
+    }
   },
-  mounted () {
+  mounted() {
     // 加载目录和评论插件
     if (JSON.stringify(this.blog) !== '{}' && this.blog !== null) {
-      this.getCatalogZoomsComment();
+      this.getCatalogZoomsComment()
     }
     // 这里使用深度监听 blog 对象的属性变化
     this.$watch('blog', this.getCatalogZoomsComment, {
-      deep: true,
-    });
+      deep: true
+    })
   },
   methods: {
-    getCatalogZoomsComment () {
+    getCatalogZoomsComment() {
       // 设置文章目录
       Catalog({
         contentEl: 'blog',
         catalogEl: 'directory',
-        selector: ['h1', 'h2', 'h3'],
-      });
-      let wrapper = document.getElementsByClassName('cl-wrapper')[0];
+        selector: ['h1', 'h2', 'h3']
+      })
+      let wrapper = document.getElementsByClassName('cl-wrapper')[0]
       // 没有目录，就隐藏
       if (wrapper.innerHTML === '') {
-        wrapper.style.display = 'none';
+        wrapper.style.display = 'none'
       }
       // 设置图片点击放大
       // 事件委托，处理全部 img 标签的点击事件
-      let blog = document.getElementById('blog');
-      let zooms = document.getElementById('zooms');
-      let zoomImg = this.$refs.zoomImg;
-      let target = '';
+      let blog = document.getElementById('blog')
+      let zooms = document.getElementById('zooms')
+      let zoomImg = this.$refs.zoomImg
+      let target = ''
       blog.addEventListener('click', ev => {
-        let eve = ev || window.event;
-        target = eve.target || eve.srcElement;
+        let eve = ev || window.event
+        target = eve.target || eve.srcElement
         if (target.nodeName.toLowerCase() === 'img') {
-          zoomImg.src = target.src;
-          zooms.style.visibility = 'visible';
-          zooms.style.opacity = '1';
+          zoomImg.src = target.src
+          zooms.style.visibility = 'visible'
+          zooms.style.opacity = '1'
         }
-      });
+      })
       zooms.addEventListener('click', ev => {
-        zooms.style.visibility = 'hidden';
-        zooms.style.opacity = '0';
-      });
+        zooms.style.visibility = 'hidden'
+        zooms.style.opacity = '0'
+      })
       // 加载评论系统
-      this.getComment();
-      this.isloaded = true;
+      this.getComment()
+      this.isloaded = true
     },
-    getComment () {
+    getComment() {
       Valine({
         el: '#vcomments',
         appId: 'AXcd7u8mPqn0JWnsXku8MgdU-gzGzoHsz',
@@ -134,71 +148,70 @@ export default {
         verify: true,
         path: window.location.pathname,
         avatar: 'mp',
-        placeholder: '留下你的足迹... （支持 Markdown）',
-      });
+        placeholder: '留下你的足迹... （支持 Markdown）'
+      })
       // 获取按钮的容器
-      let buttonContainer = document.getElementsByClassName('text-right')[0];
+      let buttonContainer = document.getElementsByClassName('text-right')[0]
       // 获取提交按钮并移除提交按钮
-      this.submitBtn = document.getElementsByClassName('vsubmit')[0];
-      this.submitBtn.style['display'] = 'none';
-      buttonContainer.removeChild(this.submitBtn);
+      this.submitBtn = document.getElementsByClassName('vsubmit')[0]
+      this.submitBtn.style['display'] = 'none'
+      buttonContainer.removeChild(this.submitBtn)
 
       // 获取输入的昵称、邮箱、评论内容
-      let nick = document.getElementsByName('nick')[0];
-      let mail = document.getElementsByName('mail')[0];
-      let textDiv = document.getElementById('veditor');
+      let nick = document.getElementsByName('nick')[0]
+      let mail = document.getElementsByName('mail')[0]
+      let textDiv = document.getElementById('veditor')
 
       // 邮箱正则
-      const emailReg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,5}$/;
+      const emailReg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,5}$/
 
       // 创建新的按钮替换
-      let btn = document.createElement('button');
-      btn.className = 'new-btn';
-      btn.innerText = '提交评论';
-      buttonContainer.appendChild(btn);
+      let btn = document.createElement('button')
+      btn.className = 'new-btn'
+      btn.innerText = '提交评论'
+      buttonContainer.appendChild(btn)
       // 提交评论的事件
-      btn.addEventListener('click', (e) => {
-        let nickText = nick.value;
-        let mailText = mail.value;
-        let textDesc = textDiv.value;
-        let isok = emailReg.test(mailText);
+      btn.addEventListener('click', e => {
+        let nickText = nick.value
+        let mailText = mail.value
+        let textDesc = textDiv.value
+        let isok = emailReg.test(mailText)
         if (nickText.trim() === '') {
-          this.$Message.warning('先输入昵称哦~~');
+          this.$Message.warning('先输入昵称哦~~')
         } else if (mailText.trim() === '') {
-          this.$Message.warning('先输入邮箱哦~~');
+          this.$Message.warning('先输入邮箱哦~~')
         } else if (!isok) {
-          this.$Message.warning('邮箱格式不正确哦~~');
+          this.$Message.warning('邮箱格式不正确哦~~')
         } else if (textDesc.trim() === '') {
-          this.$Message.warning('先输入评论哦~~');
+          this.$Message.warning('先输入评论哦~~')
         } else {
           // 触发提交按钮
-          buttonContainer.appendChild(this.submitBtn);
-          this.submitBtn.click();
+          buttonContainer.appendChild(this.submitBtn)
+          this.submitBtn.click()
           // 获取点击数并提交
-          let commentCount = document.getElementsByClassName('vcard').length;
+          let commentCount = document.getElementsByClassName('vcard').length
           let reqData = {
             id: this.blog['id'],
-            comment: ++commentCount,
-          };
-          updateBlogNoTime(reqData);
+            comment: ++commentCount
+          }
+          updateBlogNoTime(reqData)
           // 需要展示头部的文章，就设置当前评论量
           if (this.hasShowHeader) {
-            this.$refs.commentSpan.innerText = commentCount;
+            this.$refs.commentSpan.innerText = commentCount
           }
           // 移除评论按钮
-          buttonContainer.removeChild(this.submitBtn);
+          buttonContainer.removeChild(this.submitBtn)
         }
-      });
-    },
+      })
+    }
   },
-  components: {
-  },
-};
+  components: {}
+}
 </script>
 
 <style lang='scss' scoped>
 article {
-  animation: fadeIn .6s linear;
+  animation: fadeIn 0.6s linear;
   max-width: 700px;
   padding: 0 25px 30px;
   margin: 0 auto;
@@ -242,7 +255,7 @@ article {
         padding: 0 15px;
         height: 25px;
         line-height: 25px;
-        transition: .4s;
+        transition: 0.4s;
 
         &:hover {
           color: #5f5f5f !important;
@@ -298,8 +311,8 @@ article {
   height: 100%;
   visibility: hidden;
   z-index: 1500;
-  transition: .3s;
-  background: rgba(0, 0, 0 , .6);
+  transition: 0.3s;
+  background: rgba(0, 0, 0, 0.6);
   opacity: 0;
 
   .zoom-big-img {
@@ -348,23 +361,23 @@ article {
       .cl-link {
         display: initial;
         overflow: hidden;
-        text-overflow:ellipsis;
+        text-overflow: ellipsis;
         white-space: nowrap;
         font-size: 14px;
         color: #272727;
         cursor: url(../assets/pic/cursor.cur), pointer;
       }
     }
-    &>ul>li {
+    & > ul > li {
       position: relative;
       padding-left: 15px;
-      &>ul>li {
+      & > ul > li {
         .cl-link-active {
           &::before {
             left: -20px;
           }
         }
-        &>ul>li {
+        & > ul > li {
           div {
             margin-left: 20px;
             color: #8e8e8e !important;
@@ -419,9 +432,9 @@ article {
     .text-right {
       .new-btn {
         border: none;
-        border-radius: .3rem;
-        padding: .5rem 1.25rem;
-        font-size: .875rem;
+        border-radius: 0.3rem;
+        padding: 0.5rem 1.25rem;
+        font-size: 0.875rem;
         line-height: 1.42857143;
         outline: none;
         background: #ff9800;
@@ -512,8 +525,8 @@ article {
         padding-left: 0;
 
         .vimg {
-          width: 2.80rem;
-          height: 2.80rem;
+          width: 2.8rem;
+          height: 2.8rem;
         }
       }
     }
