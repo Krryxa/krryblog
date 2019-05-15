@@ -40,7 +40,7 @@
     <div class="content-footer">
       <p>
         本文由
-        <router-link to="/">{{blog.userName}}</router-link>创作，转载请注明
+        <router-link to="/">{{blog.userName}}</router-link>&nbsp;创作，转载请注明
       </p>
       <p>最后编辑时间：{{blog.updateTime}}</p>
     </div>
