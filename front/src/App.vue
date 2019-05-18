@@ -12,6 +12,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import '@/util/mouseHeart'
 export default {
   name: 'App',
   components: {
@@ -72,6 +73,19 @@ img {
 }
 .animated {
   animation-duration: 0.5s;
+}
+
+.heart {
+  animation: 0.7s heartMove ease infinite alternate;
+}
+
+@keyframes heartMove {
+  50% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
 }
 
 /* 遮罩层 */
