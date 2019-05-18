@@ -42,7 +42,8 @@ export default {
         '圆 - AGA.mp4',
         '一加一 - AGA.mp4',
         'Begin Again - Taylor Swift.mp3',
-        '棠梨煎雪 - 银临.mp4'
+        '棠梨煎雪 - 银临.mp4',
+        '다이아 - 나랑사귈래 응원법(和我交往吧).mp3'
       ],
       isTransition: false,
       currIndex: 0
