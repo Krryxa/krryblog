@@ -1,7 +1,7 @@
 <template>
   <section>
     <!--播放器-->
-    <audio ref="audio" @ended="next"></audio>
+    <audio ref="audio" @ended="next(true)"></audio>
     <div
       class="music"
       :class="{ playing: isPlay }"
@@ -9,6 +9,14 @@
       @click="!isTransition && (isPlay ? pause() : play())"
     >
       <img src="@/assets/pic/music.svg" width="25" height="25">
+    </div>
+    <div class="op-btn">
+      <span class="next-btn">
+        <Icon @click="next(true)" type="ios-skip-forward"/>
+      </span>
+      <span class="pre-btn">
+        <Icon @click="next(false)" type="ios-skip-backward"/>
+      </span>
     </div>
     <div class="title" :class="!firstTime && (isPlay ? 'titleIn' : 'titleOut')">{{ musicTitle }}</div>
   </section>
@@ -83,16 +91,22 @@ export default {
       this.audio.pause()
       this.isPlay = false
     },
-    next() {
+    next(flag) {
       this.pause()
       this.isTransition = true
       setTimeout(() => {
-        this.currIndex =
-          this.currIndex === this.musicLen - 1 ? 0 : ++this.currIndex
+        // flag 是 true 代表下一曲，false 代表上一曲
+        this.currIndex = flag
+          ? this.currIndex === this.musicLen - 1
+            ? 0
+            : ++this.currIndex
+          : this.currIndex === 0
+            ? this.musicLen - 1
+            : --this.currIndex
         this.audio.src = this.musicLink
         this.play()
         this.isTransition = false
-      }, 1000)
+      }, 300)
     },
     randomArray(arr) {
       return arr.sort(() => 0.5 - Math.random())
@@ -115,7 +129,7 @@ section {
 
   .title {
     visibility: hidden;
-    right: 66px;
+    right: 64px;
     margin-top: 3.5px;
     position: absolute;
     color: rgba(255, 97, 92, 1);
@@ -133,6 +147,12 @@ section {
     cursor: url(../assets/pic/cursor.cur), pointer !important;
     position: absolute;
     right: 28px;
+    &:hover {
+      + .op-btn {
+        visibility: visible;
+        opacity: 0.76;
+      }
+    }
     img {
       animation: outBtn 4s linear forwards;
       &:hover {
@@ -142,6 +162,38 @@ section {
   }
   .playing {
     animation: play 1.8s infinite linear;
+  }
+
+  .op-btn {
+    visibility: hidden;
+    transition: 0.5s;
+    opacity: 0;
+    &:hover {
+      visibility: visible;
+      opacity: 0.76;
+    }
+  }
+
+  .next-btn {
+    cursor: url(../assets/pic/cursor.cur), pointer !important;
+    position: absolute;
+    right: 5px;
+    width: 30px;
+    text-align: right;
+    font-size: 19px;
+    height: 25px;
+    line-height: 20px;
+  }
+  .pre-btn {
+    cursor: url(../assets/pic/cursor.cur), pointer !important;
+    position: absolute;
+    top: 19px;
+    right: 28px;
+    height: 30px;
+    text-align: center;
+    font-size: 19px;
+    width: 25px;
+    line-height: 32px;
   }
 }
 @keyframes play {
