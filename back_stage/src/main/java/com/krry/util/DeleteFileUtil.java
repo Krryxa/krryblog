@@ -27,8 +27,8 @@ public class DeleteFileUtil {
 	
 	/**
 	 * 删除博客封面
-	 * @param id
 	 * @param filePath
+	 * @param request
 	 */
 	public static String deleteFile(String filePath, HttpServletRequest request) {
 

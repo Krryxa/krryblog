@@ -53,7 +53,6 @@ export default {
   },
   data() {
     return {
-      basePath: window.location.origin + '/',
       blogShowList: [
         {
           classify: '',
@@ -102,6 +101,9 @@ export default {
     }
   },
   computed: {
+    basePath() {
+      return process.env.API_ROOT + '/'
+    },
     isHome() {
       return this.$route.name === 'home' || this.$route.name === 'homePage'
     }

@@ -3,6 +3,7 @@
 .DS_Store
 /src/main/webapp/static
 /src/main/webapp/index.html
+/src/main/webapp/upload
 
 # ignore eclipse files
 # .project

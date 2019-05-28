@@ -50,7 +50,6 @@ public class UploadUtil {
 			
 			// 随机重命名 UUID
 			String newFileName = generateFileName(oldName);
-//			System.out.println("newFileName："+newFileName);
 			
 			// 日期路径
 			String ymd = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
@@ -58,7 +57,7 @@ public class UploadUtil {
 			
 			// 重新获取服务器的路径
 			String dirPath = request.getSession().getServletContext().getRealPath(url);
-//			System.out.println("dirPath："+dirPath);
+
 			// 最终文件上传的对象
 			File targetFile = new File(dirPath, newFileName); 
 			
