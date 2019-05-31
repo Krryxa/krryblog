@@ -102,7 +102,7 @@ export default {
   },
   computed: {
     basePath() {
-      return process.env.API_ROOT + '/'
+      return process.env.API_ROOT + '/krryblog/'
     },
     isHome() {
       return this.$route.name === 'home' || this.$route.name === 'homePage'
