@@ -98,7 +98,7 @@ export default {
         },
         {
           title: 'Title',
-          width: 153,
+          width: 152,
           key: 'title',
           render: (h, params) => {
             return h(
@@ -130,12 +130,12 @@ export default {
         },
         {
           title: 'Author',
-          width: 76,
+          width: 77,
           key: 'userName'
         },
         {
           title: 'Label',
-          width: 109,
+          width: 108,
           key: 'label'
         },
         {
@@ -226,7 +226,7 @@ export default {
         {
           title: 'Operation',
           key: 'action',
-          width: 130,
+          width: 131,
           align: 'center',
           render: (h, params) => {
             return h('div', {}, [
