@@ -12,10 +12,10 @@
     </div>
     <div class="op-btn">
       <span class="next-btn">
-        <Icon @click="next(true)" type="ios-skip-forward"/>
+        <Icon title="下一首" @click="next(true)" type="ios-skip-forward"/>
       </span>
       <span class="pre-btn">
-        <Icon @click="next(false)" type="ios-skip-backward"/>
+        <Icon title="上一首" @click="next(false)" type="ios-skip-backward"/>
       </span>
     </div>
     <div class="title" :class="!firstTime && (isPlay ? 'titleIn' : 'titleOut')">{{ musicTitle }}</div>
