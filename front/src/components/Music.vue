@@ -56,7 +56,15 @@ export default {
         '伞下铭 - 洛少爷.mp4',
         '清明梦 - 音阙诗听.mp4',
         'Morrie Note - morrie.mp4',
-        'Lullaby - Morrie.mp4'
+        'Lullaby - Morrie.mp4',
+        '苏打绿 - 他夏了夏天.mp4',
+        '苏打绿 - 小情歌.mp4',
+        '王菲 - 梦中人.mp4',
+        '王菲 - 梦游.mp4',
+        '周传雄 - 青花.mp4',
+        '房东的猫 - 云烟成雨.mp4',
+        '恋愛サーキュレーション - 花澤香菜.mp4',
+        '偏爱 - 张芸京.mp4'
       ],
       isTransition: false,
       currIndex: 0
