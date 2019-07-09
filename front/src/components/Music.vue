@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       // basePath: window.location.origin + '/',
-      basePath: 'https://ainyi.com/',
+      basePath: process.env.API_ROOT,
       isPlay: false,
       firstTime: true, // 是否是第一次播放
       musicList: [
@@ -67,13 +67,13 @@ export default {
         '偏爱 - 张芸京.mp4',
         '彼女は旅に出る - 鎖那.mp4',
         '冬眠 - ヨルシカ.mp4',
-        'ルミネセンス - ラブリーサマーちゃん.mp4',
+        'ルミネセンス.mp4',
         '夏恋 - Otokaze.mp4',
         '恋の道 - MACO.mp4',
         '葉桜 - 北乃きい.mp4',
         '玖肆仟 - さくら～あなたに出会えてよかった～（Cover RSP）.mp3',
         'Lifeline.mp4',
-        'ツギハギスタッカート - とあ.mp4',
+        'ツギハギスタッカート.mp4',
         '可惜我是水瓶座 - 杨千嬅.mp4',
         'カラフル - Flower.mp4',
         '叙世 - Aki阿杰、清弄.mp4',
@@ -87,7 +87,7 @@ export default {
         '银临 - 七夕.mp3',
         'DAISHI DANCE - if.mp3',
         'Flower - 太陽と向日葵.mp3',
-        'のぶなが - 深海少女.mp3'
+        '深海少女.mp3'
       ],
       isTransition: false,
       currIndex: 0
@@ -105,7 +105,7 @@ export default {
       return this.musicList.length
     },
     musicLink() {
-      return `${this.basePath}music/${this.musicList[this.currIndex]}`
+      return `${this.basePath}/music/${this.musicList[this.currIndex]}`
     }
   },
   created() {},
