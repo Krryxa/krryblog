@@ -5,17 +5,17 @@
     <div
       class="music"
       :class="{ playing: isPlay }"
-      :title="isPlay ? '暂停' : '播放'"
+      :title="isPlay ? '暂停Alt+Enter' : '播放Alt+Enter'"
       @click="!isTransition && (isPlay ? pause() : play())"
     >
       <img src="@/assets/pic/music.svg" width="25" height="25">
     </div>
     <div class="op-btn">
       <span class="next-btn">
-        <Icon title="下一首" @click="next(true)" type="ios-skip-forward"/>
+        <Icon title="下一首Alt+Right" @click="next(true)" type="ios-skip-forward"/>
       </span>
       <span class="pre-btn">
-        <Icon title="上一首" @click="next(false)" type="ios-skip-backward"/>
+        <Icon title="上一首Alt+Left" @click="next(false)" type="ios-skip-backward"/>
       </span>
     </div>
     <div class="title" :class="!firstTime && (isPlay ? 'titleIn' : 'titleOut')">{{ musicTitle }}</div>
@@ -117,6 +117,23 @@ export default {
       this.musicList = this.randomArray(this.musicList)
       this.audio.src = this.musicLink
       this.audio.volume = 0.5
+      document.addEventListener('keydown', e => {
+        if (e.altKey) {
+          switch (e.keyCode) {
+            case 13:
+              !this.isTransition && (this.isPlay ? this.pause() : this.play())
+              break
+            case 39:
+              this.next(true)
+              break
+            case 37:
+              this.next(false)
+              break
+            default:
+              break
+          }
+        }
+      })
     },
     play() {
       this.firstTime = false
