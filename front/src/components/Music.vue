@@ -87,7 +87,9 @@ export default {
         '银临 - 七夕.mp3',
         'DAISHI DANCE - if.mp3',
         'Flower - 太陽と向日葵.mp3',
-        '深海少女.mp3'
+        '深海少女.mp3',
+        'I Could Be the One-Donna Lewis.mp4',
+        '50 Ways to Say Goodbye-Train.mp4'
       ],
       isTransition: false,
       currIndex: 0
