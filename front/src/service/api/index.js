@@ -129,5 +129,25 @@ export default {
    */
   fetchAllBlog(reqData) {
     return Ax.get(`/krryblog/krry/getBlog`, { params: reqData })
+  },
+
+  /**
+   * 获取所有音乐
+   * @param {*} reqData
+   */
+  fetchMuisc(reqData) {
+    return Ax.get(`/krryblog/part/getMusic`, { params: reqData })
+  },
+
+  /**
+   * 删除音乐
+   * @param {*} id
+   * @param {*} reqData
+   */
+  deleteMusic(id, reqData) {
+    return Ax.post(
+      `/krryblog/part/deleteMusic/${id}`,
+      qs.stringify(reqData)
+    )
   }
 }

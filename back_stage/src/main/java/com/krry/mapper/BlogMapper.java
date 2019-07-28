@@ -68,7 +68,7 @@ public interface BlogMapper {
 	
 	/**
 	 * 删除博客封面
-	 * @param blog
+	 * @param id
 	 */
 	public void deleteBlogCover(int id);
 

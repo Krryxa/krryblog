@@ -67,6 +67,12 @@ export default new Router({
       meta: { title: '后台中心 - 你的美好，我都记得', requireAuth: true }
     },
     {
+      path: '/backstage/music',
+      component: () => import('@/views/BackstageMusic'),
+      name: 'music',
+      meta: { title: '音乐 - 你的美好，我都记得', requireAuth: true }
+    },
+    {
       path: '/backstage/edit',
       component: () => import('@/views/BackstageEdit'),
       name: 'edit',

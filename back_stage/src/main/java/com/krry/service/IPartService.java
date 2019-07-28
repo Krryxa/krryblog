@@ -2,6 +2,7 @@ package com.krry.service;
 
 import java.util.HashMap;
 
+import com.krry.entity.Music;
 import com.krry.entity.Params;
 
 /**
@@ -23,5 +24,23 @@ public interface IPartService {
 	 */
 	public HashMap<String, Object> getBlogBykeyword(Params param);
 	
+	
+	/**
+	 * 查询音乐列表
+	 * @return
+	 */
+	public HashMap<String, Object> getMusic(Params param);
+	
+	/**
+	 * 上传音乐（保存数据库）
+	 * @return
+	 */
+	public int addMusic(Music music);
+	
+	/**
+	 * 删除音乐
+	 * @param id
+	 */
+	public String deleteMusic(int id);
 	
 }

@@ -4,6 +4,7 @@
       ref="upload"
       :on-success="handleSuccess"
       :format="['jpg','jpeg','png']"
+      accept="image/*"
       :max-size="2048"
       :on-format-error="handleFormatError"
       :on-exceeded-size="handleMaxSize"

@@ -1,5 +1,7 @@
 package com.krry.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.krry.entity.Blog;
+import com.krry.entity.Music;
 import com.krry.entity.Params;
 import com.krry.mapper.BlogMapper;
 import com.krry.mapper.PartMapper;
@@ -111,6 +114,74 @@ public class PartService implements IPartService{
 		resData.put("blogLen", blogLen);
 		
 		return resData;
+	}
+	
+	
+	/**
+	 * 查询音乐列表
+	 * 时间戳截掉时分秒
+	 * @param params
+	 * @return
+	 */
+	public HashMap<String, Object> getMusic(Params params) {
+		
+		// 分页
+		int pageNo = params.getPageNo();
+		int pageSize = params.getPageSize();
+		
+		PageHelper.startPage(pageNo, pageSize);
+		
+		List<Music> musicList = partMapper.getMusic(params);
+		int musicLen = partMapper.getMusicCount();
+		HashMap<String, Object> resData = new HashMap<>();
+		
+		int len = musicList.size();
+		
+		if (len > 0) {
+			for (int i = 0; i < len; i++) {
+				Music curMusic = musicList.get(i);
+				String createTime = curMusic.getCreateTime();
+				// 去掉 2018-09-04 13:24:05 的时分秒
+				curMusic.setCreateTime(createTime.split(" ")[0]);
+			}
+			resData.put("status", 200);
+		} else {
+			// 查询无果
+			resData.put("status", 406);
+		}
+		// 用PageInfo对结果进行包装
+        PageInfo<Music> pageInfo = new PageInfo<Music>(musicList);
+        List<Music> pageBlog = pageInfo.getList();
+		resData.put("data", pageBlog);
+		resData.put("musicLen", musicLen);
+		
+		return resData;
+	}
+	
+	/**
+	 * 上传音乐（保存数据库）
+	 * 时间戳截掉时分秒
+	 * @param params
+	 * @return
+	 */
+	public int addMusic(Music music) {
+
+		partMapper.addMusic(music);
+		int id = music.getId();
+		
+		return id;
+		
+	}
+	
+	/**
+	 * 删除音乐
+	 * @param id
+	 */
+	public String deleteMusic(int id) {
+		
+		partMapper.deleteMusic(id);
+		
+		return "success";
 	}
 
 

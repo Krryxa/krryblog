@@ -82,6 +82,56 @@ public class UploadUtil {
 	}
 	
 	/**
+	 * 音乐文件上传
+	 * @param file
+	 * @param request
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 * @throws JSONException
+	 */
+	public static HashMap<String, Object> uploadMusic(MultipartFile file, HttpServletRequest request) 
+			throws IllegalStateException, IOException {
+		
+		if(!file.isEmpty()){
+			
+			HashMap<String, Object> map = new HashMap<String,Object>();
+			
+			String title = file.getOriginalFilename();
+			
+			long size = file.getSize();
+
+			// 优化文件大小
+			String sizeString = formatSize(size);
+			
+			String url = "music";
+			
+			// 重新获取服务器的路径
+			String dirPath = request.getSession().getServletContext().getRealPath(url);
+
+			// 最终文件上传的对象
+			File targetFile = new File(dirPath, title); 
+			
+			// 获取父目录
+			File pfile = new File(targetFile.getPath());
+			// 判断如果目录不存在，先创建
+			if(!pfile.exists()) pfile.mkdirs();
+			
+			// 文件传输
+			file.transferTo(targetFile);
+			
+			map.put("title", title);// 文件原名称
+			map.put("size", sizeString);
+			map.put("url", url+"/"+title);
+			
+			// 以map方式输出到页面
+			return map;
+		} else {
+			return null;
+		}
+	}
+	
+	/**
 	 * 文件重命名
 	 * @param fileName
 	 * @param randomNum

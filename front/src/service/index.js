@@ -135,3 +135,22 @@ export async function getAllBlog(reqData) {
   let res = await Api.fetchAllBlog(reqData)
   return res
 }
+
+/**
+ * 获取所有音乐
+ * @param {*} reqData
+ */
+export async function getMusic(reqData) {
+  let res = await Api.fetchMuisc(reqData)
+  return res
+}
+
+/**
+ * 删除博客封面
+ * @param {*} id
+ * @param {*} reqData
+ */
+export async function deleteMusic(id, reqData) {
+  let res = await Api.deleteMusic(id, reqData)
+  return res
+}

@@ -3,6 +3,7 @@ package com.krry.mapper;
 import java.util.List;
 
 import com.krry.entity.Blog;
+import com.krry.entity.Music;
 import com.krry.entity.Params;
 
 /**
@@ -37,5 +38,30 @@ public interface PartMapper {
 	 * @return
 	 */
 	public int getKeyworkBlogCount(Params param);
+	
+	/**
+	 * 查询音乐列表
+	 * @return
+	 */
+	public List<Music> getMusic(Params param);
+	
+	/**
+	 * 查询音乐列表总数
+	 * @return
+	 */
+	public int getMusicCount();
+	
+	
+	/**
+	 * 上传音乐
+	 * @return
+	 */
+	public void addMusic(Music music);
+	
+	/**
+	 * 删除音乐
+	 * @param id
+	 */
+	public void deleteMusic(int id);
 
 }

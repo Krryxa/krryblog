@@ -10,6 +10,7 @@
       @click="showDialog"
       class="modify-buttom"
     >Modify Personal Information</a>
+    <router-link :to="{ name: 'music' }" class="modify-buttom">Go to music</router-link>
     <Modal width="400" v-model="showModel" title="Modifying personal information">
       <Form :model="userForm" :rules="rule" label-position="top" class="user-form" ref="userForm">
         <FormItem label="User Name" prop="newName">
@@ -86,11 +87,6 @@ export default {
       },
       rule: PERSON_MODIFY_RULE.call(this),
       columns: [
-        // {
-        //   type: 'selection',
-        //   width: 60,
-        //   align: 'center',
-        // },
         {
           title: 'ID',
           width: 50,

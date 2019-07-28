@@ -26,7 +26,7 @@ import com.alibaba.druid.support.json.JSONUtils;
 public class DeleteFileUtil {
 	
 	/**
-	 * 删除博客封面
+	 * 删除文件
 	 * @param filePath
 	 * @param request
 	 */
