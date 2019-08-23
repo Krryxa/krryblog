@@ -251,6 +251,9 @@ module.exports = merge(prodEnv, {
 axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? process.env.API_ROOT : '';
 ```
 
-6. 将 vue 打包后输出的 dist 文件夹下面的文件拷贝到 后台接口项目目录结构的 src/main/webapp/ 下面
+6. 配置 vue 打包输出文件路径到服务端根目录
+```js
+assetsRoot: path.resolve(__dirname, 'xxx'),
+```
 
 7. 把所有的 console.log 删除
