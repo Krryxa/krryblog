@@ -398,13 +398,13 @@ article {
 /* 评论样式 */
 .comments-desc {
   &::before {
-    font-size: 30px;
+    font-size: 24px;
     content: '|';
     color: #eb5055;
     font-weight: bold;
     position: absolute;
     left: 0;
-    top: -13px;
+    top: -8px;
   }
   margin-top: 62px;
   color: #24292e;

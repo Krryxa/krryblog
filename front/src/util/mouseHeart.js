@@ -28,7 +28,7 @@ export default (function(window, document) {
         continue
       }
       hearts[i].y--
-      hearts[i].scale += 0.004
+      hearts[i].scale += 0.106
       hearts[i].alpha -= 0.013
       hearts[i].el.style.cssText =
         'left:' +
