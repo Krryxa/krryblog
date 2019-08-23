@@ -232,8 +232,20 @@ module.exports = {
   NODE_ENV: '"production"',
   API_ROOT: '"https://ainyi.com"'
 }
-
 ```
+
+兼容开发环境读取本地文件，在 dev.env.js 配置：
+```js
+'use strict'
+const merge = require('webpack-merge')
+const prodEnv = require('./prod.env')
+
+module.exports = merge(prodEnv, {
+  NODE_ENV: '"development"',
+  API_ROOT: '"http://localhost:8085"'
+})
+```
+
 所以在 axios 配置：
 ```js
 axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? process.env.API_ROOT : '';
