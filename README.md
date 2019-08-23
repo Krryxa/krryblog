@@ -204,7 +204,7 @@ xxx/static/fonts/icomoon.0125455.woff
 xxx/static/css/static/fonts/icomoon.0125455.woff 
 解决方法：
 webpack 配置问题
-在 build/webpack.prod.conf.js 中 extract :true 改为 fasle 即可
+在 build/webpack.prod.conf.js 中 extract: true 改为 fasle 即可
 ```
 3. css 添加的背景中引用的图片路径出错
 在 build 文件夹下 找 utils.js 配置加上 publicPath: '../../',
