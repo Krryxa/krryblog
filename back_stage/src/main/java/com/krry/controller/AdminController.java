@@ -72,6 +72,20 @@ public class AdminController {
 		
 		return resData;
 	}
+
+	/**
+	 * 查询博客总数
+	 * @param params
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/getBlogCount")
+	public int getBlogCount(){
+		
+		int count = adminService.getBlogCount();
+		
+		return count;
+	}
 	
 	
 	/**

@@ -32,7 +32,12 @@ public interface IAdminService {
 	 */
 	public HashMap<String, Object> getBlogDetail(int id);
 	
-	
+	/**
+	 * 查询博客总数
+	 * @return
+	 */
+	public int getBlogCount();
+
 	/**
 	 * 分页所有博客（发布和未发布）、博客总数
 	 * @return

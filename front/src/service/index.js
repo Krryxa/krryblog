@@ -119,6 +119,15 @@ export async function getLogin(reqData) {
 }
 
 /**
+ * 查询博客总数
+ * @param {*}
+ */
+export async function getBlogCount() {
+  let res = await Api.fetchBlogCount()
+  return res
+}
+
+/**
  * 修改用户信息
  * @param {*} reqData
  */
@@ -146,11 +155,31 @@ export async function getMusic(reqData) {
 }
 
 /**
- * 删除博客封面
+ * 删除音乐
  * @param {*} id
  * @param {*} reqData
  */
 export async function deleteMusic(id, reqData) {
   let res = await Api.deleteMusic(id, reqData)
+  return res
+}
+
+/**
+ * markdown 内容上传图片
+ * @param {*} id
+ * @param {*} reqData
+ */
+export async function uploadContent(id, reqData) {
+  let res = await Api.uploadContent(id, reqData)
+  return res
+}
+
+/**
+ * 删除文件
+ * @param {*} id
+ * @param {*} reqData
+ */
+export async function deleteFile(reqData) {
+  let res = await Api.deleteFile(reqData)
   return res
 }

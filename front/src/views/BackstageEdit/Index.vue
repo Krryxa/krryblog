@@ -17,6 +17,10 @@
         >
         <mavon-editor
           :value="markdownDesc"
+          :tabSize="2"
+          ref="mdEdit"
+          @imgAdd="addImg"
+          @imgDel="delImg"
           @save="markdownSave"
           codeStyle="vs2015"
           placeholder="编辑内容，支持 Markdown"
@@ -76,7 +80,14 @@ import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import '@/assets/css/markdown.css'
 import '@/assets/css/github.css'
-import { getEditBlogDetail, updateBlog, addBlog } from '@/service'
+import {
+  getEditBlogDetail,
+  updateBlog,
+  addBlog,
+  getBlogCount,
+  uploadContent,
+  deleteFile
+} from '@/service'
 import { loading } from '@/mixins/loading'
 export default {
   mixins: [loading],
@@ -91,7 +102,7 @@ export default {
       uploadImgUrl: '',
       classifyId: 1,
       label: '',
-
+      blogCount: 0,
       statusFlag: true,
 
       defaultUploadList: []
@@ -113,6 +124,9 @@ export default {
   created() {
     if (this.id) {
       this.getBlogInfo()
+    } else {
+      // 新增查博客总数，用于 markdown 上传图片时文件夹的命名id
+      this.getBlogCount()
     }
   },
   methods: {
@@ -140,6 +154,26 @@ export default {
         this.description = blogObj['description']
         this.classifyId = blogObj['classifyId']
         this.label = blogObj['label']
+      }
+    },
+    async getBlogCount() {
+      this.blogCount = await getBlogCount()
+    },
+
+    async addImg(pos, $file) {
+      let formData = new FormData()
+      formData.append('imgFile', $file)
+      let id = this.id || this.blogCount + 1
+      let result = await uploadContent(id, formData)
+      this.$refs.mdEdit.$img2Url(pos, result.url)
+    },
+    async delImg(name) {
+      let id = this.id || this.blogCount + 1
+      let res = await deleteFile({ filePath: `upload/content/${id}/${name}` })
+      if (res === 'success') {
+        this.$Message.success('删除成功！')
+      } else {
+        this.$Message.error('删除失败！')
       }
     },
 
