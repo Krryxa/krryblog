@@ -40,6 +40,7 @@
 
 <script>
 import { deleteBlogCover } from '@/service'
+import { loading } from '@/mixins/loading'
 export default {
   props: {
     id: {
@@ -55,6 +56,7 @@ export default {
       type: Array
     }
   },
+  mixins: [loading],
   data() {
     return {
       uploadList: [],
@@ -91,6 +93,7 @@ export default {
         content: '确定要删除博客封面图片吗？',
         loading: true,
         onOk: async () => {
+          this.openLoading('Deleting~~')
           let res = await deleteBlogCover(this.id, {
             filePath: this.uploadImgUrl
           })
@@ -104,6 +107,7 @@ export default {
           } else {
             this.$Message.error('删除失败！')
           }
+          this.$Spin.hide()
         }
       })
     },

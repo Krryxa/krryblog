@@ -106,6 +106,34 @@ public class BlogController {
 		
 		return id;
 	}
+
+	/**
+	 * 上传 markdown 内容图片
+	 * @param file
+	 * @param request
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
+	@ResponseBody
+	@RequestMapping("/uploadContent/{id}")
+	public HashMap<String, Object> uploadContent(@RequestParam("imgFile") MultipartFile file, @PathVariable("id")Integer id, HttpServletRequest request) throws IllegalStateException, IOException {
+		
+		// 调用工具类完成上传，返回相关数据到页面
+		return UploadUtil.markdownUpload(file, request, id);
+	}
+
+	/**
+	 * 删除文件 controller
+	 * 删除 markdown 内容图片
+	 * @param filePath
+	 */
+	@ResponseBody
+	@RequestMapping("/deleteFile")
+	public String deleteFile(String filePath, HttpServletRequest request) {
+		
+		return DeleteFileUtil.deleteFile(filePath, request);
+	}
 	
 	
 	/**

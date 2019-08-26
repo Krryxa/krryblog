@@ -132,7 +132,16 @@ public class AdminService implements IAdminService{
 		return resData;
 	}
 	
-	
+	/**
+	 * 查询博客总数
+	 * @param
+	 * @return
+	 */
+	public int getBlogCount() {
+		int blogLen = adminMapper.getBlogCount();
+		return blogLen;
+	}
+
 	/**
 	 * 分页所有博客（发布和未发布）、博客总数
 	 * 时间戳截掉时分秒

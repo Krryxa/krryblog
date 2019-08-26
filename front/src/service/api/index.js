@@ -116,6 +116,14 @@ export default {
   },
 
   /**
+   * 获取博客总数
+   * @param {*} reqData
+   */
+  fetchBlogCount() {
+    return Ax.get(`/krryblog/krry/getBlogCount`, {})
+  },
+
+  /**
    * 修改用户信息
    * @param {*} reqData
    */
@@ -145,9 +153,23 @@ export default {
    * @param {*} reqData
    */
   deleteMusic(id, reqData) {
-    return Ax.post(
-      `/krryblog/part/deleteMusic/${id}`,
-      qs.stringify(reqData)
-    )
+    return Ax.post(`/krryblog/part/deleteMusic/${id}`, qs.stringify(reqData))
+  },
+
+  /**
+   * markdown 内容上传图片
+   * @param {*} id
+   * @param {*} reqData
+   */
+  uploadContent(id, reqData) {
+    return Ax.post(`/krryblog/blog/uploadContent/${id}`, reqData)
+  },
+
+  /**
+   * 删除文件
+   * @param {*} reqData
+   */
+  deleteFile(reqData) {
+    return Ax.post('/krryblog/blog/deleteFile', qs.stringify(reqData))
   }
 }
