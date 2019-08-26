@@ -117,7 +117,7 @@ public class BlogController {
 	 */
 	@ResponseBody
 	@RequestMapping("/uploadContent/{id}")
-	public String uploadContent(@RequestParam("imgFile") MultipartFile file, @PathVariable("id")Integer id, HttpServletRequest request) throws IllegalStateException, IOException {
+	public HashMap<String, Object> uploadContent(@RequestParam("imgFile") MultipartFile file, @PathVariable("id")Integer id, HttpServletRequest request) throws IllegalStateException, IOException {
 		
 		// 调用工具类完成上传，返回相关数据到页面
 		return UploadUtil.markdownUpload(file, request, id);

@@ -109,6 +109,9 @@ export default {
     }
   },
   computed: {
+    basePath() {
+      return process.env.API_ROOT + '/krryblog/'
+    },
     status() {
       return +this.statusFlag
     },
@@ -165,16 +168,19 @@ export default {
       formData.append('imgFile', $file)
       let id = this.id || this.blogCount + 1
       let result = await uploadContent(id, formData)
-      this.$refs.mdEdit.$img2Url(pos, result.url)
+      this.$refs.mdEdit.$img2Url(pos, this.basePath + result.url)
     },
-    async delImg(name) {
+    async delImg(fileArr) {
+      this.openLoading('Deleting~~')
+      // fileArr: ['http://...', { name: 'xxx', ... }]
       let id = this.id || this.blogCount + 1
-      let res = await deleteFile({ filePath: `upload/content/${id}/${name}` })
+      let res = await deleteFile({ filePath: `upload/content/${id}/${fileArr[1].name}` })
       if (res === 'success') {
         this.$Message.success('删除成功！')
       } else {
         this.$Message.error('删除失败！')
       }
+      this.$Spin.hide()
     },
 
     // markdown save
@@ -208,7 +214,7 @@ export default {
     },
     async commit(reqData) {
       console.log(reqData)
-      this.openLoading('正在保存~~')
+      this.openLoading('Saving~~')
       if (this.id > 0) {
         // is edit
         console.log('是编辑，id：' + this.id)
