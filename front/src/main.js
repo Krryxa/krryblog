@@ -26,11 +26,8 @@ Vue.config.productionTip = false
 // Vue.use(iView);
 // Vue.use(mavonEditor);
 
-// 获取登录
-let username = sessionStorage.getItem('username')
-if (username !== null) {
-  iView.lang('en-US')
-}
+// 设置英文
+iView.lang('en-US')
 
 router.beforeEach((to, from, next) => {
   let toRouteName = to.name
