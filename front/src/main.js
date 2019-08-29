@@ -26,6 +26,9 @@ Vue.config.productionTip = false
 // Vue.use(iView);
 // Vue.use(mavonEditor);
 
+// 设置英文
+iView.lang('en-US')
+
 router.beforeEach((to, from, next) => {
   let toRouteName = to.name
   let username = sessionStorage.getItem('username')
