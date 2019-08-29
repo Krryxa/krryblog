@@ -26,6 +26,12 @@ Vue.config.productionTip = false
 // Vue.use(iView);
 // Vue.use(mavonEditor);
 
+// 获取登录
+let username = sessionStorage.getItem('username')
+if (username !== null) {
+  iView.lang('en-US')
+}
+
 router.beforeEach((to, from, next) => {
   let toRouteName = to.name
   let username = sessionStorage.getItem('username')
@@ -42,6 +48,7 @@ router.beforeEach((to, from, next) => {
   } else if (to.meta.requireAuth) {
     // 如果需要进入需登录的页面
     if (username !== null) {
+      iView.lang('en-US')
       // 已登录，进入下一个页面
       store.dispatch('user/SETUSERID', +id)
       store.dispatch('user/SETUSERNAME', username)
@@ -51,6 +58,8 @@ router.beforeEach((to, from, next) => {
       next({ name: 'login' })
     }
   } else {
+    let username = sessionStorage.getItem('username')
+    !username && iView.lang('zh-CN')
     next()
   }
 })
