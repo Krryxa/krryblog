@@ -1,26 +1,15 @@
 package com.krry.controller;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
-import com.alibaba.druid.support.json.JSONUtils;
-import com.krry.entity.Music;
 import com.krry.entity.Params;
 import com.krry.service.IPartService;
-import com.krry.util.DeleteFileUtil;
-import com.krry.util.UploadUtil;
 
 /**
  * Controller

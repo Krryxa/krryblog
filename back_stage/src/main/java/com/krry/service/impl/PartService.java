@@ -15,7 +15,6 @@ import com.krry.entity.Blog;
 import com.krry.entity.Music;
 import com.krry.entity.Params;
 import com.krry.mapper.AdminMapper;
-import com.krry.mapper.BlogMapper;
 import com.krry.mapper.PartMapper;
 import com.krry.service.IPartService;
 
