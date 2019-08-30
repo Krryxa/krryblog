@@ -20,6 +20,7 @@ import com.github.pagehelper.PageInfo;
 import com.krry.entity.Blog;
 import com.krry.entity.Classify;
 import com.krry.entity.Params;
+import com.krry.mapper.AdminMapper;
 import com.krry.mapper.BlogMapper;
 import com.krry.service.IBlogService;
 
@@ -31,6 +32,9 @@ import com.krry.service.IBlogService;
  */
 @Service
 public class BlogService implements IBlogService{
+	
+	@Autowired
+	private AdminMapper adminMapper;
 
 	@Autowired
 	private BlogMapper blogMapper;
@@ -97,7 +101,7 @@ public class BlogService implements IBlogService{
 			newBlog.setHit(hit);
 			newBlog.setId(id);
 			
-			blogMapper.updateBlog(newBlog);
+			adminMapper.updateBlog(newBlog);
 			
 			// 处理查询出timestamp时间类型多了个 .0  的问题
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 设置日期格式
@@ -193,71 +197,6 @@ public class BlogService implements IBlogService{
 		resData.put("categoryName", categoryName);
 		
 		return resData;
-	}
-	
-	
-	/**
-	 * 新增博客
-	 * @param blog
-	 * @return
-	 */
-	public int addBlog(Blog blog) {
-		
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 设置日期格式
-		String date = df.format(new Date()); // new Date()为获取当前系统时间，也可使用当前时间戳
-		blog.setHit(0);
-		blog.setComment(0);
-		blog.setCreateTime(date);
-		blog.setUpdateTime(date);
-		blog.setIsDelete(0);
-		blog.setIsTop(0);
-		
-		blogMapper.addBlog(blog);
-		int id = blog.getId();
-		
-		return id;
-	}
-
-	
-	/**
-	 * 修改博客
-	 * @param blog
-	 * @return
-	 */
-	public String updateBlog(Blog blog) {
-		
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 设置日期格式
-		String date = df.format(new Date()); // new Date()为获取当前系统时间，也可使用当前时间戳
-		blog.setUpdateTime(date);
-		
-		blogMapper.updateBlog(blog);
-		
-		return "success";
-	}
-	
-	
-	/**
-	 * 修改博客，不改变 updateTime
-	 * @param blog
-	 * @return
-	 */
-	public String updateBlogNoTime(Blog blog) {
-		
-		blogMapper.updateBlog(blog);
-		
-		return "success";
-	}
-	
-	
-	/**
-	 * 删除博客封面
-	 * @param id
-	 */
-	public String deleteBlogCover(int id) {
-		
-		blogMapper.deleteBlogCover(id);
-		
-		return "success";
 	}
 
 

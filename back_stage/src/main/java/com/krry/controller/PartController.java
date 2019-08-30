@@ -65,6 +65,21 @@ public class PartController {
 		return resData;
 	}
 	
+	/**
+	 * 查询相关链接 / 关于我
+	 * @param params
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/getLinkOrAbout")
+	public HashMap<String, Object> getLinkOrAbout(HttpServletRequest request){
+		
+		String title = request.getParameter("title");
+		HashMap<String, Object> resData = partService.getLinkOrAbout(title);
+		
+		return resData;
+	}
+	
 	
 	/**
 	 * 查询音乐列表
@@ -78,56 +93,6 @@ public class PartController {
 		HashMap<String, Object> resData = partService.getMusic(param);
 		
 		return resData;
-	}
-	
-	/**
-	 * 上传音乐
-	 * @param file
-	 * @param request
-	 * @return
-	 * @throws IllegalStateException
-	 * @throws IOException
-	 */
-	@ResponseBody
-	@RequestMapping("/upload")
-	public String krryupload(@RequestParam("musicFile") MultipartFile file, HttpServletRequest request) throws IllegalStateException, IOException {
-		
-		// 调用工具类完成上传
-		HashMap<String, Object> map = UploadUtil.uploadMusic(file, request);
-		
-		Music music = new Music();
-		music.setTitle((String) map.get("title"));
-		music.setSize((String) map.get("size"));
-		
-		// 保存数据库
-		int id = partService.addMusic(music);
-		
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd"); // 设置日期格式
-		String date = df.format(new Date()); // new Date()为获取当前系统时间，也可使用当前时间戳
-		
-		map.put("id", id);
-		map.put("createTime", date);
-		
-		return JSONUtils.toJSONString(map);
-	}
-	
-	/**
-	 * 删除音乐
-	 * @param id
-	 * @param filePath
-	 */
-	@ResponseBody
-	@RequestMapping("/deleteMusic/{id}")
-	public String deleteMusic(@PathVariable("id")Integer id, String filePath, HttpServletRequest request) {
-		
-		String msg = DeleteFileUtil.deleteFile(filePath, request);
-		
-		// 文件删除
-		if (msg.equals("success")) {
-			msg = partService.deleteMusic(id);
-		}
-		
-		return msg;
 	}
 	
 	

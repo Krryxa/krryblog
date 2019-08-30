@@ -54,22 +54,5 @@ public interface BlogMapper {
 	 */
 	public String getBlogClassifyName(int id);
 	
-	/**
-	 * 增加博客
-	 * @return
-	 */
-	public void addBlog(Blog blog);
-	
-	/**
-	 * 修改博客
-	 * @param blog
-	 */
-	public void updateBlog(Blog blog);
-	
-	/**
-	 * 删除博客封面
-	 * @param id
-	 */
-	public void deleteBlogCover(int id);
 
 }

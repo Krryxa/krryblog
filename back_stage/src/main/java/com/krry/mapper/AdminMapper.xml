@@ -46,27 +46,6 @@
 	</select>
 	
 	
-	<!-- 获取相关链接/关于 -->
-	<select id="getLinkOrAbout" resultType="Blog">
-		select
-			b.id,
-			u.name as userName,
-			c.name as classify,
-			b.content_hm,
-			<include refid="blog_column"></include>
-		from
-			blog b
-		left join
-			user u
-		on
-			b.userId = u.id
-		left join
-			classify c
-		on
-			b.classifyId = c.id
-		where b.title = #{title}
-	</select>
-	
 	<!-- 获取博客详情页（编辑，只需要markdown字段） -->
 	<select id="getBlogDetail" resultType="Blog">
 		select
@@ -133,6 +112,103 @@
 		<trim prefix="SET" suffixOverrides=",">
 			<if test="@com.krry.util.TmStringUtils@isNotEmpty(name)">name=#{name},</if>
 			<if test="@com.krry.util.TmStringUtils@isNotEmpty(password)">password=#{password},</if>
+		</trim>
+		where
+			id = #{id}
+	</update>
+	
+	<!-- 上传音乐 -->
+	<insert id="addMusic" useGeneratedKeys="true" keyProperty="id" parameterType="Music">  
+	    insert into music(
+	    	title,
+	    	size
+	    )
+	    values(
+	    	#{title},
+	    	#{size}
+	    )
+	</insert>
+	
+	<!-- 删除音乐 -->
+	<delete id="deleteMusic">
+        delete
+        from
+        	music
+        where
+        	id = #{id}
+    </delete>
+    
+    <!-- 新增 -->
+	<insert id="addBlog" useGeneratedKeys="true" keyProperty="id" parameterType="Blog">  
+	    insert into blog(
+	    	userId,
+	    	title,
+			content_md,
+			content_hm,
+			description,
+			imageName,
+			image,
+			classifyId,
+			label,
+			hit,
+			comment,
+			createTime,
+			updateTime,
+			status,
+			isDelete,
+			isTop
+	    )
+	    values(
+	    	#{userId},
+	    	#{title},
+			#{content_md},
+			#{content_hm},
+			#{description},
+			#{imageName},
+			#{image},
+			#{classifyId},
+			#{label},
+			#{hit},
+			#{comment},
+			#{createTime},
+			#{updateTime},
+			#{status},
+			#{isDelete},
+			#{isTop}
+	    )
+	</insert>
+	
+	<!-- 删除博客封面 -->
+	<update id="deleteBlogCover">
+		update
+			blog
+		set
+			imageName = "",
+			image = ""
+		where
+			id = #{id}
+	</update>
+	
+	<!-- 修改博客 -->
+	<update id="updateBlog"  parameterType="Blog">
+		update
+			blog
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="@com.krry.util.TmStringUtils@isNotEmpty(userId)">userId=#{userId},</if>
+			<if test="@com.krry.util.TmStringUtils@isNotEmpty(title)">title=#{title},</if>
+			<if test="@com.krry.util.TmStringUtils@isNotEmpty(content_md)">content_md=#{content_md},</if>
+			<if test="@com.krry.util.TmStringUtils@isNotEmpty(content_hm)">content_hm=#{content_hm},</if>
+			<if test="@com.krry.util.TmStringUtils@isNotEmpty(description)">description=#{description},</if>
+			<if test="@com.krry.util.TmStringUtils@isNotEmpty(imageName)">imageName=#{imageName},</if>
+			<if test="@com.krry.util.TmStringUtils@isNotEmpty(image)">image=#{image},</if>
+			<if test="@com.krry.util.TmStringUtils@isNotEmpty(classifyId)">classifyId=#{classifyId},</if>
+			<if test="@com.krry.util.TmStringUtils@isNotEmpty(label)">label=#{label},</if>
+			<if test="@com.krry.util.TmStringUtils@isNotEmpty(hit)">hit=#{hit},</if>
+			<if test="@com.krry.util.TmStringUtils@isNotEmpty(comment)">comment=#{comment},</if>
+			<if test="@com.krry.util.TmStringUtils@isNotEmpty(updateTime)">updateTime=#{updateTime},</if>
+			<if test="@com.krry.util.TmStringUtils@isNotEmpty(status)">status=#{status},</if>
+			<if test="@com.krry.util.TmStringUtils@isNotEmpty(isDelete)">isDelete=#{isDelete},</if>
+			<if test="@com.krry.util.TmStringUtils@isNotEmpty(isTop)">isTop=#{isTop},</if>
 		</trim>
 		where
 			id = #{id}

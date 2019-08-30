@@ -3,6 +3,7 @@ package com.krry.mapper;
 import java.util.List;
 
 import com.krry.entity.Blog;
+import com.krry.entity.Music;
 import com.krry.entity.User;
 
 /**
@@ -25,11 +26,6 @@ public interface AdminMapper {
 	 */
 	public User getUserById(int id);
 	
-	/**
-	 * 查询相关链接 / 关于我
-	 * @return
-	 */
-	public Blog getLinkOrAbout(String title);
 	
 	/**
 	 * 获取博客详情页（编辑）
@@ -45,7 +41,7 @@ public interface AdminMapper {
 	public List<Blog> getBlog();
 	
 	/**
-	 * 博客总数
+	 * 博客总数（发布和未发布）
 	 * @return
 	 */
 	public int getBlogCount();
@@ -55,6 +51,36 @@ public interface AdminMapper {
 	 * @param user
 	 */
 	public void updateUser(User user);
+	
+	/**
+	 * 上传音乐
+	 * @return
+	 */
+	public void addMusic(Music music);
+	
+	/**
+	 * 删除音乐
+	 * @param id
+	 */
+	public void deleteMusic(int id);
+	
+	/**
+	 * 增加博客
+	 * @return
+	 */
+	public void addBlog(Blog blog);
+	
+	/**
+	 * 修改博客
+	 * @param blog
+	 */
+	public void updateBlog(Blog blog);
+	
+	/**
+	 * 删除博客封面
+	 * @param id
+	 */
+	public void deleteBlogCover(int id);
 
 }
 

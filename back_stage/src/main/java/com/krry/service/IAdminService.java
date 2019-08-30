@@ -3,6 +3,7 @@ package com.krry.service;
 import java.util.HashMap;
 
 import com.krry.entity.Blog;
+import com.krry.entity.Music;
 import com.krry.entity.Params;
 import com.krry.entity.User;
 
@@ -19,13 +20,6 @@ public interface IAdminService {
 	 */
 	public String login(User user);
 	
-	
-	/**
-	 * 查询相关链接 / 关于我
-	 * @return
-	 */
-	public HashMap<String, Object> getLinkOrAbout(String title);
-	
 	/**
 	 * 获取博客详情页（编辑）
 	 * @return
@@ -33,7 +27,7 @@ public interface IAdminService {
 	public HashMap<String, Object> getBlogDetail(int id);
 	
 	/**
-	 * 查询博客总数
+	 * 查询博客总数（发布和未发布）
 	 * @return
 	 */
 	public int getBlogCount();
@@ -44,11 +38,46 @@ public interface IAdminService {
 	 */
 	public HashMap<String, Object> getBlog(Params parmas);
 	
-	
 	/**
 	 * 修改个人信息
 	 * @param user
 	 */
 	public String updateUser(User user);
+	
+	/**
+	 * 上传音乐（保存数据库）
+	 * @return
+	 */
+	public int addMusic(Music music);
+	
+	/**
+	 * 删除音乐
+	 * @param id
+	 */
+	public String deleteMusic(int id);
+	
+	/**
+	 * 增加博客
+	 * @return
+	 */
+	public int addBlog(Blog blog);
+	
+	/**
+	 * 修改博客
+	 * @param blog
+	 */
+	public String updateBlog(Blog blog);
+	
+	/**
+	 * 修改博客，不改变 updateTime
+	 * @param blog
+	 */
+	public String updateBlogNoTime(Blog blog);
+	
+	/**
+	 * 删除博客封面
+	 * @param id
+	 */
+	public String deleteBlogCover(int id);
 
 }

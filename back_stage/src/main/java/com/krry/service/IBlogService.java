@@ -40,28 +40,4 @@ public interface IBlogService {
 	 */
 	public HashMap<String, Object> getBlogByClassifyId(int id, Params params);
 	
-	/**
-	 * 增加博客
-	 * @return
-	 */
-	public int addBlog(Blog blog);
-	
-	/**
-	 * 修改博客
-	 * @param blog
-	 */
-	public String updateBlog(Blog blog);
-	
-	/**
-	 * 修改博客，不改变 updateTime
-	 * @param blog
-	 */
-	public String updateBlogNoTime(Blog blog);
-	
-	/**
-	 * 删除博客封面
-	 * @param id
-	 */
-	public String deleteBlogCover(int id);
-	
 }

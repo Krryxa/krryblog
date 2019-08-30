@@ -44,7 +44,7 @@ export default {
    * @param {*} reqData
    */
   addBlog(reqData) {
-    return Ax.post('/krryblog/blog/addBlog', qs.stringify(reqData))
+    return Ax.post('/krryblog/krry/addBlog', qs.stringify(reqData))
   },
 
   /**
@@ -52,7 +52,7 @@ export default {
    * @param {*} reqData
    */
   updateBlog(reqData) {
-    return Ax.post('/krryblog/blog/updateBlog', qs.stringify(reqData))
+    return Ax.post('/krryblog/krry/updateBlog', qs.stringify(reqData))
   },
 
   /**
@@ -60,7 +60,7 @@ export default {
    * @param {*} reqData
    */
   updateBlogNoTime(reqData) {
-    return Ax.post('/krryblog/blog/updateBlogNoTime', qs.stringify(reqData))
+    return Ax.post('/krryblog/krry/updateBlogNoTime', qs.stringify(reqData))
   },
 
   /**
@@ -70,7 +70,7 @@ export default {
    */
   deleteBlogCover(id, reqData) {
     return Ax.post(
-      `/krryblog/blog/deleteBlogCover/${id}`,
+      `/krryblog/krry/deleteBlogCover/${id}`,
       qs.stringify(reqData)
     )
   },
@@ -80,7 +80,7 @@ export default {
    * @param {*} reqData
    */
   fetchLinkOrAbout(reqData) {
-    return Ax.get('/krryblog/krry/getLinkOrAbout', { params: reqData })
+    return Ax.get('/krryblog/part/getLinkOrAbout', { params: reqData })
   },
 
   /**
@@ -153,7 +153,7 @@ export default {
    * @param {*} reqData
    */
   deleteMusic(id, reqData) {
-    return Ax.post(`/krryblog/part/deleteMusic/${id}`, qs.stringify(reqData))
+    return Ax.post(`/krryblog/krry/deleteMusic/${id}`, qs.stringify(reqData))
   },
 
   /**
@@ -162,7 +162,7 @@ export default {
    * @param {*} reqData
    */
   uploadContent(id, reqData) {
-    return Ax.post(`/krryblog/blog/uploadContent/${id}`, reqData)
+    return Ax.post(`/krryblog/krry/uploadContent/${id}`, reqData)
   },
 
   /**
@@ -170,6 +170,6 @@ export default {
    * @param {*} reqData
    */
   deleteFile(reqData) {
-    return Ax.post('/krryblog/blog/deleteFile', qs.stringify(reqData))
+    return Ax.post('/krryblog/krry/deleteFile', qs.stringify(reqData))
   }
 }

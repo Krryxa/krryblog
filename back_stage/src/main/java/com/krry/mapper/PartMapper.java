@@ -40,6 +40,12 @@ public interface PartMapper {
 	public int getKeyworkBlogCount(Params param);
 	
 	/**
+	 * 查询相关链接 / 关于我
+	 * @return
+	 */
+	public Blog getLinkOrAbout(String title);
+	
+	/**
 	 * 查询音乐列表
 	 * @return
 	 */
@@ -51,17 +57,5 @@ public interface PartMapper {
 	 */
 	public int getMusicCount();
 	
-	
-	/**
-	 * 上传音乐
-	 * @return
-	 */
-	public void addMusic(Music music);
-	
-	/**
-	 * 删除音乐
-	 * @param id
-	 */
-	public void deleteMusic(int id);
 
 }
