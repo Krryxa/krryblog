@@ -3,7 +3,7 @@
     <h1>Music</h1>
     <Upload
       name="musicFile"
-      action="/krryblog/part/upload"
+      action="/krryblog/krry/uploadMusic"
       :on-success="handleSuccess"
       :format="['mp3','mp4','m4a','acc']"
       accept="audio/*"

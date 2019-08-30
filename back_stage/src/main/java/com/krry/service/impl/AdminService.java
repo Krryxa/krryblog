@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.krry.entity.Blog;
+import com.krry.entity.Music;
 import com.krry.entity.Params;
 import com.krry.entity.User;
 import com.krry.mapper.AdminMapper;
@@ -54,50 +55,6 @@ public class AdminService implements IAdminService{
 
 	
 	/**
-	 * 查询相关链接 / 关于我
-	 * @return
-	 */
-	public HashMap<String, Object> getLinkOrAbout(String title) {
-		
-		Blog newBlog = new Blog();
-		
-		Blog blog = adminMapper.getLinkOrAbout(title);
-		HashMap<String, Object> resData = new HashMap<>();
-		
-		if (blog != null) {
-			// 设置点击量+1
-			int id = blog.getId();
-			int hit = blog.getHit();
-			blog.setHit(++hit);
-			newBlog.setHit(hit);
-			newBlog.setId(id);
-			
-			blogMapper.updateBlog(newBlog);
-			
-			// 处理查询出timestamp时间类型多了个 .0  的问题
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 设置日期格式
-			try {
-				Date createData = df.parse(blog.getCreateTime());
-				Date updateData = df.parse(blog.getUpdateTime());
-				String createTime = df.format(createData);
-				String updateTime = df.format(updateData);
-				blog.setCreateTime(createTime);
-				blog.setUpdateTime(updateTime);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			resData.put("status", 200);
-		} else {
-			resData.put("status", 404);
-		}
-		resData.put("data", blog);
-		
-		return resData;
-	}
-	
-	/**
 	 * 获取博客详情页（编辑）
 	 * @return
 	 */
@@ -133,7 +90,7 @@ public class AdminService implements IAdminService{
 	}
 	
 	/**
-	 * 查询博客总数
+	 * 查询博客总数（发布和未发布）
 	 * @param
 	 * @return
 	 */
@@ -203,6 +160,97 @@ public class AdminService implements IAdminService{
 		}
 		
 		adminMapper.updateUser(user);
+		
+		return "success";
+	}
+	
+	
+	/**
+	 * 上传音乐（保存数据库）
+	 * 时间戳截掉时分秒
+	 * @param params
+	 * @return
+	 */
+	public int addMusic(Music music) {
+
+		adminMapper.addMusic(music);
+		int id = music.getId();
+		
+		return id;
+		
+	}
+	
+	/**
+	 * 删除音乐
+	 * @param id
+	 */
+	public String deleteMusic(int id) {
+		
+		adminMapper.deleteMusic(id);
+		
+		return "success";
+	}
+	
+	
+	/**
+	 * 新增博客
+	 * @param blog
+	 * @return
+	 */
+	public int addBlog(Blog blog) {
+		
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 设置日期格式
+		String date = df.format(new Date()); // new Date()为获取当前系统时间，也可使用当前时间戳
+		blog.setHit(0);
+		blog.setComment(0);
+		blog.setCreateTime(date);
+		blog.setUpdateTime(date);
+		blog.setIsDelete(0);
+		blog.setIsTop(0);
+		
+		adminMapper.addBlog(blog);
+		int id = blog.getId();
+		
+		return id;
+	}
+
+	
+	/**
+	 * 修改博客
+	 * @param blog
+	 * @return
+	 */
+	public String updateBlog(Blog blog) {
+		
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 设置日期格式
+		String date = df.format(new Date()); // new Date()为获取当前系统时间，也可使用当前时间戳
+		blog.setUpdateTime(date);
+		
+		adminMapper.updateBlog(blog);
+		
+		return "success";
+	}
+	
+	/**
+	 * 修改博客，不改变 updateTime
+	 * @param blog
+	 * @return
+	 */
+	public String updateBlogNoTime(Blog blog) {
+		
+		adminMapper.updateBlog(blog);
+		
+		return "success";
+	}
+	
+	
+	/**
+	 * 删除博客封面
+	 * @param id
+	 */
+	public String deleteBlogCover(int id) {
+		
+		adminMapper.deleteBlogCover(id);
 		
 		return "success";
 	}

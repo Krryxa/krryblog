@@ -117,6 +117,27 @@
 		)
 	</select>
 	
+	<!-- 获取相关链接/关于 -->
+	<select id="getLinkOrAbout" resultType="Blog">
+		select
+			b.id,
+			u.name as userName,
+			c.name as classify,
+			b.content_hm,
+			<include refid="blog_column"></include>
+		from
+			blog b
+		left join
+			user u
+		on
+			b.userId = u.id
+		left join
+			classify c
+		on
+			b.classifyId = c.id
+		where b.title = #{title}
+	</select>
+	
 	<!-- 查询音乐列表 -->
 	<select id="getMusic" resultType="Music" parameterType="Params">
 		select
@@ -137,27 +158,6 @@
 		from
 			music
 	</select>
-	
-	<!-- 上传音乐 -->
-	<insert id="addMusic" useGeneratedKeys="true" keyProperty="id" parameterType="Music">  
-	    insert into music(
-	    	title,
-	    	size
-	    )
-	    values(
-	    	#{title},
-	    	#{size}
-	    )
-	</insert>
-	
-	<!-- 删除音乐 -->
-	<delete id="deleteMusic">
-        delete
-        from
-        	music
-        where
-        	id = #{id}
-    </delete>
 	
 	
 </mapper>

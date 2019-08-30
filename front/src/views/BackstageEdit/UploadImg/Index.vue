@@ -11,7 +11,7 @@
       :default-file-list="defaultList"
       type="drag"
       name="imgFile"
-      action="/krryblog/blog/upload"
+      action="/krryblog/krry/uploadCover"
     >
       <div class="upload-icon">
         <Icon type="ios-camera" size="20"></Icon>
