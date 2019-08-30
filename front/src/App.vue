@@ -407,6 +407,17 @@ scrollbar[orient='vertical'] {
 </style>
 
 <style lang="scss">
+.ivu-page, .ivu-form {
+  input {
+    &:hover {
+      border-color: #f60 !important;
+    }
+    &:focus {
+      border-color: #f60 !important;
+      box-shadow: 0 0 0 2px rgba(255, 118, 19, 0.2) !important;
+    }
+  }
+}
 /* 博客详情页样式 */
 .detail-article {
   .content,
