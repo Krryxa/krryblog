@@ -3,6 +3,7 @@
 import axios from 'axios'
 import iView from 'iview'
 import router from '@/router'
+import store from '@/store'
 import { codeStatus } from '@/util/enum'
 
 // 自动识别接口使用开发环境地址（开发环境地址做了 proxyTable 代理，故设置为空）或线上地址
@@ -48,8 +49,10 @@ $axios.interceptors.response.use(
         // router.push({name: 'error'})
         break
       case codeStatus.UNAUTHORIZED:
+        store.dispatch('user/CLEARUSER')
+        sessionStorage.clear()
+        iView.Message.error(apiRes.message)
         router.push({name: 'login'})
-        flag && iView.LoadingBar.finish()
         break
       default:
         flag && iView.LoadingBar.finish()

@@ -23,7 +23,7 @@ export async function getBlogDetail(id) {
  */
 export async function getClassify() {
   let res = await Api.fetchClassify()
-  return res.data
+  return res
 }
 
 /**
@@ -115,6 +115,15 @@ export async function getBlogByKeyword(reqData) {
  */
 export async function getLogin(reqData) {
   let res = await Api.fetchLogin(reqData)
+  return res
+}
+
+/**
+ * 注销登录
+ * @param {*} reqData
+ */
+export async function getLogout() {
+  let res = await Api.fetchLogout()
   return res
 }
 

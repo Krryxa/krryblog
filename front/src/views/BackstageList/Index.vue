@@ -46,7 +46,7 @@ export default {
       let res = await getAllBlog(reqData)
       this.status = res.code
       // 404 的标题在 axios 拦截器已经定义
-      if (this.status !== 404) {
+      if (this.status === 200) {
         // 将点击数和评论数合并
         for (let val of res.result.data) {
           let hitComment = `${val.hit} / ${val.comment}`

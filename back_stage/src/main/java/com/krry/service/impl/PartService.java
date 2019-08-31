@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +41,7 @@ public class PartService implements IPartService{
 	 * 登录
 	 * @return
 	 */
-	public ResponseVal login(User user){
+	public ResponseVal login(User user, HttpServletRequest request){
 		
 		ResponseVal res = new ResponseVal();
 		
@@ -48,6 +50,9 @@ public class PartService implements IPartService{
 		
 		if (realUser != null) {
 			if (realUser.getPassword().equals(user.getPassword())) {
+				// 登录成功，写入 session
+				request.getSession().setAttribute("user", realUser);
+				
 				res.setMessage("success");
 				res.setResult(realUser.getId());
 			} else {
@@ -58,6 +63,17 @@ public class PartService implements IPartService{
 		}
 		
 		return res;
+	}
+	
+	/**
+	 * 注销登录
+	 * @return
+	 */
+	public String logout(HttpServletRequest request) {
+		
+		request.getSession().invalidate();
+		
+		return "success";
 	}
 	
 	/**

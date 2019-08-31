@@ -1,5 +1,7 @@
 package com.krry.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.krry.entity.Params;
 import com.krry.entity.ResponseVal;
 import com.krry.entity.User;
@@ -15,7 +17,13 @@ public interface IPartService {
 	 * 登录
 	 * @return
 	 */
-	public ResponseVal login(User user);
+	public ResponseVal login(User user, HttpServletRequest request);
+	
+	/**
+	 * 注销登录
+	 * @return
+	 */
+	public String logout(HttpServletRequest request);
 	
 	/**
 	 * 根据标签查询已发布的博客

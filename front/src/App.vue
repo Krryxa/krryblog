@@ -19,9 +19,7 @@ export default {
     Music: () => import('@/components/Music')
   },
   data() {
-    return {
-      classifyList: []
-    }
+    return {}
   },
   created() {
     this.getClassifyList()
@@ -407,7 +405,8 @@ scrollbar[orient='vertical'] {
 </style>
 
 <style lang="scss">
-.ivu-page, .ivu-form {
+.ivu-page,
+.ivu-form {
   input {
     &:hover {
       border-color: #f60 !important;

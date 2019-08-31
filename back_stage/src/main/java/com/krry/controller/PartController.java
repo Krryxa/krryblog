@@ -32,9 +32,24 @@ public class PartController {
 	 */
 	@ResponseBody
 	@RequestMapping("/login")
-	public ResponseVal login(User user){
+	public ResponseVal login(User user, HttpServletRequest request){
 		
-		ResponseVal resData = partService.login(user);
+		ResponseVal resData = partService.login(user, request);
+		
+		return resData;
+	}
+	
+	
+	/**
+	 * 注销登录
+	 * @param params
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request){
+		
+		String resData = partService.logout(request);
 		
 		return resData;
 	}

@@ -32,7 +32,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 				// 用 response 的流进行输出
 				response.setContentType("application/json;charset=UTF-8");
 				ResponseVal res = new ResponseVal();
-				res.setMessage("请登录");
+				res.setMessage("请先登录");
 				res.setCode(401);
 				response.getWriter().print(res);
 			} else {

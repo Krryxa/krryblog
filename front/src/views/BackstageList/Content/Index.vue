@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { updateUser, updateBlogNoTime } from '@/service'
+import { updateUser, updateBlogNoTime, getLogout } from '@/service'
 import { loading } from '@/mixins/loading'
 import { PERSON_MODIFY_RULE } from '@/views/service/rules'
 export default {
@@ -299,7 +299,8 @@ export default {
         content: `<p>Do you want to logout ？</p>`,
         okText: 'Confirm',
         cancelText: 'Cancel',
-        onOk: () => {
+        onOk: async () => {
+          await getLogout()
           this.$store.dispatch('user/CLEARUSER')
           sessionStorage.clear()
           this.$router.push('/')

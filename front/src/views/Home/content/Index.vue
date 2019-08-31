@@ -35,7 +35,7 @@ export default {
         pageSize: this.pageSize
       }
       let res = await getBlog(reqData)
-      if (res.code !== 404) {
+      if (res.code === 200) {
         this.blogList = res.result.data
         this.blogLen = res.result.blogLen
       } else {
