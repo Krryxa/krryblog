@@ -62,12 +62,6 @@ public interface IAdminService {
 	public String updateBlog(Blog blog);
 	
 	/**
-	 * 修改博客，不改变 updateTime
-	 * @param blog
-	 */
-	public String updateBlogNoTime(Blog blog);
-	
-	/**
 	 * 删除博客封面
 	 * @param id
 	 */

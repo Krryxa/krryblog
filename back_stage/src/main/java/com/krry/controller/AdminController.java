@@ -221,20 +221,6 @@ public class AdminController {
 	}
 	
 	/**
-	 * 修改博客，不改变 updateTime
-	 * @param blog
-	 * @return
-	 */
-	@ResponseBody
-	@RequestMapping("/updateBlogNoTime")
-	public String updateBlogNoTime(Blog blog){
-		
-		String msg = adminService.updateBlogNoTime(blog);
-		
-		return msg;
-	}
-	
-	/**
 	 * 删除博客封面
 	 * @param id
 	 * @param filePath

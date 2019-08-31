@@ -60,7 +60,7 @@ export default {
    * @param {*} reqData
    */
   updateBlogNoTime(reqData) {
-    return Ax.post('/krryblog/krry/updateBlogNoTime', qs.stringify(reqData))
+    return Ax.post('/krryblog/blog/updateBlogNoTime', qs.stringify(reqData))
   },
 
   /**

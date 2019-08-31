@@ -209,6 +209,18 @@ public class BlogService implements IBlogService{
 		
 		return res;
 	}
+	
+	/**
+	 * 修改博客，不改变 updateTime
+	 * @param blog
+	 * @return
+	 */
+	public String updateBlogNoTime(Blog blog) {
+		
+		adminMapper.updateBlog(blog);
+		
+		return "success";
+	}
 
 
 }

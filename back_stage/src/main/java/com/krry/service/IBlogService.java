@@ -1,5 +1,6 @@
 package com.krry.service;
 
+import com.krry.entity.Blog;
 import com.krry.entity.Params;
 import com.krry.entity.ResponseVal;
 
@@ -33,5 +34,11 @@ public interface IBlogService {
 	 * @return
 	 */
 	public ResponseVal getBlogByClassifyId(int id, Params params);
+	
+	/**
+	 * 修改博客，不改变 updateTime（增加评论数）
+	 * @param blog
+	 */
+	public String updateBlogNoTime(Blog blog);
 	
 }

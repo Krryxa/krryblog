@@ -221,18 +221,6 @@ public class AdminService implements IAdminService{
 		return "success";
 	}
 	
-	/**
-	 * 修改博客，不改变 updateTime
-	 * @param blog
-	 * @return
-	 */
-	public String updateBlogNoTime(Blog blog) {
-		
-		adminMapper.updateBlog(blog);
-		
-		return "success";
-	}
-	
 	
 	/**
 	 * 删除博客封面

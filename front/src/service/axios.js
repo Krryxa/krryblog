@@ -52,6 +52,7 @@ $axios.interceptors.response.use(
         store.dispatch('user/CLEARUSER')
         sessionStorage.clear()
         iView.Message.error(apiRes.message)
+        flag && iView.LoadingBar.finish()
         router.push({name: 'login'})
         break
       default:

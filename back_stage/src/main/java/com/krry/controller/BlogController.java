@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.krry.entity.Blog;
 import com.krry.entity.Params;
 import com.krry.entity.ResponseVal;
 import com.krry.service.IBlogService;
@@ -81,6 +82,20 @@ public class BlogController {
 		ResponseVal resData = blogService.getBlogByClassifyId(id, params);
 		
 		return resData;
+	}
+	
+	/**
+	 * 修改博客，不改变 updateTime
+	 * @param blog
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/updateBlogNoTime")
+	public String updateBlogNoTime(Blog blog){
+		
+		String msg = blogService.updateBlogNoTime(blog);
+		
+		return msg;
 	}
 	
 }
