@@ -147,10 +147,10 @@ export default {
       ]
 
       let res = await getEditBlogDetail(this.id)
-      let status = res.status
-      let blogObj = res.data
+      let status = res.code
+      let blogObj = res.result.data
       // 404 的标题在 axios 拦截器已经定义
-      if (status !== 404) {
+      if (status === 200) {
         this.title = blogObj['title']
         this.markdownDesc = blogObj['content_md']
         this.statusFlag = !!blogObj['status']

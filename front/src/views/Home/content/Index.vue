@@ -35,9 +35,9 @@ export default {
         pageSize: this.pageSize
       }
       let res = await getBlog(reqData)
-      if (res.status !== 404) {
-        this.blogList = res.data
-        this.blogLen = res.blogLen
+      if (res.code === 200) {
+        this.blogList = res.result.data
+        this.blogLen = res.result.blogLen
       } else {
         this.$router.push({ name: 'error' })
       }

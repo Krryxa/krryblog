@@ -112,7 +112,15 @@ export default {
    * @param {*} reqData
    */
   fetchLogin(reqData) {
-    return Ax.get(`/krryblog/krry/login`, { params: reqData })
+    return Ax.post(`/krryblog/part/login`, qs.stringify(reqData))
+  },
+
+  /**
+   * 注销登录
+   * @param {*}
+   */
+  fetchLogout() {
+    return Ax.get(`/krryblog/part/logout`)
   },
 
   /**

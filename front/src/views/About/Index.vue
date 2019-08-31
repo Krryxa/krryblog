@@ -33,10 +33,10 @@ export default {
       }
       // fetch about api
       let res = await getLinkOrAbout(reqData)
-      this.status = res.status
+      this.status = res.code
       // 404 的标题在 axios 拦截器已经定义
-      if (this.status !== 404) {
-        this.blog = res.data
+      if (this.status === 200) {
+        this.blog = res.result.data
         document.title = `${this.blog['title']} - ${document.title}`
       }
     }

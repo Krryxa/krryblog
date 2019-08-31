@@ -44,18 +44,18 @@ export default {
         pageSize: this.pageSize
       }
       let res = await getAllBlog(reqData)
-      this.status = res.status
+      this.status = res.code
       // 404 的标题在 axios 拦截器已经定义
-      if (this.status !== 404) {
+      if (this.status === 200) {
         // 将点击数和评论数合并
-        for (let val of res.data) {
+        for (let val of res.result.data) {
           let hitComment = `${val.hit} / ${val.comment}`
           delete val.hit
           delete val.comment
           val.hitComment = hitComment
         }
-        this.blogList = res.data
-        this.blogLen = res.blogLen
+        this.blogList = res.result.data
+        this.blogLen = res.result.blogLen
       }
     },
     handleChangeBlog(reqData) {

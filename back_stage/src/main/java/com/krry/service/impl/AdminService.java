@@ -14,6 +14,7 @@ import com.github.pagehelper.PageInfo;
 import com.krry.entity.Blog;
 import com.krry.entity.Music;
 import com.krry.entity.Params;
+import com.krry.entity.ResponseVal;
 import com.krry.entity.User;
 import com.krry.mapper.AdminMapper;
 import com.krry.mapper.BlogMapper;
@@ -33,36 +34,19 @@ public class AdminService implements IAdminService{
 	
 	@Autowired
 	private BlogMapper blogMapper;
-	
-	
-	/**
-	 * 登录
-	 * @return
-	 */
-	public String login(User user){
-		
-		User realUser = adminMapper.getUserByName(user);
-		if (realUser != null) {
-			if (realUser.getPassword().equals(user.getPassword())) {
-				return "success " + realUser.getId();
-			} else {
-				return "The password is wrong~";
-			}
-		} else {
-			return "The username does not exist~";
-		}
-	}
 
 	
 	/**
 	 * 获取博客详情页（编辑）
 	 * @return
 	 */
-	public HashMap<String, Object> getBlogDetail(int id){
+	public ResponseVal getBlogDetail(int id){
 		
 		Blog blog = adminMapper.getBlogDetail(id);
 		
 		HashMap<String, Object> resData = new HashMap<>();
+		
+		ResponseVal res = new ResponseVal();
 		
 		if (blog != null) {
 			
@@ -80,13 +64,15 @@ public class AdminService implements IAdminService{
 				e.printStackTrace();
 			}
 			
-			resData.put("status", 200);
+			res.setCode(200);
 		} else {
-			resData.put("status", 404);
+			res.setCode(404);
 		}
 		resData.put("data", blog);
 		
-		return resData;
+		res.setResult(resData);
+		
+		return res;
 	}
 	
 	/**
@@ -105,7 +91,7 @@ public class AdminService implements IAdminService{
 	 * @param params
 	 * @return
 	 */
-	public HashMap<String, Object> getBlog(Params params) {
+	public ResponseVal getBlog(Params params) {
 		
 		// 分页
 		int pageNo = params.getPageNo();
@@ -116,6 +102,8 @@ public class AdminService implements IAdminService{
 		List<Blog> blogList = adminMapper.getBlog();
 		int blogLen = adminMapper.getBlogCount();
 		HashMap<String, Object> resData = new HashMap<>();
+		
+		ResponseVal res = new ResponseVal();
 		
 		int len = blogList.size();
 		
@@ -128,9 +116,9 @@ public class AdminService implements IAdminService{
 				curBlog.setCreateTime(createTime.split(" ")[0]);
 				curBlog.setUpdateTime(updateTime.split(" ")[0]);
 			}
-			resData.put("status", 200);
+			res.setCode(200);
 		} else {
-			resData.put("status", 404);
+			res.setCode(404);
 		}
 		// 用PageInfo对结果进行包装
         PageInfo<Blog> pageInfo = new PageInfo<Blog>(blogList);
@@ -138,7 +126,9 @@ public class AdminService implements IAdminService{
 		resData.put("data", pageBlog);
 		resData.put("blogLen", blogLen);
 		
-		return resData;
+		res.setResult(resData);
+		
+		return res;
 	}
 	
 	

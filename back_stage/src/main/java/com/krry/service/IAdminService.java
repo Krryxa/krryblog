@@ -1,10 +1,9 @@
 package com.krry.service;
 
-import java.util.HashMap;
-
 import com.krry.entity.Blog;
 import com.krry.entity.Music;
 import com.krry.entity.Params;
+import com.krry.entity.ResponseVal;
 import com.krry.entity.User;
 
 /**
@@ -13,18 +12,12 @@ import com.krry.entity.User;
  *
  */
 public interface IAdminService {
-
-	/**
-	 * 登录
-	 * @return
-	 */
-	public String login(User user);
 	
 	/**
 	 * 获取博客详情页（编辑）
 	 * @return
 	 */
-	public HashMap<String, Object> getBlogDetail(int id);
+	public ResponseVal getBlogDetail(int id);
 	
 	/**
 	 * 查询博客总数（发布和未发布）
@@ -36,7 +29,7 @@ public interface IAdminService {
 	 * 分页所有博客（发布和未发布）、博客总数
 	 * @return
 	 */
-	public HashMap<String, Object> getBlog(Params parmas);
+	public ResponseVal getBlog(Params parmas);
 	
 	/**
 	 * 修改个人信息

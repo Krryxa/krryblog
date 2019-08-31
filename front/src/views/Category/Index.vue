@@ -50,13 +50,13 @@ export default {
         pageSize: this.pageSize
       }
       let res = await getBlogByClassifyId(id, reqData)
-      this.status = res.status
+      this.status = res.code
 
       // 404 的标题在 axios 拦截器已经定义
-      if (this.status !== 404) {
-        this.blogList = res.data
-        this.blogLen = res.blogLen
-        this.categoryName = res.categoryName
+      if (this.status === 200) {
+        this.blogList = res.result.data
+        this.blogLen = res.result.blogLen
+        this.categoryName = res.result.categoryName
         document.title = `${this.categoryName} - ${document.title}`
 
         // if (this.status === 406) {

@@ -47,11 +47,11 @@ export default {
         tag: this.TagName
       }
       let res = await getBlogByTag(reqData)
-      this.status = res.status
+      this.status = res.code
       // 404 的标题在 axios 拦截器已经定义
-      if (this.status !== 404) {
-        this.blogList = res.data
-        this.blogLen = res.blogLen
+      if (this.status === 200) {
+        this.blogList = res.result.data
+        this.blogLen = res.result.blogLen
         document.title = `${this.TagName} - ${document.title}`
       }
     },

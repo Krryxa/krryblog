@@ -1,7 +1,7 @@
 package com.krry.service;
 
-import java.util.HashMap;
 import com.krry.entity.Params;
+import com.krry.entity.ResponseVal;
 
 /**
  * 业务层
@@ -14,24 +14,24 @@ public interface IBlogService {
 	 * 分页查询博客、博客总数
 	 * @return
 	 */
-	public HashMap<String, Object> getBlog(Params params);
+	public ResponseVal getBlog(Params params);
 	
 	/**
 	 * 获取博客详情页
 	 * @return
 	 */
-	public HashMap<String, Object> getBlogDetail(int id);
+	public ResponseVal getBlogDetail(int id);
 	
 	/**
 	 * 查询博客的分类
 	 * @return
 	 */
-	public HashMap<String, Object> getClassify();
+	public ResponseVal getClassify();
 	
 	/**
 	 * 获取分类博客、博客总数
 	 * @return
 	 */
-	public HashMap<String, Object> getBlogByClassifyId(int id, Params params);
+	public ResponseVal getBlogByClassifyId(int id, Params params);
 	
 }

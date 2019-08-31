@@ -57,8 +57,8 @@ export default {
   mounted() {},
   methods: {
     async getMusic() {
-      let { data } = await getMusic()
-      this.musicList = data.map(ele => ele.title)
+      let { result } = await getMusic()
+      this.musicList = result.data.map(ele => ele.title)
       this.musicList = this.randomArray(this.musicList)
       this.init()
     },

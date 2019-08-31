@@ -22,6 +22,17 @@
 		b.isTop
 	</sql>
 	
+	<!-- 根据用户名查询 -->
+	<select id="getUserByName" resultType="User" parameterType="User">
+		select
+			id,
+			name,
+			password
+		from
+			user
+		where name = #{name}
+	</select>
+	
 	<!-- 根据标签查询已发布的博客 -->
 	<select id="getBlogByTag" resultType="Blog" parameterType="Params">
 		select
