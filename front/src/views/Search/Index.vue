@@ -47,9 +47,9 @@ export default {
         keyword: this.keyword
       }
       let res = await getBlogByKeyword(reqData)
-      this.status = res.status
-      this.blogList = res.data
-      this.blogLen = this.hasNoResult ? 0 : res.blogLen
+      this.status = res.code
+      this.blogList = res.result.data
+      this.blogLen = this.hasNoResult ? 0 : res.result.blogLen
     },
     async changePage(pageNo) {
       this.pageNo = pageNo

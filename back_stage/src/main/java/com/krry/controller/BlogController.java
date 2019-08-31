@@ -1,13 +1,13 @@
 package com.krry.controller;
 
-import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.krry.entity.Params;
+import com.krry.entity.ResponseVal;
 import com.krry.service.IBlogService;
 
 /**
@@ -31,9 +31,9 @@ public class BlogController {
 	 */
 	@ResponseBody
 	@RequestMapping("/getBlog")
-	public HashMap<String, Object> getBlog(Params params){
+	public ResponseVal getBlog(Params params){
 		
-		HashMap<String, Object> resData = blogService.getBlog(params);
+		ResponseVal resData = blogService.getBlog(params);
 		
 		return resData;
 	}
@@ -46,9 +46,9 @@ public class BlogController {
 	 */
 	@ResponseBody
 	@RequestMapping("/getBlogDetail/{id}")
-	public HashMap<String, Object> getBlogDetail(@PathVariable("id")Integer id){
+	public ResponseVal getBlogDetail(@PathVariable("id")Integer id){
 		
-		HashMap<String, Object> resData = blogService.getBlogDetail(id);
+		ResponseVal resData = blogService.getBlogDetail(id);
 		
 		return resData;
 	}
@@ -61,9 +61,9 @@ public class BlogController {
 	 */
 	@ResponseBody
 	@RequestMapping("/getClassify")
-	public HashMap<String, Object> getClassify(){
+	public ResponseVal getClassify(){
 		
-		HashMap<String, Object> resData = blogService.getClassify();
+		ResponseVal resData = blogService.getClassify();
 		
 		return resData;
 	}
@@ -76,9 +76,9 @@ public class BlogController {
 	 */
 	@ResponseBody
 	@RequestMapping("/getBlogByClassifyId/{id}")
-	public HashMap<String, Object> getBlogByClassifyId(@PathVariable("id")Integer id, Params params){
+	public ResponseVal getBlogByClassifyId(@PathVariable("id")Integer id, Params params){
 		
-		HashMap<String, Object> resData = blogService.getBlogByClassifyId(id, params);
+		ResponseVal resData = blogService.getBlogByClassifyId(id, params);
 		
 		return resData;
 	}

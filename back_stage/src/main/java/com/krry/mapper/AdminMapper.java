@@ -14,12 +14,6 @@ import com.krry.entity.User;
 public interface AdminMapper {
 	
 	/**
-	 * 根据用户名查询
-	 * @return
-	 */
-	public User getUserByName(User user);
-	
-	/**
 	 * 根据用户id查询
 	 * @param id
 	 * @return

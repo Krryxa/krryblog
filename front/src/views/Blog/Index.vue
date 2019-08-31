@@ -28,8 +28,8 @@ export default {
     async getBlog() {
       let id = this.$route.params['id']
       let res = await getBlogDetail(id)
-      this.status = res.status
-      this.blog = res.data
+      this.status = res.code
+      this.blog = res.result.data
       // 404 的标题在 axios 拦截器已经定义
       if (this.status !== 404) {
         document.title = `${this.blog['title']} - ${document.title}`

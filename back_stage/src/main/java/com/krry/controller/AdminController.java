@@ -19,6 +19,7 @@ import com.alibaba.druid.support.json.JSONUtils;
 import com.krry.entity.Blog;
 import com.krry.entity.Music;
 import com.krry.entity.Params;
+import com.krry.entity.ResponseVal;
 import com.krry.entity.User;
 import com.krry.service.IAdminService;
 import com.krry.util.DeleteFileUtil;
@@ -39,31 +40,15 @@ public class AdminController {
 	
 	
 	/**
-	 * 登录
-	 * @param params
-	 * @return
-	 */
-	@ResponseBody
-	@RequestMapping("/login")
-	public String login(User user){
-		
-		String resData = adminService.login(user);
-		
-		return resData;
-	}
-	
-	
-	
-	/**
 	 * 获取博客详情页（编辑）
 	 * @param params
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("/getBlogDetail/{id}")
-	public HashMap<String, Object> getBlogDetail(@PathVariable("id")Integer id){
+	public ResponseVal getBlogDetail(@PathVariable("id")Integer id){
 		
-		HashMap<String, Object> resData = adminService.getBlogDetail(id);
+		ResponseVal resData = adminService.getBlogDetail(id);
 		
 		return resData;
 	}
@@ -90,9 +75,9 @@ public class AdminController {
 	 */
 	@ResponseBody
 	@RequestMapping("/getBlog")
-	public HashMap<String, Object> getBlog(Params params){
+	public ResponseVal getBlog(Params params){
 		
-		HashMap<String, Object> resData = adminService.getBlog(params);
+		ResponseVal resData = adminService.getBlog(params);
 		
 		return resData;
 	}

@@ -14,6 +14,7 @@ import com.github.pagehelper.PageInfo;
 import com.krry.entity.Blog;
 import com.krry.entity.Classify;
 import com.krry.entity.Params;
+import com.krry.entity.ResponseVal;
 import com.krry.mapper.AdminMapper;
 import com.krry.mapper.BlogMapper;
 import com.krry.service.IBlogService;
@@ -39,7 +40,7 @@ public class BlogService implements IBlogService{
 	 * @param params
 	 * @return
 	 */
-	public HashMap<String, Object> getBlog(Params params) {
+	public ResponseVal getBlog(Params params) {
 		
 		// 分页
 		int pageNo = params.getPageNo();
@@ -50,6 +51,8 @@ public class BlogService implements IBlogService{
 		List<Blog> blogList = blogMapper.getBlog();
 		int blogLen = blogMapper.getBlogCount();
 		HashMap<String, Object> resData = new HashMap<>();
+		
+		ResponseVal res = new ResponseVal();
 		
 		int len = blogList.size();
 		
@@ -62,9 +65,9 @@ public class BlogService implements IBlogService{
 				curBlog.setCreateTime(createTime.split(" ")[0]);
 				curBlog.setUpdateTime(updateTime.split(" ")[0]);
 			}
-			resData.put("status", 200);
+			res.setCode(200);
 		} else {
-			resData.put("status", 404);
+			res.setCode(404);
 		}
 		// 用PageInfo对结果进行包装
         PageInfo<Blog> pageInfo = new PageInfo<Blog>(blogList);
@@ -72,7 +75,9 @@ public class BlogService implements IBlogService{
 		resData.put("data", pageBlog);
 		resData.put("blogLen", blogLen);
 		
-		return resData;
+		res.setResult(resData);
+		
+		return res;
 	}
 	
 	
@@ -80,13 +85,15 @@ public class BlogService implements IBlogService{
 	 * 获取博客详情页
 	 * @return
 	 */
-	public HashMap<String, Object> getBlogDetail(int id){
+	public ResponseVal getBlogDetail(int id){
 		
 		Blog newBlog = new Blog();
 		
 		Blog blog = blogMapper.getBlogDetail(id);
 		
 		HashMap<String, Object> resData = new HashMap<>();
+		
+		ResponseVal res = new ResponseVal();
 		
 		if (blog != null) {
 			// 设置点击量+1
@@ -111,13 +118,15 @@ public class BlogService implements IBlogService{
 				e.printStackTrace();
 			}
 			
-			resData.put("status", 200);
+			res.setCode(200);
 		} else {
-			resData.put("status", 404);
+			res.setCode(404);
 		}
 		resData.put("data", blog);
 		
-		return resData;
+		res.setResult(resData);
+		
+		return res;
 	}
 
 	
@@ -126,19 +135,23 @@ public class BlogService implements IBlogService{
 	 * @param params
 	 * @return
 	 */
-	public HashMap<String, Object> getClassify() {
+	public ResponseVal getClassify() {
 		
 		List<Classify> classifyList = blogMapper.getClassify();
 		HashMap<String, Object> resData = new HashMap<>();
 		
+		ResponseVal res = new ResponseVal();
+		
 		if (classifyList.size() > 0) {
-			resData.put("status", 200);
+			res.setCode(200);
 		} else {
 			// TODO
 		}
 		resData.put("data", classifyList);
 		
-		return resData;
+		res.setResult(resData);
+		
+		return res;
 	}
 	
 	/**
@@ -147,7 +160,7 @@ public class BlogService implements IBlogService{
 	 * @param params
 	 * @return
 	 */
-	public HashMap<String, Object> getBlogByClassifyId(int id, Params params) {
+	public ResponseVal getBlogByClassifyId(int id, Params params) {
 		
 		// 分页
 		int pageNo = params.getPageNo();
@@ -161,6 +174,8 @@ public class BlogService implements IBlogService{
 		
 		HashMap<String, Object> resData = new HashMap<>();
 		
+		ResponseVal res = new ResponseVal();
+		
 		int len = blogList.size();
 		
 		if (categoryName != null) {
@@ -173,14 +188,14 @@ public class BlogService implements IBlogService{
 					curBlog.setCreateTime(createTime.split(" ")[0]);
 					curBlog.setUpdateTime(updateTime.split(" ")[0]);
 				}
-				resData.put("status", 200);
+				res.setCode(200);
 			} else {
 				// 某分类没有发表过博客的情况，或者分页博客数量为空
-				resData.put("status", 404);
+				res.setCode(404);
 			}
 		} else {
 			// 分类id出错
-			resData.put("status", 404);
+			res.setCode(404);
 		}
 		// 用PageInfo对结果进行包装
         PageInfo<Blog> pageInfo = new PageInfo<Blog>(blogList);
@@ -190,7 +205,9 @@ public class BlogService implements IBlogService{
 		resData.put("blogLen", blogLen);
 		resData.put("categoryName", categoryName);
 		
-		return resData;
+		res.setResult(resData);
+		
+		return res;
 	}
 
 

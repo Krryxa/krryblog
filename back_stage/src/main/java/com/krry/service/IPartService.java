@@ -1,7 +1,8 @@
 package com.krry.service;
 
-import java.util.HashMap;
 import com.krry.entity.Params;
+import com.krry.entity.ResponseVal;
+import com.krry.entity.User;
 
 /**
  * 业务层
@@ -11,29 +12,35 @@ import com.krry.entity.Params;
 public interface IPartService {
 	
 	/**
+	 * 登录
+	 * @return
+	 */
+	public ResponseVal login(User user);
+	
+	/**
 	 * 根据标签查询已发布的博客
 	 * @return
 	 */
-	public HashMap<String, Object> getBlogByTag(Params param);
+	public ResponseVal getBlogByTag(Params param);
 	
 	/**
 	 * 搜索已发布的博客
 	 * @return
 	 */
-	public HashMap<String, Object> getBlogBykeyword(Params param);
+	public ResponseVal getBlogBykeyword(Params param);
 	
 	/**
 	 * 查询相关链接 / 关于我
 	 * @return
 	 */
-	public HashMap<String, Object> getLinkOrAbout(String title);
+	public ResponseVal getLinkOrAbout(String title);
 	
 	
 	/**
 	 * 查询音乐列表
 	 * @return
 	 */
-	public HashMap<String, Object> getMusic(Params param);
+	public ResponseVal getMusic(Params param);
 
 	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import com.krry.entity.Blog;
 import com.krry.entity.Music;
 import com.krry.entity.Params;
+import com.krry.entity.User;
 
 /**
  * 持久层
@@ -12,6 +13,12 @@ import com.krry.entity.Params;
  *
  */
 public interface PartMapper {
+	
+	/**
+	 * 根据用户名查询
+	 * @return
+	 */
+	public User getUserByName(User user);
 	
 	/**
 	 * 根据标签查询已发布的博客

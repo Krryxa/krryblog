@@ -14,6 +14,8 @@ import com.github.pagehelper.PageInfo;
 import com.krry.entity.Blog;
 import com.krry.entity.Music;
 import com.krry.entity.Params;
+import com.krry.entity.ResponseVal;
+import com.krry.entity.User;
 import com.krry.mapper.AdminMapper;
 import com.krry.mapper.PartMapper;
 import com.krry.service.IPartService;
@@ -34,12 +36,37 @@ public class PartService implements IPartService{
 	private PartMapper partMapper;
 	
 	/**
+	 * 登录
+	 * @return
+	 */
+	public ResponseVal login(User user){
+		
+		ResponseVal res = new ResponseVal();
+		
+		User realUser = partMapper.getUserByName(user);
+		res.setCode(200);
+		
+		if (realUser != null) {
+			if (realUser.getPassword().equals(user.getPassword())) {
+				res.setMessage("success");
+				res.setResult(realUser.getId());
+			} else {
+				res.setMessage("The password is wrong~");
+			}
+		} else {
+			res.setMessage("The username does not exist~");
+		}
+		
+		return res;
+	}
+	
+	/**
 	 * 根据标签查询已发布的博客
 	 * 时间戳截掉时分秒
 	 * @param params
 	 * @return
 	 */
-	public HashMap<String, Object> getBlogByTag(Params params) {
+	public ResponseVal getBlogByTag(Params params) {
 		
 		// 分页
 		int pageNo = params.getPageNo();
@@ -51,6 +78,8 @@ public class PartService implements IPartService{
 		int blogLen = partMapper.getTagBlogCount(params);
 		HashMap<String, Object> resData = new HashMap<>();
 		
+		ResponseVal res = new ResponseVal();
+		
 		int len = blogList.size();
 		
 		if (len > 0) {
@@ -62,10 +91,10 @@ public class PartService implements IPartService{
 				curBlog.setCreateTime(createTime.split(" ")[0]);
 				curBlog.setUpdateTime(updateTime.split(" ")[0]);
 			}
-			resData.put("status", 200);
+			res.setCode(200);
 		} else {
 			// 没有相关标签，不存在
-			resData.put("status", 404);
+			res.setCode(404);
 		}
 		// 用PageInfo对结果进行包装
         PageInfo<Blog> pageInfo = new PageInfo<Blog>(blogList);
@@ -73,7 +102,9 @@ public class PartService implements IPartService{
 		resData.put("data", pageBlog);
 		resData.put("blogLen", blogLen);
 		
-		return resData;
+		res.setResult(resData);
+		
+		return res;
 	}
 	
 	
@@ -83,7 +114,7 @@ public class PartService implements IPartService{
 	 * @param params
 	 * @return
 	 */
-	public HashMap<String, Object> getBlogBykeyword(Params params) {
+	public ResponseVal getBlogBykeyword(Params params) {
 		
 		// 分页
 		int pageNo = params.getPageNo();
@@ -95,6 +126,8 @@ public class PartService implements IPartService{
 		int blogLen = partMapper.getKeyworkBlogCount(params);
 		HashMap<String, Object> resData = new HashMap<>();
 		
+		ResponseVal res = new ResponseVal();
+		
 		int len = blogList.size();
 		
 		if (len > 0) {
@@ -106,10 +139,10 @@ public class PartService implements IPartService{
 				curBlog.setCreateTime(createTime.split(" ")[0]);
 				curBlog.setUpdateTime(updateTime.split(" ")[0]);
 			}
-			resData.put("status", 200);
+			res.setCode(200);
 		} else {
 			// 查询无果
-			resData.put("status", 406);
+			res.setCode(406);
 		}
 		// 用PageInfo对结果进行包装
         PageInfo<Blog> pageInfo = new PageInfo<Blog>(blogList);
@@ -117,19 +150,23 @@ public class PartService implements IPartService{
 		resData.put("data", pageBlog);
 		resData.put("blogLen", blogLen);
 		
-		return resData;
+		res.setResult(resData);
+		
+		return res;
 	}
 	
 	/**
 	 * 查询相关链接 / 关于我
 	 * @return
 	 */
-	public HashMap<String, Object> getLinkOrAbout(String title) {
+	public ResponseVal getLinkOrAbout(String title) {
 		
 		Blog newBlog = new Blog();
 		
 		Blog blog = partMapper.getLinkOrAbout(title);
 		HashMap<String, Object> resData = new HashMap<>();
+		
+		ResponseVal res = new ResponseVal();
 		
 		if (blog != null) {
 			// 设置点击量+1
@@ -155,13 +192,15 @@ public class PartService implements IPartService{
 				e.printStackTrace();
 			}
 			
-			resData.put("status", 200);
+			res.setCode(200);
 		} else {
-			resData.put("status", 404);
+			res.setCode(404);
 		}
 		resData.put("data", blog);
 		
-		return resData;
+		res.setResult(resData);
+		
+		return res;
 	}
 	
 	
@@ -171,7 +210,7 @@ public class PartService implements IPartService{
 	 * @param params
 	 * @return
 	 */
-	public HashMap<String, Object> getMusic(Params params) {
+	public ResponseVal getMusic(Params params) {
 		
 		// 分页
 		int pageNo = params.getPageNo();
@@ -183,6 +222,8 @@ public class PartService implements IPartService{
 		int musicLen = partMapper.getMusicCount();
 		HashMap<String, Object> resData = new HashMap<>();
 		
+		ResponseVal res = new ResponseVal();
+		
 		int len = musicList.size();
 		
 		if (len > 0) {
@@ -192,10 +233,10 @@ public class PartService implements IPartService{
 				// 去掉 2018-09-04 13:24:05 的时分秒
 				curMusic.setCreateTime(createTime.split(" ")[0]);
 			}
-			resData.put("status", 200);
+			res.setCode(200);
 		} else {
 			// 查询无果
-			resData.put("status", 406);
+			res.setCode(406);
 		}
 		// 用PageInfo对结果进行包装
         PageInfo<Music> pageInfo = new PageInfo<Music>(musicList);
@@ -203,7 +244,9 @@ public class PartService implements IPartService{
 		resData.put("data", pageBlog);
 		resData.put("musicLen", musicLen);
 		
-		return resData;
+		res.setResult(resData);
+		
+		return res;
 	}
 
 

@@ -1,14 +1,15 @@
 package com.krry.controller;
 
-import java.util.HashMap;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.krry.entity.Params;
+import com.krry.entity.ResponseVal;
+import com.krry.entity.User;
 import com.krry.service.IPartService;
 
 /**
@@ -24,6 +25,20 @@ public class PartController {
 	@Autowired
 	private IPartService partService;
 	
+	/**
+	 * 登录
+	 * @param params
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/login")
+	public ResponseVal login(User user){
+		
+		ResponseVal resData = partService.login(user);
+		
+		return resData;
+	}
+	
 	
 	/**
 	 * 根据标签查询已发布的博客
@@ -32,9 +47,9 @@ public class PartController {
 	 */
 	@ResponseBody
 	@RequestMapping("/getBlogByTag")
-	public HashMap<String, Object> getBlogByTag(Params param){
+	public ResponseVal getBlogByTag(Params param){
 		
-		HashMap<String, Object> resData = partService.getBlogByTag(param);
+		ResponseVal resData = partService.getBlogByTag(param);
 		
 		return resData;
 	}
@@ -47,9 +62,9 @@ public class PartController {
 	 */
 	@ResponseBody
 	@RequestMapping("/getBlogBykeyword")
-	public HashMap<String, Object> getBlogBykeyword(Params param){
+	public ResponseVal getBlogBykeyword(Params param){
 		
-		HashMap<String, Object> resData = partService.getBlogBykeyword(param);
+		ResponseVal resData = partService.getBlogBykeyword(param);
 		
 		return resData;
 	}
@@ -61,10 +76,10 @@ public class PartController {
 	 */
 	@ResponseBody
 	@RequestMapping("/getLinkOrAbout")
-	public HashMap<String, Object> getLinkOrAbout(HttpServletRequest request){
+	public ResponseVal getLinkOrAbout(HttpServletRequest request){
 		
 		String title = request.getParameter("title");
-		HashMap<String, Object> resData = partService.getLinkOrAbout(title);
+		ResponseVal resData = partService.getLinkOrAbout(title);
 		
 		return resData;
 	}
@@ -77,9 +92,9 @@ public class PartController {
 	 */
 	@ResponseBody
 	@RequestMapping("/getMusic")
-	public HashMap<String, Object> getMusic(Params param){
+	public ResponseVal getMusic(Params param){
 		
-		HashMap<String, Object> resData = partService.getMusic(param);
+		ResponseVal resData = partService.getMusic(param);
 		
 		return resData;
 	}

@@ -44,11 +44,11 @@ export default {
         pageSize: this.pageSize
       }
       let res = await getMusic(reqData)
-      this.status = res.status
+      this.status = res.code
       // 404 的标题在 axios 拦截器已经定义
       if (this.status !== 404) {
-        this.musicList = res.data
-        this.musicLen = res.musicLen
+        this.musicList = res.result.data
+        this.musicLen = res.result.musicLen
       }
     },
     addCount() {

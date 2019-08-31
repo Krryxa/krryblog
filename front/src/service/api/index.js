@@ -112,7 +112,7 @@ export default {
    * @param {*} reqData
    */
   fetchLogin(reqData) {
-    return Ax.get(`/krryblog/krry/login`, { params: reqData })
+    return Ax.get(`/krryblog/part/login`, { params: reqData })
   },
 
   /**
