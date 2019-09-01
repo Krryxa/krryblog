@@ -2,7 +2,7 @@
 
 > Statement: Front-end and back-end configuration files, package.json have been ignored
 
-## tec
+## TEC
 1. vue、iview、markdown
 2. java、ssm、maven
 3. mysql
@@ -113,6 +113,7 @@ setTimeout(() => {
 （2）使用图片模板，就要使用 ps<br>
 （3）模拟数据字段，在真实模板模拟异步加载的数据字段，但是数据基本为空，当真实数据加载完成，将模拟数据替换成真实数据（可保留之前自定义的动画）
 5. 监听对象 {} 变化的问题，可以使用深度监听：
+
 ```js
 mounted () {
   // 这里使用深度监听 blog 对象的属性变化
@@ -134,54 +135,8 @@ mounted () {
 </Modal>
 ```
 8. 很多页面使用到 loading 动画，放入 mixins 中混入需要的页面
-9. 博客点击数的统计，写在后台，当调用查询博客详情页的接口时，点击数 +1
-```java
-  /**
-	 * 获取博客详情页
-	 * @return
-	 */
-	public HashMap<String, Object> getBlogDetail(int id){
-		
-		Blog newBlog = new Blog();
-		
-		Blog blog = blogMapper.getBlogDetail(id);
-		
-		HashMap<String, Object> resData = new HashMap<>();
-		
-		if (blog != null) {
-			// 设置点击量+1
-			int hit = blog.getHit();
-			blog.setHit(++hit);
-			newBlog.setHit(hit);
-			newBlog.setId(id);
-			
-			blogMapper.updateBlog(newBlog);
-			
-			// 处理查询出timestamp时间类型多了个 .0  的问题
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 设置日期格式
-			try {
-				Date createData = df.parse(blog.getCreateTime());
-				Date updateData = df.parse(blog.getUpdateTime());
-				String createTime = df.format(createData);
-				String updateTime = df.format(updateData);
-				blog.setCreateTime(createTime);
-				blog.setUpdateTime(updateTime);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			resData.put("status", 200);
-		} else {
-			resData.put("status", 404);
-		}
-		resData.put("data", blog);
-		
-		return resData;
-	}
-```
-10. 博客评论数的统计，点击提交评论，验证码通过时，后端调用 updateBlog 接口，根据传递的参数只有 comment，就不更改 updateTime
-11. 登录时查询用户名，mysql 数据库的 user 表 name 字段设置成 utf-8_bin 才可以区分英文大小写查询
+9. 博客评论数的统计，点击提交评论，验证码通过时，后端调用 updateBlog 接口，根据传递的参数只有 comment，就不更改 updateTime
+10. 登录时查询用户名，mysql 数据库的 user 表 name 字段设置成 utf-8_bin 才可以区分英文大小写查询
 
 ## 部署
 1. 文件路径出错：在 config 的 index.js 下 build 的设置：assetsPublicPath: ‘./’,
@@ -203,7 +158,7 @@ xxx/static/fonts/icomoon.0125455.woff
 xxx/static/css/static/fonts/icomoon.0125455.woff 
 解决方法：
 webpack 配置问题
-在 build/webpack.prod.conf.js 中 extract :true 改为 fasle 即可
+在 build/webpack.prod.conf.js 中 extract: true 改为 fasle 即可
 ```
 3. css 添加的背景中引用的图片路径出错
 在 build 文件夹下 找 utils.js 配置加上 publicPath: '../../',
@@ -231,13 +186,28 @@ module.exports = {
   NODE_ENV: '"production"',
   API_ROOT: '"https://ainyi.com"'
 }
-
 ```
+
+兼容开发环境读取本地文件，在 dev.env.js 配置：
+```js
+'use strict'
+const merge = require('webpack-merge')
+const prodEnv = require('./prod.env')
+
+module.exports = merge(prodEnv, {
+  NODE_ENV: '"development"',
+  API_ROOT: '"http://localhost:8085"'
+})
+```
+
 所以在 axios 配置：
 ```js
 axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? process.env.API_ROOT : '';
 ```
 
-6. 将 vue 打包后输出的 dist 文件夹下面的文件拷贝到 后台接口项目目录结构的 src/main/webapp/ 下面
+6. 配置 vue 打包输出文件路径到服务端根目录
+```js
+assetsRoot: path.resolve(__dirname, 'xxx'),
+```
 
 7. 把所有的 console.log 删除
