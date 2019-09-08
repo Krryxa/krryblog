@@ -29,7 +29,7 @@
         </template>
       </div>
     </Upload>
-    <Modal title="View Image" v-model="visible" class-name="vertical-center-modal" width="580">
+    <Modal title="View Image" v-model="visible" :footer-hide="true" class-name="vertical-center-modal" width="580">
       <img :src="previewImg" style="width: 100%">
     </Modal>
   </FormItem>
