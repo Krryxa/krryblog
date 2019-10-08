@@ -21,7 +21,7 @@
       <div class="desc">
         <!-- 这里直接用 id 作为路径，使用过滤器控制骨架屏的链接 -->
         <router-link :to="val.id | setLink(`/${val.id}`)">
-          <p class="title">{{val.title}}</p>
+          <p class="title" :title="val.title">{{val.title}}</p>
         </router-link>
         <div class="desc-bottom">
           <div :class="{'d-detail': true, 'hidden-detail': !val.id}">
