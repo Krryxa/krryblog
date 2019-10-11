@@ -2,7 +2,7 @@
   <section ref="blogSection" class="section-article">
     <article v-for="(val, index) in blogShowList" :key="index">
       <span v-if="val.isTop && isHome" class="top-icon">
-        <i class="iconfont icon-Up-1"/>
+        <i class="iconfont icon-Up-1" />
       </span>
       <div class="bg-container">
         <div
@@ -25,15 +25,15 @@
         </router-link>
         <div class="desc-bottom">
           <div :class="{'d-detail': true, 'hidden-detail': !val.id}">
-            <Icon type="md-calendar"/>
+            <Icon type="md-calendar" />
             <span>{{val.createTime}}</span>
-            <Icon type="md-eye"/>
+            <Icon type="md-eye" />
             <span>{{val.hit}}</span>
-            <Icon type="md-chatboxes"/>
+            <Icon type="md-chatboxes" />
             <span>{{val.comment}}</span>
           </div>
           <router-link :to="val.id | setLink(`/category/${val.classifyId}`)">
-            <Tooltip :content="val.classify" theme="light" placement="top-end">
+            <Tooltip :content="val.classify || 'Krryblog'" theme="light" placement="top-end">
               <div class="item-icon" :style="{backgroundPosition: `0 ${-val.classifyId*70}px`}"></div>
             </Tooltip>
           </router-link>
