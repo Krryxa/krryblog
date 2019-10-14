@@ -1,6 +1,5 @@
 <template>
   <main>
-    <my-header></my-header>
     <section>
       <p class="number">404</p>
       <p>很抱歉，找不到页面~~</p>
@@ -8,7 +7,6 @@
         <Button type="error">返回首页</Button>
       </router-link>
     </section>
-    <my-footer></my-footer>
   </main>
 </template>
 

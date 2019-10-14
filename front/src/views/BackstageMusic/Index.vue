@@ -1,6 +1,5 @@
 <template>
   <main v-if="!isEmpty">
-    <my-header></my-header>
     <Content :musicList="musicList" @addCount="addCount" @deleteMusic="deleteMusic"></Content>
     <Page
       v-if="musicLen > pageSize"
@@ -11,7 +10,6 @@
       show-elevator
       @on-change="changePage"
     />
-    <my-footer></my-footer>
   </main>
   <not-found v-else></not-found>
 </template>

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <my-header></my-header>
     <!-- 需要缓存走这里 -->
     <keep-alive>
       <router-view v-if="$route.meta.keepAlive"></router-view>
@@ -7,6 +8,7 @@
     <!-- 正常访问走下面，不需要缓存 -->
     <router-view v-if="!$route.meta.keepAlive"></router-view>
     <music></music>
+    <my-footer></my-footer>
   </div>
 </template>
 

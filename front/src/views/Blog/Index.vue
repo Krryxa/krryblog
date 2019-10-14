@@ -1,8 +1,6 @@
 <template>
   <main v-if="!isNoBlog">
-    <my-header></my-header>
     <Detail :blog="blog"></Detail>
-    <my-footer></my-footer>
   </main>
   <not-found v-else></not-found>
 </template>

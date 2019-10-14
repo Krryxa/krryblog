@@ -1,6 +1,5 @@
 <template>
   <main v-if="!isEmpty">
-    <my-header></my-header>
     <Content :blogList="blogList" @handleChangeBlog="handleChangeBlog" @deleteBlog="deleteBlog"></Content>
     <Page
       v-if="blogLen > pageSize"
@@ -11,7 +10,6 @@
       show-elevator
       @on-change="changePage"
     />
-    <my-footer></my-footer>
   </main>
   <not-found v-else></not-found>
 </template>

@@ -197,6 +197,10 @@ export default {
 .upload-img {
   .ivu-upload-drag {
     position: relative;
+
+    &:hover {
+      border-color: #f60 !important;
+    }
   }
   .ivu-upload-list {
     margin-top: 0;

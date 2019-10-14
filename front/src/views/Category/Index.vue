@@ -1,6 +1,5 @@
 <template>
   <main v-if="!isNotCategory">
-    <my-header></my-header>
     <Content :blogList="blogList" :categoryName="categoryName"></Content>
     <Page
       v-if="blogLen > pageSize"
@@ -11,7 +10,6 @@
       show-elevator
       @on-change="changePage"
     />
-    <my-footer></my-footer>
   </main>
   <not-found v-else></not-found>
 </template>

@@ -2,7 +2,6 @@
   <main>
     <section class="add-blog">
       <Breadcrumb>
-        <BreadcrumbItem to="/">博客首页</BreadcrumbItem>
         <BreadcrumbItem :to="{name: 'list'}">后台中心</BreadcrumbItem>
         <BreadcrumbItem>博客编辑页</BreadcrumbItem>
       </Breadcrumb>
@@ -71,7 +70,6 @@
         <Button style="margin-left: 50px" size="large" @click="back">返回</Button>
       </div>
     </section>
-    <my-footer></my-footer>
   </main>
 </template>
 
@@ -261,10 +259,11 @@ export default {
 <style lang='scss' scoped>
 section {
   animation: fadeIn 0.6s linear;
-  padding: 50px;
+  padding: 50px 50px 30px;
 
   .ivu-breadcrumb {
-    padding-bottom: 30px;
+    margin-top: 40px;
+    padding-bottom: 20px;
   }
 
   .blog-title {
@@ -276,6 +275,15 @@ section {
     border: none;
     border-top: 1px solid #ddd;
     color: #666;
+
+    &:hover {
+      border-color: #ddd !important;
+    }
+
+    &:focus {
+      border-color: #ddd !important;
+      box-shadow: none !important;
+    }
   }
 
   .v-note-wrapper {
@@ -343,6 +351,16 @@ section {
 
   .ivu-upload-list-remove {
     display: none;
+  }
+
+  textarea.ivu-input {
+    &:hover {
+      border-color: #f60 !important;
+    }
+    &:focus {
+      border-color: #f60 !important;
+      box-shadow: 0 0 0 2px rgba(255, 118, 19, 0.2) !important;
+    }
   }
 }
 </style>

@@ -1,9 +1,7 @@
 <template>
   <main v-if="!isNoBlog">
-    <my-header></my-header>
     <SectionHeader :title="blog.title" :description="description"></SectionHeader>
     <Detail :blog="blog" :isNoBlog="isNoBlog"></Detail>
-    <my-footer></my-footer>
   </main>
   <not-found v-else></not-found>
 </template>

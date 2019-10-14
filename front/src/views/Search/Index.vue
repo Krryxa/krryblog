@@ -1,6 +1,5 @@
 <template>
   <main>
-    <my-header></my-header>
     <Content :blogList="blogList" :keyword="keyword" :hasNoResult="hasNoResult"></Content>
     <Page
       v-if="blogLen > pageSize"
@@ -11,7 +10,6 @@
       show-elevator
       @on-change="changePage"
     />
-    <my-footer></my-footer>
   </main>
 </template>
 
