@@ -2,6 +2,7 @@
   <main>
     <section class="add-blog">
       <Breadcrumb>
+        <BreadcrumbItem to="/">博客首页</BreadcrumbItem>
         <BreadcrumbItem :to="{name: 'list'}">后台中心</BreadcrumbItem>
         <BreadcrumbItem>博客编辑页</BreadcrumbItem>
       </Breadcrumb>
@@ -259,11 +260,10 @@ export default {
 <style lang='scss' scoped>
 section {
   animation: fadeIn 0.6s linear;
-  padding: 50px 50px 30px;
+  padding: 40px 50px 30px;
 
   .ivu-breadcrumb {
-    margin-top: 40px;
-    padding-bottom: 20px;
+    padding-bottom: 26px;
   }
 
   .blog-title {

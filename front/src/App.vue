@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <my-header></my-header>
+    <my-header v-if="$route.name !== 'edit'"></my-header>
     <!-- 需要缓存走这里 -->
     <keep-alive>
       <router-view v-if="$route.meta.keepAlive"></router-view>
