@@ -44,6 +44,7 @@
       </p>
       <p>最后编辑时间：{{blog.updateTime}}</p>
     </div>
+    <my-reward></my-reward>
     <aside id="directory"></aside>
     <div id="zooms" class="zoom-shadow">
       <img ref="zoomImg" class="zoom-big-img">
@@ -205,7 +206,9 @@ export default {
       })
     }
   },
-  components: {}
+  components: {
+    myReward: () => import('./models/MyReward')
+  }
 }
 </script>
 
@@ -288,7 +291,7 @@ article {
   }
   .content-footer {
     border-top: 1px solid #e0e0e0;
-    padding-top: 26px;
+    padding-top: 20px;
     color: #24292e;
     font-size: 14px;
 
@@ -406,7 +409,7 @@ article {
     left: 0;
     top: -8px;
   }
-  margin-top: 62px;
+  margin-top: 52px;
   color: #24292e;
   font-size: 1.4em;
   position: relative;

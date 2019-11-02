@@ -62,7 +62,7 @@ npm install iview-loader --save-dev
 'vue/no-parsing-error': [2, { 'x-invalid-end-tag': false }],
 ```
 
-- 置顶图标使用了阿里巴巴 iconfont 字体图片
+- 置顶图标、详情页打赏图标使用了阿里巴巴 iconfont 字体图片
 - 其他均使用 iView 官方字体图标
 
 鼠标格式
