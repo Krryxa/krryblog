@@ -474,7 +474,7 @@ article {
       .vh {
         border: none;
         &:hover {
-          & > .vmeta .vat {
+          & .vmeta .vat {
             display: block;
           }
         }
@@ -501,6 +501,10 @@ article {
           display: none;
           color: #b3b3b3;
           cursor: url(../assets/pic/cursor.cur), pointer;
+
+          &:hover {
+            color: #eb5055;
+          }
         }
         .vcontent {
           padding-top: 2px;
