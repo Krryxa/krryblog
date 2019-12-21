@@ -19,6 +19,14 @@ export default new Router({
       meta: { title: 'Krryblog - 你的美好，我都记得' }
     },
     {
+      path: '/2',
+      redirect: '/link'
+    },
+    {
+      path: '/3',
+      redirect: '/about'
+    },
+    {
       path: '/:id(\\d+)',
       component: () => import('@/views/Blog'),
       name: 'blog',
