@@ -3,7 +3,7 @@
     <div class="container">
       <!-- 需要用到的竖线使用全角竖线｜ -->
       <span class="footer-flot fir-desc-footer">
-        <a href="http://www.miitbeian.gov.cn" target="_blank">粤ICP备17158733号-1</a>
+        <a href="http://beian.miit.gov.cn" target="_blank">粤ICP备17158733号</a>
       </span>
       <span class="footer-flot fir-footer-flot">｜</span>
       <span class="footer-flot sec-desc-footer">
@@ -15,7 +15,7 @@
       <span class="footer-flot sec-footer-flot">｜</span>
       <p class="link-git">
         <span class="name">
-          Copyright © 2019&nbsp;
+          Copyright © 2020&nbsp;
           <a target="_blank" href="https://ainyi.com">ainyi.com</a>&nbsp;
         </span>
         <span class="github">
