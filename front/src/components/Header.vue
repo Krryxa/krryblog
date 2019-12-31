@@ -38,9 +38,9 @@
             </ul>
           </li>-->
           <!-- 可使用命名路由 -->
-          <!-- <router-link :to="{name: 'link'}">
+          <router-link :to="{name: 'link'}">
             <li>友链</li>
-          </router-link> -->
+          </router-link>
           <router-link to="/about">
             <li>关于</li>
           </router-link>
@@ -74,11 +74,11 @@
             </ul>
           </li>-->
           <!-- 可使用命名路由 -->
-          <!-- <router-link :to="{name: 'link'}">
+          <router-link :to="{name: 'link'}">
             <li>
               <Icon type="ios-link" style="font-weight: bold;"/>友链
             </li>
-          </router-link> -->
+          </router-link>
           <router-link to="/about">
             <li>
               <Icon type="md-heart"/>关于
