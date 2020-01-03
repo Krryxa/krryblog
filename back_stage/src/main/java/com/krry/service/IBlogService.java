@@ -41,4 +41,10 @@ public interface IBlogService {
 	 */
 	public String updateBlogNoTime(Blog blog);
 	
+	/**
+	 * 增加评论数 +1
+	 * @param id
+	 */
+	public int addBlogComment(Integer id);
+	
 }

@@ -221,6 +221,24 @@ public class BlogService implements IBlogService{
 		
 		return "success";
 	}
+	
+	/**
+	 * 增加评论数 +1
+	 * @param id
+	 * @return
+	 */
+	public int addBlogComment(Integer id) {
+		
+		int commentIndex = blogMapper.getBlogComments(id);
+
+		Blog blog = new Blog();
+		blog.setId(id);
+		blog.setComment(++commentIndex);
+		
+		adminMapper.updateBlog(blog);
+		
+		return commentIndex;
+	}
 
 
 }

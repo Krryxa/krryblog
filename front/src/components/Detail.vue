@@ -61,7 +61,7 @@ import '@/assets/css/markdown.css'
 import '@/assets/css/github.css'
 import Catalog from '@/util/catalog.js'
 import Valine from 'valine'
-import { updateBlogNoTime } from '@/service'
+import { addBlogComment } from '@/service'
 export default {
   props: {
     blog: {
@@ -172,7 +172,7 @@ export default {
       btn.innerText = '提交评论'
       buttonContainer.appendChild(btn)
       // 提交评论的事件
-      btn.addEventListener('click', e => {
+      btn.addEventListener('click', async e => {
         let nickText = nick.value
         let mailText = mail.value
         let textDesc = textDiv.value
@@ -189,13 +189,8 @@ export default {
           // 触发提交按钮
           buttonContainer.appendChild(this.submitBtn)
           this.submitBtn.click()
-          // 获取点击数并提交
-          let commentCount = document.getElementsByClassName('vcard').length
-          let reqData = {
-            id: this.blog['id'],
-            comment: ++commentCount
-          }
-          updateBlogNoTime(reqData)
+
+          const commentCount = await addBlogComment(this.blog.id)
           // 需要展示头部的文章，就设置当前评论量
           if (this.hasShowHeader) {
             this.$refs.commentSpan.innerText = commentCount

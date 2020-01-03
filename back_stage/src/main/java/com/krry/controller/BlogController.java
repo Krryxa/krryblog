@@ -98,6 +98,20 @@ public class BlogController {
 		return msg;
 	}
 	
+	/**
+	 * 增加评论数 +1
+	 * @param id
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/addBlogComment/{id}")
+	public int addBlogComment(@PathVariable("id")Integer id){
+		
+		int comments = blogService.addBlogComment(id);
+		
+		return comments;
+	}
+	
 }
 
 

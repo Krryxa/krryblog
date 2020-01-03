@@ -64,6 +64,15 @@ export async function updateBlogNoTime(reqData) {
 }
 
 /**
+ * 增加评论数 +1
+ * @param {*} id
+ */
+export async function addBlogComment(id) {
+  let res = await Api.addBlogComment(id)
+  return res
+}
+
+/**
  * 删除博客封面
  * @param {*} id
  * @param {*} reqData

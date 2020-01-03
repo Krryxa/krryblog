@@ -31,6 +31,12 @@ public interface BlogMapper {
 	public Blog getBlogDetail(int id);
 	
 	/**
+	 * 获取博客评论数
+	 * @return
+	 */
+	public int getBlogComments(int id);
+	
+	/**
 	 * 查询博客的分类
 	 * @return
 	 */

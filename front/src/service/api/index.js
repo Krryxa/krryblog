@@ -64,6 +64,14 @@ export default {
   },
 
   /**
+   * 增加评论数 +1
+   * @param {*} id
+   */
+  addBlogComment(id) {
+    return Ax.post(`/krryblog/blog/addBlogComment/${id}`)
+  },
+
+  /**
    * 删除博客封面
    * @param {*} id
    * @param {*} reqData
