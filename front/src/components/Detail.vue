@@ -179,9 +179,7 @@ export default {
         let isok = emailReg.test(mailText)
         if (nickText.trim() === '') {
           this.$Message.warning('先输入昵称哦~~')
-        } else if (mailText.trim() === '') {
-          this.$Message.warning('先输入邮箱哦~~')
-        } else if (!isok) {
+        } else if (mailText.trim() && !isok) {
           this.$Message.warning('邮箱格式不正确哦~~')
         } else if (textDesc.trim() === '') {
           this.$Message.warning('先输入评论哦~~')
