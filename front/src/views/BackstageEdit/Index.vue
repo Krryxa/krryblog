@@ -76,7 +76,7 @@
 
 <script>
 import { mavonEditor } from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
+// import 'mavon-editor/dist/css/index.css'
 import '@/assets/css/markdown.css'
 import '@/assets/css/github.css'
 import {

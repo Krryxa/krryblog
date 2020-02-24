@@ -46,7 +46,9 @@ module.exports = {
     'iview': 'iview',
     'headroom': 'headroom',
     'animate': 'animate',
-    'valine': 'Valine'
+    'valine': 'Valine',
+    'leancloud-storage': 'AV',
+    'mavon-editor': 'MavonEditor'
   },
   module: {
     rules: [
