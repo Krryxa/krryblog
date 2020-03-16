@@ -1,18 +1,30 @@
 <template>
   <section class="list">
-    <h1>~Wellcome {{userName}}~</h1>
-    <router-link :to="{name: 'edit'}">
+    <h1>~Wellcome {{ userName }}~</h1>
+    <router-link :to="{ name: 'edit' }">
       <Button type="success" class="add-button">Add</Button>
     </router-link>
-    <a href="javascript:void(0)" @click="Logout" class="modify-buttom">Logout</a>
-    <a
-      href="javascript:void(0)"
-      @click="showDialog"
-      class="modify-buttom"
-    >Modify Personal Information</a>
-    <router-link :to="{ name: 'music' }" class="modify-buttom">Go to music</router-link>
-    <Modal width="400" v-model="showModel" title="Modifying personal information">
-      <Form :model="userForm" :rules="rule" label-position="top" class="user-form" ref="userForm">
+    <a href="javascript:void(0)" @click="Logout" class="modify-buttom"
+      >Logout</a
+    >
+    <a href="javascript:void(0)" @click="showDialog" class="modify-buttom"
+      >Modify Personal Information</a
+    >
+    <router-link :to="{ name: 'music' }" class="modify-buttom"
+      >Go to music</router-link
+    >
+    <Modal
+      width="400"
+      v-model="showModel"
+      title="Modifying personal information"
+    >
+      <Form
+        :model="userForm"
+        :rules="rule"
+        label-position="top"
+        class="user-form"
+        ref="userForm"
+      >
         <FormItem label="User Name" prop="newName">
           <i-input
             v-model="userForm.newName"
@@ -23,7 +35,9 @@
           ></i-input>
         </FormItem>
         <p class="text-right">
-          <a href="javascript:void(0)" @click="showPW = !showPW">{{showPWmsg}}</a>
+          <a href="javascript:void(0)" @click="showPW = !showPW">{{
+            showPWmsg
+          }}</a>
         </p>
         <template v-if="showPW">
           <FormItem label="Original Password" prop="originPW">
@@ -57,7 +71,9 @@
       </Form>
       <div slot="footer">
         <Button type="warning" size="large" @click="cancel">Cancel</Button>
-        <Button type="primary" size="large" @click="confirmUser">Confirm</Button>
+        <Button type="primary" size="large" @click="confirmUser"
+          >Confirm</Button
+        >
       </div>
     </Modal>
     <Table border stripe :columns="columns" :data="blogList"></Table>
@@ -94,7 +110,7 @@ export default {
         },
         {
           title: 'Title',
-          width: 152,
+          width: 151,
           key: 'title',
           render: (h, params) => {
             return h(
@@ -126,13 +142,35 @@ export default {
         },
         {
           title: 'Author',
-          width: 77,
+          width: 76,
           key: 'userName'
         },
         {
           title: 'Label',
-          width: 108,
-          key: 'label'
+          width: 111,
+          key: 'label',
+          render: (h, params) => {
+            let labelList = params.row.label.split(',')
+            let len = labelList.length
+            return h(
+              'div',
+              {},
+              labelList &&
+                labelList[0] &&
+                labelList.map((ele, index) => {
+                  return h(
+                    'router-link',
+                    {
+                      class: { 'lable-name': true, 'only-one': len === 1 },
+                      props: {
+                        to: `/tag/${ele}`
+                      }
+                    },
+                    [h('span', {}, ele)]
+                  )
+                })
+            )
+          }
         },
         {
           title: 'Clicks \xa0\xa0/Comment',
@@ -222,7 +260,7 @@ export default {
         {
           title: 'Operation',
           key: 'action',
-          width: 131,
+          width: 130,
           align: 'center',
           render: (h, params) => {
             return h('div', {}, [
@@ -413,7 +451,7 @@ export default {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 section {
   animation: fadeIn 0.6s linear;
   padding: 90px 0 0px;
@@ -455,6 +493,17 @@ section {
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
         overflow: hidden;
+
+        .lable-name {
+          display: inline-block;
+
+          &:not(:last-child) {
+            margin-right: 10px;
+          }
+          &.only-one {
+            margin-right: 0;
+          }
+        }
       }
     }
 
