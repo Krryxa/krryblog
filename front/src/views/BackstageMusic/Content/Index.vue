@@ -44,7 +44,7 @@ export default {
           key: 'size'
         },
         {
-          title: 'CreateTime',
+          title: 'UploadTime',
           width: 140,
           key: 'createTime'
         },
