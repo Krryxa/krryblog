@@ -267,6 +267,7 @@ export default {
               h(
                 'router-link',
                 {
+                  class: 'a-button',
                   props: {
                     to: {
                       name: 'edit',
@@ -278,36 +279,22 @@ export default {
                     }
                   }
                 },
-                [
-                  h(
-                    'Button',
-                    {
-                      props: {
-                        type: 'primary',
-                        size: 'small'
-                      },
-                      style: {
-                        marginRight: '10px'
-                      }
-                    },
-                    'MOD'
-                  )
-                ]
+                'Modify'
               ),
               h(
-                'Button',
+                'a',
                 {
-                  props: {
-                    type: 'error',
-                    size: 'small'
+                  attrs: {
+                    href: 'javascript:void(0);'
                   },
+                  class: 'a-button',
                   on: {
                     click: () => {
                       this.beforeRemove(params.row['id'], params.row['title'])
                     }
                   }
                 },
-                'DEL'
+                'Delete'
               )
             ])
           }
@@ -486,6 +473,13 @@ section {
 </style>
 <style lang="scss">
 .list {
+  .a-button {
+    margin: 0 4px;
+    color: #5cadff;
+    &:hover {
+      color: #2d8cf0 !important;
+    }
+  }
   .ivu-table-wrapper {
     .ivu-table-tbody {
       .ivu-table-cell {

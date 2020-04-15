@@ -11,7 +11,7 @@
       <Button type="success" class="add-button">Upload</Button>
     </Upload>
     <router-link :to="{ name: 'list' }" class="modify-buttom">Go to list</router-link>
-    <Table :columns="columns" :data="musicList"></Table>
+    <Table :columns="columns" size="small" :data="musicList"></Table>
   </section>
 </template>
 
@@ -56,19 +56,19 @@ export default {
           render: (h, params) => {
             return h('div', {}, [
               h(
-                'Button',
+                'a',
                 {
-                  props: {
-                    type: 'error',
-                    size: 'small'
+                  attrs: {
+                    href: 'javascript:void(0);'
                   },
+                  class: 'a-button',
                   on: {
                     click: () => {
                       this.beforeRemove(params.row['id'], params.row['title'])
                     }
                   }
                 },
-                'DEL'
+                'Delete'
               )
             ])
           }
@@ -153,15 +153,23 @@ section {
 }
 </style>
 <style lang="scss">
-.music .ivu-upload-list {
-  float: right;
-  width: 200px;
-  margin-left: 20px;
-  margin-top: 0px;
-  height: 10px;
+.music {
+  .a-button {
+    color: #5cadff;
+    &:hover {
+      color: #2d8cf0 !important;
+    }
+  }
+  .ivu-upload-list {
+    float: right;
+    width: 200px;
+    margin-left: 20px;
+    margin-top: 0px;
+    height: 10px;
 
-  .ivu-upload-list-file span, .ivu-upload-list-remove, .ivu-upload-list-file-finish {
-    display: none;
+    .ivu-upload-list-file span, .ivu-upload-list-remove, .ivu-upload-list-file-finish {
+      display: none;
+    }
   }
 }
 </style>
