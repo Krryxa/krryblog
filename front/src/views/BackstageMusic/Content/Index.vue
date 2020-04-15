@@ -5,12 +5,14 @@
       name="musicFile"
       action="/krryblog/krry/uploadMusic"
       :on-success="handleSuccess"
-      :format="['mp3','mp4','m4a','acc']"
+      :format="['mp3', 'mp4', 'm4a', 'acc']"
       accept="audio/*"
     >
       <Button type="success" class="add-button">Upload</Button>
     </Upload>
-    <router-link :to="{ name: 'list' }" class="modify-buttom">Go to list</router-link>
+    <router-link :to="{ name: 'list' }" class="modify-buttom"
+      >Go to list</router-link
+    >
     <Table :columns="columns" size="small" :data="musicList"></Table>
   </section>
 </template>
@@ -39,26 +41,30 @@ export default {
           title: ' ',
           width: 80,
           render: (h, params) => {
-            return h('div', {
-              style: {
-                position: 'relative'
-              }
-            }, [
-              h(waves,
-                {
-                  class: {'playing': this.musicId === params.row.id},
-                }
-              ),
-              h('i',
+            return h(
+              'div',
               {
-                class: this.musicId === params.row.id ? 'icon-pause iconfont play-btn' : 'icon-play iconfont play-btn',
-                on: {
-                  click: () => {
-                    this.operateMusic(params.row.id)
-                  }
+                style: {
+                  position: 'relative'
                 }
-              })
-            ])
+              },
+              [
+                h(waves, {
+                  class: { playing: this.musicId === params.row.id }
+                }),
+                h('i', {
+                  class:
+                    this.musicId === params.row.id
+                      ? 'icon-pause iconfont play-btn'
+                      : 'icon-play iconfont play-btn',
+                  on: {
+                    click: () => {
+                      this.operateMusic(params.row.id)
+                    }
+                  }
+                })
+              ]
+            )
           }
         },
         {
@@ -165,7 +171,7 @@ export default {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 section {
   animation: fadeIn 0.6s linear;
   padding: 90px 0 0px;
@@ -211,7 +217,9 @@ section {
     margin-top: 0px;
     height: 10px;
 
-    .ivu-upload-list-file span, .ivu-upload-list-remove, .ivu-upload-list-file-finish {
+    .ivu-upload-list-file span,
+    .ivu-upload-list-remove,
+    .ivu-upload-list-file-finish {
       display: none;
     }
   }
@@ -244,6 +252,5 @@ section {
       }
     }
   }
-    
 }
 </style>
