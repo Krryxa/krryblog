@@ -18,6 +18,8 @@
 <script>
 import { loading } from '@/mixins/loading'
 import { deleteMusic } from '@/service'
+import waves from '@/components/Waves'
+import Bus from '@/bus'
 export default {
   props: {
     musicList: {
@@ -30,12 +32,38 @@ export default {
       columns: [
         {
           title: 'ID',
-          width: 100,
+          width: 70,
           key: 'id'
         },
         {
+          title: ' ',
+          width: 80,
+          render: (h, params) => {
+            return h('div', {
+              style: {
+                position: 'relative'
+              }
+            }, [
+              h(waves,
+                {
+                  class: {'playing': this.musicId === params.row.id},
+                }
+              ),
+              h('i',
+              {
+                class: this.musicId === params.row.id ? 'icon-pause iconfont play-btn' : 'icon-play iconfont play-btn',
+                on: {
+                  click: () => {
+                    this.operateMusic(params.row.id)
+                  }
+                }
+              })
+            ])
+          }
+        },
+        {
           title: 'Title',
-          width: 450,
+          width: 400,
           key: 'title'
         },
         {
@@ -74,6 +102,11 @@ export default {
           }
         }
       ]
+    }
+  },
+  computed: {
+    musicId() {
+      return this.$store.state.music.music.id
     }
   },
   methods: {
@@ -115,9 +148,20 @@ export default {
         this.$Message.error('Error, Failure to delete...')
       }
       this.$Spin.hide()
+    },
+    operateMusic(id) {
+      if (this.musicId === id) {
+        // 暂停
+        Bus.$emit('operateMusic', '')
+      } else {
+        // 播放
+        Bus.$emit('operateMusic', id)
+      }
     }
   },
-  components: {}
+  components: {
+    waves
+  }
 }
 </script>
 
@@ -171,5 +215,35 @@ section {
       display: none;
     }
   }
+  .ivu-table-row {
+    .ivu-table-cell {
+      overflow: unset;
+    }
+    .playing {
+      visibility: visible;
+      opacity: 1;
+    }
+    .play-btn {
+      position: absolute;
+      top: -6px;
+      transition: 0.4s;
+      visibility: hidden;
+      opacity: 0;
+      font-size: 21px;
+      cursor: url(../../../assets/pic/cursor.cur), pointer !important;
+    }
+
+    &:hover {
+      .play-btn {
+        visibility: visible;
+        opacity: 1;
+      }
+      .playing {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+  }
+    
 }
 </style>

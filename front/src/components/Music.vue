@@ -23,7 +23,9 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import { getMusic } from '@/service'
+import Bus from '@/bus'
 export default {
   data() {
     return {
@@ -32,7 +34,7 @@ export default {
       // basePath: 'https://ainyi.com',
       isPlay: false,
       firstTime: true, // 是否是第一次播放
-      musicList: ['I Could Be the One-Donna Lewis.mp4'],
+      musicList: [],
       isTransition: false,
       currIndex: 0
     }
@@ -42,25 +44,40 @@ export default {
       return this.$refs.audio
     },
     musicTitle() {
-      let allTitle = this.musicList[this.currIndex]
-      return allTitle.substr(0, allTitle.lastIndexOf('.'))
+      if (this.musicList && this.musicList.length) {
+        let allTitle = this.musicList[this.currIndex].title
+        return allTitle.substr(0, allTitle.lastIndexOf('.'))
+      } else {
+        return ''
+      }
     },
     musicLen() {
       return this.musicList.length
     },
     musicLink() {
-      return `${this.basePath}/music/${this.musicList[this.currIndex]}`
+      return `${this.basePath}/music/${this.musicList[this.currIndex].title}`
     }
   },
   created() {
+    Bus.$on('operateMusic', id => {
+      if (id) {
+        this.currIndex = this.musicList.findIndex(ele => ele.id === id)
+        this.play()
+      } else {
+        this.pause()
+      }
+    })
     this.getMusic()
   },
   mounted() {},
   methods: {
+    // 将 `this.setMusic()` 映射为 `this.$store.dispatch('music/SETMUSIC')`
+    ...mapActions({
+      setMusic: 'music/SETMUSIC'
+    }),
     async getMusic() {
       let { result } = await getMusic()
-      this.musicList = result.data.map(ele => ele.title)
-      this.musicList = this.randomArray(this.musicList)
+      this.musicList = this.randomArray(result.data)
       this.init()
     },
     init() {
@@ -86,12 +103,17 @@ export default {
     },
     play() {
       this.firstTime = false
+      if (this.audio.src !== encodeURI(this.musicLink)) {
+        this.audio.src = this.musicLink
+      }
       this.audio.play()
       this.isPlay = true
+      this.setMusic(this.musicList[this.currIndex])
     },
     pause() {
       this.audio.pause()
       this.isPlay = false
+      this.setMusic({})
     },
     next(flag) {
       this.pause()

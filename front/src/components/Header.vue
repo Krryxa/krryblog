@@ -304,6 +304,12 @@ header {
           outline: 0;
           background-color: #fff;
           -webkit-appearance: none;
+
+          &:focus {
+            width: 100%;
+            opacity: 1;
+            visibility: visible;
+          }
         }
       }
     }
