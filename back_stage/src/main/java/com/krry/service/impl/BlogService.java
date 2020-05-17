@@ -102,7 +102,7 @@ public class BlogService implements IBlogService{
 			newBlog.setHit(hit);
 			newBlog.setId(id);
 			
-			adminMapper.updateBlog(newBlog);
+			adminMapper.updateBlogOtherContents(newBlog);
 			
 			// 处理查询出timestamp时间类型多了个 .0  的问题
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 设置日期格式
@@ -217,7 +217,7 @@ public class BlogService implements IBlogService{
 	 */
 	public String updateBlogNoTime(Blog blog) {
 		
-		adminMapper.updateBlog(blog);
+		adminMapper.updateBlogOtherContents(blog);
 		
 		return "success";
 	}
@@ -235,7 +235,7 @@ public class BlogService implements IBlogService{
 		blog.setId(id);
 		blog.setComment(++commentIndex);
 		
-		adminMapper.updateBlog(blog);
+		adminMapper.updateBlogOtherContents(blog);
 		
 		return commentIndex;
 	}

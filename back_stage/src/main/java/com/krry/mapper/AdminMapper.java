@@ -71,6 +71,12 @@ public interface AdminMapper {
 	public void updateBlog(Blog blog);
 	
 	/**
+	 * 修改博客的其他信息（不修改博客内容）
+	 * @param blog
+	 */
+	public void updateBlogOtherContents(Blog blog);
+	
+	/**
 	 * 删除博客封面
 	 * @param id
 	 */

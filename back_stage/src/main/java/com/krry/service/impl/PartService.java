@@ -192,7 +192,7 @@ public class PartService implements IPartService{
 			newBlog.setHit(hit);
 			newBlog.setId(id);
 			
-			adminMapper.updateBlog(newBlog);
+			adminMapper.updateBlogOtherContents(newBlog);
 			
 			// 处理查询出timestamp时间类型多了个 .0  的问题
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 设置日期格式
