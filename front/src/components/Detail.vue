@@ -1,5 +1,5 @@
 <template>
-  <article class="detail-article" ref="article">
+  <article class="detail-article" ref="article" v-if="reFresh">
     <div class="art-header" v-if="hasShowHeader">
       <h1>{{blog.title}}</h1>
       <div class="header-info">
@@ -91,6 +91,7 @@ export default {
       isloaded: false,
       submitBtn: null,
       allBlogList: [],
+      reFresh: true,
       preIndex: '',
       nextIndex: ''
     }
@@ -131,44 +132,51 @@ export default {
         this.preIndex = currentIndex === result.data.length - 1 ? '' : currentIndex + 1
       }
     },
-    gotoLink(path) {
-      window.location.href = '/' + path
+    gotoLink(id) {
+      this.$router.push('/' + id)
+      this.reFresh = false
+      this.$emit('clearBlog')
+      this.$nextTick(() => {
+        this.reFresh = true
+      })
     },
     getCatalogZoomsComment() {
-      this.setNextPreBlog()
-      // 设置文章目录
-      Catalog({
-        contentEl: 'blog',
-        catalogEl: 'directory',
-        selector: ['h1', 'h2', 'h3']
-      })
-      let wrapper = document.getElementsByClassName('cl-wrapper')[0]
-      // 没有目录，就隐藏
-      if (wrapper.innerHTML === '') {
-        wrapper.style.display = 'none'
-      }
-      // 设置图片点击放大
-      // 事件委托，处理全部 img 标签的点击事件
-      let blog = document.getElementById('blog')
-      let zooms = document.getElementById('zooms')
-      let zoomImg = this.$refs.zoomImg
-      let target = ''
-      blog.addEventListener('click', ev => {
-        let eve = ev || window.event
-        target = eve.target || eve.srcElement
-        if (target.nodeName.toLowerCase() === 'img') {
-          zoomImg.src = target.src
-          zooms.style.visibility = 'visible'
-          zooms.style.opacity = '1'
+      if (JSON.stringify(this.blog) !== '{}' && this.blog !== null) {
+        this.setNextPreBlog()
+        // 设置文章目录
+        Catalog({
+          contentEl: 'blog',
+          catalogEl: 'directory',
+          selector: ['h1', 'h2', 'h3']
+        })
+        let wrapper = document.getElementsByClassName('cl-wrapper')[0]
+        // 没有目录，就隐藏
+        if (wrapper.innerHTML === '') {
+          wrapper.style.display = 'none'
         }
-      })
-      zooms.addEventListener('click', ev => {
-        zooms.style.visibility = 'hidden'
-        zooms.style.opacity = '0'
-      })
-      // 加载评论系统
-      this.getComment()
-      this.isloaded = true
+        // 设置图片点击放大
+        // 事件委托，处理全部 img 标签的点击事件
+        let blog = document.getElementById('blog')
+        let zooms = document.getElementById('zooms')
+        let zoomImg = this.$refs.zoomImg
+        let target = ''
+        blog.addEventListener('click', ev => {
+          let eve = ev || window.event
+          target = eve.target || eve.srcElement
+          if (target.nodeName.toLowerCase() === 'img') {
+            zoomImg.src = target.src
+            zooms.style.visibility = 'visible'
+            zooms.style.opacity = '1'
+          }
+        })
+        zooms.addEventListener('click', ev => {
+          zooms.style.visibility = 'hidden'
+          zooms.style.opacity = '0'
+        })
+        // 加载评论系统
+        this.getComment()
+        this.isloaded = true
+      }
     },
     getComment() {
       Valine({

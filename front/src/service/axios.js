@@ -18,13 +18,14 @@ const $axios = axios.create({
   headers: { 'X-Requested-With': 'XMLHttpRequest' }
 })
 
+const noLoading = ['getClassify', 'getAllBlog']
 let flag = false
 
 $axios.interceptors.request.use(
   config => {
     // 判断请求是否是 getClassify，如果是 getClassify，不加载 LoadingBar
     let url = config.url
-    if (url.split('/').pop() === 'getClassify') {
+    if (noLoading.includes(url.split('/').pop())) {
       flag = false
     } else {
       iView.LoadingBar.start()

@@ -1,6 +1,6 @@
 <template>
   <main v-if="!isNoBlog">
-    <Detail :blog="blog"></Detail>
+    <Detail :blog="blog" @clearBlog="clearBlog"></Detail>
   </main>
   <not-found v-else></not-found>
 </template>
@@ -32,6 +32,9 @@ export default {
       if (this.status === 200) {
         document.title = `${this.blog['title']} - ${document.title}`
       }
+    },
+    clearBlog() {
+      this.blog = {}
     }
   },
   watch: {
