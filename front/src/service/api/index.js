@@ -148,10 +148,10 @@ export default {
   },
 
   /**
-   * 获取所有博客
+   * 分页获取所有博客
    * @param {*} reqData
    */
-  fetchAllBlog(reqData) {
+  fetchAllBlogByPage(reqData) {
     return Ax.get(`/krryblog/krry/getBlog`, { params: reqData })
   },
 
@@ -187,5 +187,13 @@ export default {
    */
   deleteFile(reqData) {
     return Ax.post('/krryblog/krry/deleteFile', qs.stringify(reqData))
+  },
+
+  /**
+   * 获取所有博客
+   * @param {*} reqData
+   */
+  fetchAllBlog() {
+    return Ax.get(`/krryblog/blog/getAllBlog`)
   }
 }

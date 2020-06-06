@@ -155,11 +155,11 @@ export async function updateUser(reqData) {
 }
 
 /**
- * 获取所有博客
+ * 分页获取所有博客
  * @param {*} reqData
  */
-export async function getAllBlog(reqData) {
-  let res = await Api.fetchAllBlog(reqData)
+export async function getAllBlogByPage(reqData) {
+  let res = await Api.fetchAllBlogByPage(reqData)
   return res
 }
 
@@ -199,5 +199,14 @@ export async function uploadContent(id, reqData) {
  */
 export async function deleteFile(reqData) {
   let res = await Api.deleteFile(reqData)
+  return res
+}
+
+/**
+ * 获取所有博客
+ *
+ */
+export async function getAllBlog() {
+  let res = await Api.fetchAllBlog()
   return res
 }

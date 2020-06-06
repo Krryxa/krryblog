@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { getAllBlog } from '@/service'
+import { getAllBlogByPage } from '@/service'
 export default {
   data() {
     return {
@@ -41,7 +41,7 @@ export default {
         pageNo: this.pageNo,
         pageSize: this.pageSize
       }
-      let res = await getAllBlog(reqData)
+      let res = await getAllBlogByPage(reqData)
       this.status = res.code
       // 404 的标题在 axios 拦截器已经定义
       if (this.status === 200) {

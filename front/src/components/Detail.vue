@@ -38,11 +38,23 @@
     >修改</router-link>
     <div id="blog" class="content markdown-body" v-html="blog.content_hm"></div>
     <div class="content-footer">
-      <p>
-        本文由
-        <router-link to="/">{{blog.userName}}</router-link>&nbsp;创作，转载请注明
-      </p>
-      <p>最后编辑时间：{{blog.updateTime}}</p>
+      <div class="footer-left">
+        <p>
+          本文由
+          <router-link to="/">{{blog.userName}}</router-link>&nbsp;创作，转载请注明
+        </p>
+        <p>最后编辑时间：{{blog.updateTime}}</p>
+      </div>
+      <div class="footer-right"  v-if="hasShowHeader">
+        <Tooltip v-if="preIndex !== ''" :content="allBlogList[preIndex] && allBlogList[preIndex].title || 'Krryblog'" theme="light" placement="bottom">
+          <span @click="gotoLink(allBlogList[preIndex].id)">上一篇</span>
+        </Tooltip>
+        <span v-if="preIndex !== '' && nextIndex !== ''" style="margin: 0 4px;">|</span>
+        <Tooltip v-if="nextIndex !== ''" :content="allBlogList[nextIndex] && allBlogList[nextIndex].title || 'Krryblog'" theme="light" placement="bottom">
+          <span @click="gotoLink(allBlogList[nextIndex].id)">下一篇</span>
+        </Tooltip>
+      </div>
+      <div class="clear"></div>
     </div>
     <my-reward></my-reward>
     <aside id="directory"></aside>
@@ -61,7 +73,7 @@ import '@/assets/css/markdown.css'
 import '@/assets/css/github.css'
 import Catalog from '@/util/catalog.js'
 import Valine from 'valine'
-import { addBlogComment } from '@/service'
+import { addBlogComment, getAllBlog } from '@/service'
 export default {
   props: {
     blog: {
@@ -77,7 +89,10 @@ export default {
   data() {
     return {
       isloaded: false,
-      submitBtn: null
+      submitBtn: null,
+      allBlogList: [],
+      preIndex: '',
+      nextIndex: ''
     }
   },
   computed: {
@@ -95,6 +110,9 @@ export default {
       return sessionStorage.getItem('username') !== null
     }
   },
+  created() {
+    this.setNextPreBlog()
+  },
   mounted() {
     // 加载目录和评论插件
     if (JSON.stringify(this.blog) !== '{}' && this.blog !== null) {
@@ -106,6 +124,18 @@ export default {
     })
   },
   methods: {
+    async setNextPreBlog() {
+      const { result } = await getAllBlog()
+      this.allBlogList = (result && result.data) || []
+      if (result && result.data) {
+        const currentIndex = result.data.findIndex(ele => ele.id === this.blog.id)
+        this.nextIndex = currentIndex === 0 ? '' : currentIndex - 1
+        this.preIndex = currentIndex === result.data.length - 1 ? '' : currentIndex + 1
+      }
+    },
+    gotoLink(path) {
+      window.location.href = '/' + path
+    },
     getCatalogZoomsComment() {
       // 设置文章目录
       Catalog({
@@ -288,6 +318,22 @@ article {
     color: #24292e;
     font-size: 14px;
 
+    .footer-left {
+      float: left;
+    }
+    .footer-right {
+      float: right;
+
+      span {
+        transition: 0.3s;
+        cursor: url(../assets/pic/cursor.cur), pointer;
+
+        &:hover {
+          color: #eb5055;
+        }
+      }
+    }
+
     a {
       border-bottom: 1px solid #ccc;
 
@@ -326,6 +372,11 @@ article {
 }
 </style>
 <style lang="scss">
+.detail-article {
+  .ivu-tooltip-inner {
+    max-width: 100%;
+  }
+}
 #directory {
   position: fixed;
   top: 50%;
