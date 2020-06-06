@@ -59,6 +59,12 @@ public interface BlogMapper {
 	 * @return
 	 */
 	public String getBlogClassifyName(int id);
+
+	/**
+	 * 查询所有已发布博客
+	 * @return
+	 */
+	public List<Blog> getAllBlog();
 	
 
 }

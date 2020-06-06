@@ -111,6 +111,21 @@ public class BlogController {
 		
 		return comments;
 	}
+
+
+	/**
+	 * 查询所有已发布博客
+	 * @param params
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/getAllBlog")
+	public ResponseVal getAllBlog(){
+		
+		ResponseVal resData = blogService.getAllBlog();
+		
+		return resData;
+	}
 	
 }
 

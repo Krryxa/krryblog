@@ -156,5 +156,27 @@
 		where
 			id = #{id}
 	</select>
+
+	<!-- 查询所有已发布博客 -->
+	<select id="getAllBlog" resultType="Blog">
+		select
+			b.id,
+			u.name as userName,
+			c.name as classify,
+			<include refid="blog_column"></include>
+		from
+			blog b
+		left join
+			user u
+		on
+			b.userId = u.id
+		where
+			b.status = 1
+		and
+			b.isDelete = 0
+		order by
+			b.isTop desc,
+ 			b.id desc
+	</select>
 	
 </mapper>

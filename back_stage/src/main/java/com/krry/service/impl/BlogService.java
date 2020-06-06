@@ -240,6 +240,43 @@ public class BlogService implements IBlogService{
 		return commentIndex;
 	}
 
+	/**
+	 * 查询所有已发布博客
+	 * 时间戳截掉时分秒
+	 * @param params
+	 * @return
+	 */
+	public ResponseVal getAllBlog() {
+		
+		List<Blog> blogList = blogMapper.getAllBlog();
+		
+		HashMap<String, Object> resData = new HashMap<>();
+		
+		ResponseVal res = new ResponseVal();
+		
+		int len = blogList.size();
+		
+		if (len > 0) {
+			for (int i = 0; i < len; i++) {
+				Blog curBlog = blogList.get(i);
+				String createTime = curBlog.getCreateTime();
+				String updateTime = curBlog.getUpdateTime();
+				// 去掉 2018-09-04 13:24:05 的时分秒
+				curBlog.setCreateTime(createTime.split(" ")[0]);
+				curBlog.setUpdateTime(updateTime.split(" ")[0]);
+			}
+			res.setCode(200);
+		} else {
+			res.setCode(404);
+		}
+
+		resData.put("data", blogList);
+		
+		res.setResult(resData);
+		
+		return res;
+	}
+
 
 }
 

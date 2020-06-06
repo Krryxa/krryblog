@@ -46,5 +46,11 @@ public interface IBlogService {
 	 * @param id
 	 */
 	public int addBlogComment(Integer id);
+
+	/**
+	 * 查询所有已发布博客
+	 * @return
+	 */
+	public ResponseVal getAllBlog();
 	
 }
