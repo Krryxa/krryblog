@@ -110,9 +110,7 @@ export default {
       return sessionStorage.getItem('username') !== null
     }
   },
-  created() {
-    this.setNextPreBlog()
-  },
+  created() {},
   mounted() {
     // 加载目录和评论插件
     if (JSON.stringify(this.blog) !== '{}' && this.blog !== null) {
@@ -137,6 +135,7 @@ export default {
       window.location.href = '/' + path
     },
     getCatalogZoomsComment() {
+      this.setNextPreBlog()
       // 设置文章目录
       Catalog({
         contentEl: 'blog',
