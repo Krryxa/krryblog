@@ -135,6 +135,8 @@ export default {
     gotoLink(id) {
       this.$router.push('/' + id)
       this.reFresh = false
+      this.nextIndex = ''
+      this.preIndex = ''
       this.$emit('clearBlog')
       this.$nextTick(() => {
         this.reFresh = true
