@@ -139,26 +139,26 @@ export default {
 
 <style lang='scss' scoped>
 section {
-  animation: fadeIn 0.6s linear;
+  box-sizing: border-box;
   max-width: 960px;
   margin: 0 auto;
-  box-sizing: border-box;
+  animation: fadeIn 0.6s linear;
 
   article {
+    position: relative;
+    box-sizing: border-box;
+    float: left;
     width: 280px;
     height: 340px;
-    float: left;
-    position: relative;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.5);
-    box-sizing: border-box;
     margin: 20px;
-    box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.08);
     overflow: hidden;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.08);
 
     &:hover {
-      box-shadow: 1px 2px 12px 1px rgba(0, 0, 0, 0.15);
       background: #fff;
+      box-shadow: 1px 2px 12px 1px rgba(0, 0, 0, 0.15);
 
       .bg-img {
         filter: blur(3px);
@@ -168,26 +168,27 @@ section {
       .bg-cover {
         background-color: rgba(0, 0, 0, 0.5);
         transition: 0.5s;
+
         p {
-          transition: 0.5s;
-          margin-top: 0px;
+          margin-top: 0;
           opacity: 1;
+          transition: 0.5s;
         }
       }
     }
 
     .top-icon {
-      width: 46px;
-      opacity: 0.86;
-      height: 46px;
       position: absolute;
-      left: -9px;
       top: -4px;
-      text-align: center;
+      left: -9px;
+      width: 46px;
+      height: 46px;
       line-height: 44px;
       color: #fff;
+      text-align: center;
       background: url('../assets/pic/tag.png');
       background-size: cover;
+      opacity: 0.86;
 
       i {
         font-size: 19px;
@@ -196,93 +197,95 @@ section {
 
     .bg-container {
       &::before {
-        content: 'Loading...';
         position: absolute;
-        border-radius: 5px 5px 0 0;
-        width: 100%;
         left: 0;
-        background-color: rgba(169, 169, 169, 0.75);
-        text-align: center;
-        line-height: 230px;
-        font-size: 26px;
-        color: #333333;
         z-index: -1;
+        width: 100%;
+        font-size: 26px;
+        line-height: 230px;
+        color: #333;
+        text-align: center;
+        content: 'Loading...';
+        background-color: rgba(169, 169, 169, 0.75);
+        border-radius: 5px 5px 0 0;
       }
 
       &::after {
-        content: '';
         position: absolute;
-        border-radius: 5px 5px 0 0;
-        width: 100%;
         left: 0;
-        background-color: rgba(255, 255, 255, 0);
-        line-height: 230px;
         z-index: -1;
+        width: 100%;
+        line-height: 230px;
+        content: '';
+        background-color: rgba(255, 255, 255, 0);
+        border-radius: 5px 5px 0 0;
       }
 
       .bg-img {
-        transition: all 0.5s ease;
         height: 230px;
         border-radius: 5px 5px 0 0;
+        transition: all 0.5s ease;
       }
     }
 
     .bg-cover {
       position: absolute;
       top: 0;
-      overflow: hidden;
       width: 100%;
       height: 100%;
       padding: 40px 28px;
+      overflow: hidden;
       cursor: url(../assets/pic/cursor.cur), pointer !important;
 
       p {
-        font-size: 14px;
+        display: -webkit-box;
+        padding: 0;
         margin: 0;
         margin-top: 26px;
-        padding: 0;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 4;
         overflow: hidden;
-        opacity: 0;
+        font-size: 14px;
         line-height: 26px;
         color: #fff;
+        opacity: 0;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
       }
     }
 
     .other-bgcover {
       position: absolute;
-      z-index: 0;
       right: 0;
       bottom: 1px;
       left: 0;
+      z-index: 0;
       width: 110%;
       min-height: 100px;
-      transform: rotate(5deg) translate(-10px, -20px);
       background-color: #fff;
+      transform: rotate(5deg) translate(-10px, -20px);
     }
+
     .right-bgcover {
-      transform: rotate(-10deg) translate(10px, -30px);
-      opacity: 0.7;
       background-color: rgba(0, 0, 0, 0.5) !important;
+      opacity: 0.7;
+      transform: rotate(-10deg) translate(10px, -30px);
     }
 
     .desc {
+      position: relative;
+      box-sizing: border-box;
       width: 100%;
       height: 110px;
-      background: #fff;
-      position: relative;
       padding: 7px 15px 10px;
-      box-sizing: border-box;
+      background: #fff;
 
       .title {
-        color: #000;
-        font-size: 16px;
         display: -webkit-inline-box;
+        overflow: hidden;
+        font-size: 16px;
+        color: #000;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
-        overflow: hidden;
+
         &:hover {
           color: #ff8b18;
         }
@@ -301,14 +304,15 @@ section {
           bottom: 10px;
 
           i {
-            font-size: 14px;
             margin-top: -2px;
+            font-size: 14px;
 
             &:not(:first-child) {
               margin-left: 12px;
             }
           }
         }
+
         .hidden-detail {
           span {
             visibility: hidden;
@@ -316,22 +320,24 @@ section {
         }
 
         .item-icon {
-          background: url(../assets/pic/bg-ico.png) no-repeat;
-          height: 37px;
-          width: 37px;
           float: right;
+          width: 37px;
+          height: 37px;
+          background: url(../assets/pic/bg-ico.png) no-repeat;
+          background-size: cover;
           border: 1px solid #eaeaea;
           border-radius: 50%;
-          background-size: cover;
         }
       }
     }
   }
 }
+
 @keyframes fadeInNoOpa {
   from {
     margin-top: -20px;
   }
+
   to {
     margin-top: 0;
   }

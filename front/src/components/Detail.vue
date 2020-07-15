@@ -246,57 +246,60 @@ export default {
 
 <style lang='scss' scoped>
 article {
-  animation: fadeIn 0.6s linear;
+  position: relative;
   max-width: 700px;
   padding: 0 25px 30px;
   margin: 0 auto;
   background-color: #fff;
-  position: relative;
+  animation: fadeIn 0.6s linear;
 
   .art-header {
+    position: relative;
     padding-top: 100px;
     padding-bottom: 12px;
     border-bottom: 1px dashed #b7b7b7;
-    position: relative;
 
     h1 {
       font-size: 22px;
-      color: #222;
       font-weight: 400;
       line-height: 1.8;
+      color: #222;
     }
 
     .header-info {
-      margin: 12px 0px 0;
+      margin: 12px 0 0;
+
       i {
         &:not(:first-child) {
           margin-left: 12px;
         }
 
-        font-size: 14px;
         margin-top: -2px;
+        font-size: 14px;
       }
     }
+
     .header-tag {
       width: 85%;
+
       a {
+        display: inline-block;
+        height: 25px;
+        padding: 0 15px;
         margin-top: 14px;
+        margin-right: 10px;
+        line-height: 25px;
         color: #fff;
+        background: #f16d71;
         border: 1px solid #f16d71;
         border-radius: 15px;
-        background: #f16d71;
-        display: inline-block;
-        margin-right: 10px;
-        padding: 0 15px;
-        height: 25px;
-        line-height: 25px;
         transition: 0.4s;
 
         &:hover {
           color: #5f5f5f !important;
+          background: #f7f7f7;
           border: 1px solid #f7f7f7;
           outline-style: none;
-          background: #f7f7f7;
         }
       }
     }
@@ -308,34 +311,38 @@ article {
       line-height: 14px;
 
       i {
-        font-size: 14px;
         margin-top: -2px;
+        font-size: 14px;
       }
     }
   }
+
   .modifyBtn {
     position: absolute;
     right: 26px;
     margin-top: 4px;
   }
+
   .content {
     margin: 26px 0;
   }
+
   .content-footer {
-    border-top: 1px solid #e0e0e0;
     padding-top: 20px;
-    color: #24292e;
     font-size: 14px;
+    color: #24292e;
+    border-top: 1px solid #e0e0e0;
 
     .footer-left {
       float: left;
     }
+
     .footer-right {
       float: right;
 
       span {
-        transition: 0.3s;
         cursor: url(../assets/pic/cursor.cur), pointer;
+        transition: 0.3s;
 
         &:hover {
           color: #eb5055;
@@ -352,30 +359,31 @@ article {
     }
   }
 }
+
 .zoom-shadow {
   position: fixed;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
+  left: 0;
+  z-index: 1500;
   width: 100%;
   height: 100%;
   visibility: hidden;
-  z-index: 1500;
-  transition: 0.3s;
   background: rgba(0, 0, 0, 0.6);
   opacity: 0;
+  transition: 0.3s;
 
   .zoom-big-img {
     position: fixed;
-    cursor: zoom-out;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     max-width: 86%;
     max-height: 86%;
     margin: auto;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    cursor: zoom-out;
     transform: scale(1);
   }
 }
@@ -386,21 +394,26 @@ article {
     max-width: 100%;
   }
 }
+
 #directory {
   position: fixed;
   top: 50%;
-  margin-left: 686px;
   max-width: 400px;
+  margin-left: 686px;
   transform: translateY(-54%);
+
   .cl-wrapper {
     padding: 5px 0;
     border-left: 2px solid #ddd;
+
     ul li {
       position: relative;
       line-height: 29px;
+
       div:hover {
         color: #f44336 !important;
       }
+
       .cl-link-active {
         &::before {
           position: absolute;
@@ -410,35 +423,40 @@ article {
           width: 8px;
           height: 8px;
           content: '';
-          border-radius: 50%;
           background-color: #f44336 !important;
+          border-radius: 50%;
         }
       }
+
       .cl-link {
         display: initial;
         overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
         font-size: 14px;
         color: #272727;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         cursor: url(../assets/pic/cursor.cur), pointer;
       }
     }
+
     & > ul > li {
       position: relative;
       padding-left: 15px;
+
       & > ul > li {
         .cl-link-active {
           &::before {
             left: -20px;
           }
         }
+
         & > ul > li {
           div {
             margin-left: 20px;
             color: #8e8e8e !important;
           }
         }
+
         div {
           margin-left: 10px;
           color: #5f5f5f !important;
@@ -451,105 +469,127 @@ article {
     }
   }
 }
+
 /* 评论样式 */
 .comments-desc {
   &::before {
-    font-size: 24px;
-    content: '|';
-    color: #eb5055;
-    font-weight: bold;
     position: absolute;
-    left: 0;
     top: -8px;
+    left: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #eb5055;
+    content: '|';
   }
-  margin-top: 52px;
-  color: #24292e;
-  font-size: 1.4em;
+
   position: relative;
+  margin-top: 52px;
   margin-bottom: 16px;
+  font-size: 1.4em;
+  color: #24292e;
 
   span {
     margin-left: 12px;
   }
 }
+
 #vcomments {
   .txt-right {
     display: none;
   }
+
   .veditor {
     min-height: 6rem;
     max-height: 12rem;
   }
+
   .vcontrol {
     padding-top: 10px;
+
     & > .col:first-child {
       visibility: hidden;
     }
+
     .text-right {
       .new-btn {
-        border: none;
-        border-radius: 0.3rem;
         padding: 0.5rem 1.25rem;
         font-size: 0.875rem;
         line-height: 1.42857143;
-        outline: none;
-        background: #ff9800;
         color: #fff;
+        background: #ff9800;
+        border: none;
         border: 1px solid #ff9800;
+        border-radius: 0.3rem;
+        outline: none;
+
         &:hover {
           border: 1px solid #f60;
         }
       }
+
       .vsubmit {
-        background: #ff9800;
         color: #fff;
+        background: #ff9800;
+
         &:hover {
           border: 1px solid #f60;
         }
       }
     }
   }
+
   .vinfo {
     display: none !important;
   }
+
   .vlist {
     & > .vcard > .vh {
       border-bottom: 1px solid #e5e9ef !important;
     }
+
     .vcard {
       padding-top: 20px;
+
       .vimg {
-        border: none;
-        margin-top: 0.1rem;
         width: 3.25rem;
         height: 3.25rem;
+        margin-top: 0.1rem;
+        border: none;
       }
+
       .vh {
         border: none;
+
         &:hover {
           & .vmeta .vat {
             display: block;
           }
         }
+
         .vhead {
           .vnick {
-            color: #6d757a;
             font-weight: 700;
+            color: #6d757a;
+
             &::before {
               background: #eb5055;
             }
+
             &:hover {
               color: #eb5055;
               cursor: url(../assets/pic/cursor.cur), pointer;
             }
+
             &[href="https://ainyi.com"] {
               color: #eb5055;
             }
           }
+
           .vsys {
             display: none;
           }
         }
+
         .vmeta .vat {
           display: none;
           color: #b3b3b3;
@@ -559,19 +599,24 @@ article {
             color: #eb5055;
           }
         }
+
         .vcontent {
           padding-top: 2px;
           margin-bottom: 0;
+
           .at {
             color: #ff9800;
+
             &::before {
               background: #eb5055;
             }
           }
+
           p {
             display: inline;
             margin-left: 6px;
           }
+
           a {
             &::before {
               background: #eb5055;
@@ -579,10 +624,11 @@ article {
           }
         }
       }
+
       .vquote {
-        border: none;
-        margin-top: 0;
         padding-left: 0;
+        margin-top: 0;
+        border: none;
 
         .vimg {
           width: 2.8rem;
@@ -591,23 +637,27 @@ article {
       }
     }
   }
+
   .vpage {
     .vmore {
-      background: #ff9800;
       color: #fff;
+      background: #ff9800;
+
       &:hover {
         border: 1px solid #f60;
       }
     }
   }
+
   .vcancel {
-    background: #ff4d43;
     color: #fff;
+    background: #ff4d43;
     border: 1px solid #ff6969;
   }
+
   .vsure {
-    background: #4373ff;
     color: #fff;
+    background: #4373ff;
     border: 1px solid #4f87ff;
   }
 }

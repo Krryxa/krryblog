@@ -4,25 +4,25 @@
 }
 
 .markdown-body {
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  line-height: 1.5;
-  color: #24292e;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px !important;
   line-height: 1.5;
+  line-height: 1.5;
+  color: #24292e;
   word-wrap: break-word;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 .markdown-body .back-img {
+  display: inline-block;
   width: 23px;
   height: 23px;
-  display: inline-block;
-  background-size: cover !important;
-  vertical-align: middle;
   margin-right: 10px;
-  border-radius: 3px;
+  vertical-align: middle;
   background: url(https://gravatar.loli.net/avatar/123?d=mp&v=1.3.3);
+  background-size: cover !important;
+  border-radius: 3px;
 }
 
 .markdown-body .pl-c {
@@ -145,8 +145,8 @@
 }
 
 .markdown-body .pl-corl {
-  text-decoration: underline;
   color: #032f62;
+  text-decoration: underline;
 }
 
 .markdown-body .octicon {
@@ -174,8 +174,8 @@
 }
 
 .markdown-body h1 {
-  font-size: 2em;
   margin: 0.67em 0;
+  font-size: 2em;
 }
 
 .markdown-body img {
@@ -200,8 +200,8 @@
 }
 
 .markdown-body input {
-  font: inherit;
   margin: 0;
+  font: inherit;
 }
 
 .markdown-body input {
@@ -225,8 +225,8 @@
 
 .markdown-body a {
   color: #666 !important;
-  border-bottom: 1px solid #ccc;
   text-decoration: none;
+  border-bottom: 1px solid #ccc;
 }
 
 .markdown-body a:hover {
@@ -342,7 +342,8 @@
 }
 
 .markdown-body code {
-  font-family: Menlo,Monaco,Consolas,Courier New,monospace !important;
+  font-family: Menlo, Monaco, Consolas, Courier New, monospace !important;
+
   /* font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; */
   font-size: 12px;
 }
@@ -397,11 +398,11 @@
   content: "";
 }
 
-.markdown-body>*:first-child {
+.markdown-body > *:first-child {
   margin-top: 0 !important;
 }
 
-.markdown-body>*:last-child {
+.markdown-body > *:last-child {
   margin-bottom: 0 !important;
 }
 
@@ -446,11 +447,11 @@
   border-left: 0.25em solid #dfe2e5;
 }
 
-.markdown-body blockquote>:first-child {
+.markdown-body blockquote > :first-child {
   margin-top: 0;
 }
 
-.markdown-body blockquote>:last-child {
+.markdown-body blockquote > :last-child {
   margin-bottom: 0;
 }
 
@@ -551,11 +552,11 @@
   margin-bottom: 0;
 }
 
-.markdown-body li>p {
+.markdown-body li > p {
   margin-top: 16px;
 }
 
-.markdown-body li+li {
+.markdown-body li + li {
   margin-top: 0.25em;
 }
 
@@ -602,12 +603,12 @@
 }
 
 .markdown-body img {
-  max-width: 100%;
   box-sizing: content-box;
-  background-color: #fff;
-  margin: 30px auto;
   display: block;
-  box-shadow: 0 0 2.6875rem rgba(0,0,0,0.15);
+  max-width: 100%;
+  margin: 30px auto;
+  background-color: #fff;
+  box-shadow: 0 0 2.6875rem rgba(0, 0, 0, 0.15);
 }
 
 .markdown-body img[align=right] {
@@ -624,7 +625,7 @@
   padding-bottom: 0.2em;
   margin: 0;
   font-size: 85%;
-  background-color: rgba(27,31,35,0.05);
+  background-color: rgba(27, 31, 35, 0.05);
   border-radius: 3px;
 }
 
@@ -638,7 +639,7 @@
   word-wrap: normal;
 }
 
-.markdown-body pre>code {
+.markdown-body pre > code {
   padding: 0;
   margin: 0;
   font-size: 100%;
@@ -659,10 +660,11 @@
 
 .markdown-body .highlight pre,
 .markdown-body pre {
-  padding: 0px !important;
+  padding: 0 !important;
   overflow: auto;
   font-size: 85%;
   line-height: 1.45;
+
   /* background-color: #f6f8fa; */
   border-radius: 8px !important;
 }
@@ -703,7 +705,7 @@
   box-shadow: inset 0 -1px 0 #c6cbd1;
 }
 
-.markdown-body :checked+.radio-label {
+.markdown-body :checked + .radio-label {
   position: relative;
   z-index: 1;
   border-color: #0366d6;
@@ -713,7 +715,7 @@
   list-style-type: none;
 }
 
-.markdown-body .task-list-item+.task-list-item {
+.markdown-body .task-list-item + .task-list-item {
   margin-top: 3px;
 }
 

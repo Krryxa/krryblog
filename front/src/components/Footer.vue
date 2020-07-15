@@ -40,36 +40,37 @@ export default {
 
 <style lang='scss' scoped>
 footer {
-  margin-top: 16px;
   height: 120px;
+  margin-top: 16px;
   background: rgba(255, 255, 255, 0.5);
 
   .container {
+    position: relative;
     width: 1080px;
     max-width: 100%;
-    margin: 0 auto;
     height: 100%;
-    text-align: center;
+    margin: 0 auto;
     font-size: 14px;
-    position: relative;
     line-height: 26px;
+    text-align: center;
 
     .footer-flot {
       position: relative;
       top: 50%;
-      transform: translateY(-50%);
       display: inline-block;
+      transform: translateY(-50%);
     }
+
     .link-git {
       position: relative;
       top: 50%;
-      transform: translateY(-50%);
       display: inline-block;
+      transform: translateY(-50%);
 
       .github {
         i {
-          font-size: 18px;
           margin-top: -5px;
+          font-size: 18px;
         }
       }
     }

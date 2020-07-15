@@ -28,43 +28,45 @@ export default {
 
 <style lang='scss' scoped>
 .header {
-  background: url(../assets/pic/category.jpg) no-repeat;
-  background-size: cover;
   padding: 96px 0 28px;
   text-align: center;
+  background: url(../assets/pic/category.jpg) no-repeat;
+  background-size: cover;
 
   h1 {
     position: relative;
-    font-weight: 400;
-    font-size: 30px;
     margin: 0 auto;
     margin-bottom: 10px;
-    letter-spacing: 0.1em;
+    font-size: 30px;
+    font-weight: 400;
     color: rgba(255, 255, 255, 0.89);
     text-shadow: 0 4px 8px rgba(7, 17, 27, 0.4);
+    letter-spacing: 0.1em;
 
     .e-left {
       position: relative;
-      left: 2px;
       top: -12px;
+      left: 2px;
     }
+
     .e-right {
-      right: 2px;
-      top: -10px;
       position: relative;
+      top: -10px;
+      right: 2px;
     }
+
     .text {
+      display: inline-block;
       max-width: 660px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      display: inline-block;
     }
   }
 
   h4 {
-    font-weight: 400;
     font-size: 16px;
+    font-weight: 400;
     color: rgba(255, 255, 255, 0.54);
   }
 }

@@ -9,13 +9,13 @@
 </template>
 <style scoped lang="scss">
 .audio-icon {
-  width: 20px;
-  height: 18px;
-  min-width: 18px;
   display: flex;
+  width: 20px;
+  min-width: 18px;
+  height: 18px;
+  visibility: hidden;
   opacity: 0;
   transition: 1s;
-  visibility: hidden;
   transform: rotate(180deg);
 
   .column {
@@ -26,10 +26,12 @@
     animation: play 0.9s linear infinite alternate;
   }
 }
+
 @keyframes play {
   from {
     height: 10%;
   }
+
   to {
     height: 100%;
   }

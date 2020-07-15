@@ -142,56 +142,63 @@ export default {
 
 <style lang='scss' scoped>
 section {
-  width: 1080px;
   position: fixed;
-  max-width: 100%;
   top: 78px;
-  left: 0;
   right: 0;
-  margin: 0 auto;
+  left: 0;
   z-index: 1010;
+  width: 1080px;
+  max-width: 100%;
+  margin: 0 auto;
 
   .title {
-    visibility: hidden;
+    position: absolute;
     right: 64px;
     margin-top: 3.5px;
-    position: absolute;
     color: rgba(255, 97, 92, 1);
+    visibility: hidden;
   }
+
   .titleIn {
     visibility: visible;
     animation: bounceInRight 1s linear, outText 10s linear forwards;
   }
+
   .titleOut {
     visibility: visible;
     animation: bounceOutRight 1s linear forwards;
   }
 
   .music {
-    cursor: url(../assets/pic/cursor.cur), pointer !important;
     position: absolute;
     right: 28px;
+    cursor: url(../assets/pic/cursor.cur), pointer !important;
+
     &:hover {
       + .op-btn {
         visibility: visible;
         opacity: 0.76;
       }
     }
+
     img {
       animation: outBtn 4s linear forwards;
+
       &:hover {
         animation: inBtn 1s forwards;
       }
     }
   }
+
   .playing {
     animation: play 1.8s infinite linear;
   }
 
   .op-btn {
     visibility: hidden;
-    transition: 0.5s;
     opacity: 0;
+    transition: 0.5s;
+
     &:hover {
       visibility: visible;
       opacity: 0.76;
@@ -199,52 +206,60 @@ section {
   }
 
   .next-btn {
-    cursor: url(../assets/pic/cursor.cur), pointer !important;
     position: absolute;
     right: 5px;
     width: 30px;
-    text-align: right;
-    font-size: 19px;
     height: 25px;
+    font-size: 19px;
     line-height: 20px;
-  }
-  .pre-btn {
+    text-align: right;
     cursor: url(../assets/pic/cursor.cur), pointer !important;
+  }
+
+  .pre-btn {
     position: absolute;
     top: 19px;
     right: 28px;
-    height: 30px;
-    text-align: center;
-    font-size: 19px;
     width: 25px;
+    height: 30px;
+    font-size: 19px;
     line-height: 32px;
+    text-align: center;
+    cursor: url(../assets/pic/cursor.cur), pointer !important;
   }
 }
+
 @keyframes play {
   100% {
     transform: rotate(360deg);
   }
 }
+
 @keyframes outText {
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0.3;
   }
 }
+
 @keyframes outBtn {
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0.6;
   }
 }
+
 @keyframes inBtn {
   from {
     opacity: 0.6;
   }
+
   to {
     opacity: 1;
   }
