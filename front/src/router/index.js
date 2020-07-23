@@ -33,6 +33,12 @@ export default new Router({
       meta: { title: '你的美好，我都记得' }
     },
     {
+      path: '/archive',
+      component: () => import('@/views/Archive'),
+      name: 'archive',
+      meta: { title: '时间归档 - 你的美好，我都记得' }
+    },
+    {
       path: '/category/:id(\\d+)/:page?',
       component: () => import('@/views/Category'),
       name: 'category',
