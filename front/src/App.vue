@@ -107,7 +107,16 @@ img {
 
 /* 代码字体 */
 .hljs {
-  font-size: 16px;
+  padding: 18px 15px 12px !important;
+}
+.hljs-name {
+  font-weight: bold !important;
+}
+.hljs-name, .hljs-tag {
+  color: #333 !important;
+}
+.hljs-keyword {
+  color: rgb(153, 6, 154) !important;
 }
 .hljs-comment,
 .hljs-quote {

@@ -345,14 +345,13 @@
   font-family: Menlo, Monaco, Consolas, Courier New, monospace !important;
 
   /* font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; */
-  font-size: 12px;
+  font-size: 13px !important;
 }
 
 .markdown-body pre {
   margin-top: 0;
   margin-bottom: 0;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 12px;
 }
 
 .markdown-body .octicon {
@@ -624,7 +623,6 @@
   padding-top: 0.2em;
   padding-bottom: 0.2em;
   margin: 0;
-  font-size: 85%;
   background-color: rgba(27, 31, 35, 0.05);
   border-radius: 3px;
 }
@@ -662,7 +660,6 @@
 .markdown-body pre {
   padding: 0 !important;
   overflow: auto;
-  font-size: 85%;
   line-height: 1.45;
 
   /* background-color: #f6f8fa; */

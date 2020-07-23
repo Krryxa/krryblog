@@ -22,7 +22,7 @@
           @imgAdd="addImg"
           @imgDel="delImg"
           @save="markdownSave"
-          codeStyle="vs2015"
+          codeStyle="github"
           placeholder="编辑内容，支持 Markdown"
           class="detail-article"
         ></mavon-editor>
