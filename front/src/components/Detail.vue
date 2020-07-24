@@ -248,7 +248,7 @@ export default {
 article {
   position: relative;
   max-width: 700px;
-  padding: 0 25px 30px;
+  padding: 0 25px 16px;
   margin: 0 auto;
   background-color: #fff;
   animation: fadeIn 0.6s linear;

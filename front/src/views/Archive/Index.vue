@@ -93,7 +93,7 @@ export default {
 article {
   position: relative;
   max-width: 700px;
-  padding: 0 25px 30px;
+  padding: 0 25px 16px;
   margin: 0 auto;
   margin-top: 26px;
   background-color: #fff;
@@ -109,17 +109,19 @@ article {
       font-size: 1.3rem;
       font-weight: 500;
     }
-    &:not(:first-child) .year-word {
-      margin-top: 12px;
-    }
 
     .month {
       margin: 0 24px;
       .month-word {
+        cursor: url(../../assets/pic/cursor.cur), pointer !important;
         margin-bottom: 12px;
         display: inline-block;
         font-size: 16px;
         font-weight: 500;
+      }
+
+      &>div:last-child {
+        padding-bottom: 12px;
       }
 
       .day {
