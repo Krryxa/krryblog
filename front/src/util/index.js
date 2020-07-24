@@ -1,5 +1,5 @@
 export function slideToogle(dom, duration = 1000) {
-  dom.status = dom.status || getComputedStyle(dom, null)['display']
+  dom.status = dom.status || dom.style.display
   let flag = dom.status !== 'none' // 保存当前的显示状态，方便进行判断
   dom.status = flag ? 'none' : 'block' // 更改dom上的显示属性
   dom.style.transition = 'height ' + duration / 1000 + 's' // 设置动画时间

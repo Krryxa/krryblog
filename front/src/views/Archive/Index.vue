@@ -2,8 +2,19 @@
   <main>
     <SectionHeader title="时间归档" description="Archive"></SectionHeader>
     <article class="detail-article">
-      <div v-for="(ele, index) in dataObj" :key="index">
-        {{ ele }}
+      <div class="year" v-for="ele in Object.entries(dataObj)" :key="ele[0] + 'year'">
+        <span class="year-word" @click="handleToogle($event)">{{ ele[0] }}</span>
+        <div class="month" style="display: none;">
+          <div v-for="jcl in Object.entries(ele[1])" :key="ele[0] + 'year' + jcl[0]">
+            <span class="month-word" @click="handleToogle($event)">{{ jcl[0] }}</span>
+            <div class="day">
+              <div v-for="item in jcl[1]" :key="item.id">
+                <span class="day-word">{{ item.day }}日：</span>
+                <router-link class="link" :to="'/' + item.id">{{ item.title }}</router-link>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </article>
   </main>
@@ -11,50 +22,64 @@
 
 <script>
 import { getAllBlog } from '@/service'
-// import { slideToogle } from '@/util'
+import { slideToogle } from '@/util'
 export default {
   data() {
     return {
-      tableData: [],
       dataObj: {},
-      status: 200
+      top: [],
+      blogLen: 0
     }
   },
-  computed: {
-  },
+  computed: {},
   created() {
     this.getData()
   },
   methods: {
     async getData() {
       const { result } = await getAllBlog()
-      this.tableData = result.data.map(ele => {
-        const timeList = ele.createTime.split('-')
-        return {
-          id: ele.id,
-          title: ele.title,
-          year: timeList[0],
-          month: timeList[1],
-          day: timeList[2]
-        }
-      })
-      let year = this.tableData[0].year
-      let month = this.tableData[0].month
-      this.$set(this.dataObj, year, {})
-      let temp = this.dataObj[year]
-      temp[month] = []
-      this.tableData.forEach(ele => {
-        if (ele.year !== year || ele.month !== month) {
-          month = ele.month
-          if (ele.year !== year) {
-            year = ele.year
-            this.$set(this.dataObj, year, {})
+      let year = ''
+      let month = ''
+      let temp = {}
+      this.blogLen = result && Array.isArray(result.data) && result.data.length
+      result &&
+        Array.isArray(result.data) &&
+        result.data.forEach((ele) => {
+          const timeList = ele.createTime.split('-')
+          if (ele.isTop) {
+            this.top.push({
+              id: ele.id,
+              title: ele.title,
+              createTime: ele.createTime
+            })
+          } else {
+            if (timeList[0] !== year || timeList[1] !== month) {
+              month = timeList[1]
+              if (timeList[0] !== year) {
+                year = timeList[0]
+                this.$set(this.dataObj, year + ' 年', {})
+              }
+              temp = this.dataObj[year + ' 年']
+              // 这里需要加个字符，不能是纯数字，否则 Object.entries 的时候会自动把 10、11 月份提前，不知道为啥
+              this.$set(temp, month + '月', [])
+            }
+            temp[month + '月'].push({
+              id: ele.id,
+              title: ele.title,
+              year,
+              month,
+              day: timeList[2]
+            })
           }
-          temp = this.dataObj[year]
-          temp[month] = []
-        }
-        temp[month].push(ele)
+        })
+      this.$nextTick(() => {
+        const firstDom = document.getElementsByClassName('month')[0]
+        slideToogle(firstDom, 600)
       })
+    },
+    handleToogle(e) {
+      const monthDom = e.currentTarget.nextElementSibling
+      slideToogle(monthDom, 600)
     }
   },
   components: {
@@ -73,5 +98,47 @@ article {
   margin-top: 26px;
   background-color: #fff;
   animation: fadeIn 0.6s linear;
+  font-size: 14px;
+  color: #24292e;
+
+  .year {
+    .year-word {
+      cursor: url(../../assets/pic/cursor.cur), pointer !important;
+      margin-bottom: 20px;
+      display: inline-block;
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+    &:not(:first-child) .year-word {
+      margin-top: 12px;
+    }
+
+    .month {
+      margin: 0 24px;
+      .month-word {
+        margin-bottom: 12px;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .day {
+        margin: 0 24px;
+        line-height: 30px;
+        .day-word {
+          font-weight: 500;
+          color: #666;
+        }
+
+        &>div:last-child {
+          margin-bottom: 12px;
+        }
+
+        .link {
+          color: #24292e;
+        }
+      }
+    }
+  }
 }
 </style>
