@@ -111,7 +111,7 @@ article {
     }
 
     .month {
-      margin: 0 24px;
+      margin-left: 24px;
       .month-word {
         cursor: url(../../assets/pic/cursor.cur), pointer !important;
         margin-bottom: 12px;
@@ -125,15 +125,21 @@ article {
       }
 
       .day {
-        margin: 0 24px;
+        margin-left: 24px;
         line-height: 30px;
         .day-word {
           font-weight: 500;
           color: #666;
         }
 
-        &>div:last-child {
-          margin-bottom: 12px;
+        &>div {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+
+          &:last-child {
+            margin-bottom: 12px;
+          }
         }
 
         .link {

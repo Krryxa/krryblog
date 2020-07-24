@@ -26,6 +26,9 @@
               </li>
             </ul>
           </li>
+          <router-link :to="{name: 'archive'}">
+            <li>时之馆</li>
+          </router-link>
           <!-- <li class="sub-item">
             主题
             <ul class="nav-child">
@@ -54,13 +57,18 @@
             </li>
           </router-link>
           <li class="sub-item">
-            <Icon type="ios-list-box"/>存档
+            <Icon type="md-list-box"/>存档
             <ul class="nav-child">
               <li v-for="(item, index) in classifyList" :key="index">
                 <router-link :to="`/category/${item.id}`">{{item.name}}</router-link>
               </li>
             </ul>
           </li>
+          <router-link to="/archive">
+            <li>
+              <Icon type="ios-timer"/>时之馆
+            </li>
+          </router-link>
           <!-- <li class="sub-item">
             <Icon type="md-color-palette" />
             主题
