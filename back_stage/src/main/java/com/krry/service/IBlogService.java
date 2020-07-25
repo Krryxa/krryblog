@@ -54,6 +54,12 @@ public interface IBlogService {
 	public ResponseVal getAllBlog(String type);
 	
 	/**
+	 * 查询更新历程
+	 * @return
+	 */
+	public ResponseVal getReviseList();
+	
+	/**
 	 * 查询汇总数据
 	 * @return
 	 */

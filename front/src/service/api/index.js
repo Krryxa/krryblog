@@ -200,6 +200,14 @@ export default {
   },
 
   /**
+   * 获取更新历程
+   * @param {*} reqData
+   */
+  fetchReviseList() {
+    return Ax.get(`/krryblog/blog/getReviseList`)
+  },
+
+  /**
    * 获取汇总数据
    * @param {*} reqData
    */

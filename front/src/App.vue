@@ -308,6 +308,10 @@ scrollbar[orient='vertical'] {
   footer .container .sec-footer-flot {
     display: none !important;
   }
+  /* 汇总数据分行 */
+  article .summarize ul li {
+    width: 50% !important;
+  }
 }
 
 @media screen and (max-width: 408px) {

@@ -16,6 +16,7 @@ import com.krry.entity.Blog;
 import com.krry.entity.Classify;
 import com.krry.entity.Params;
 import com.krry.entity.ResponseVal;
+import com.krry.entity.Revise;
 import com.krry.mapper.AdminMapper;
 import com.krry.mapper.BlogMapper;
 import com.krry.service.IBlogService;
@@ -273,6 +274,40 @@ public class BlogService implements IBlogService{
 		}
 
 		resData.put("data", blogList);
+		
+		res.setResult(resData);
+		
+		return res;
+	}
+	
+	/**
+	 * 查询更新历程
+	 * @param params
+	 * @return
+	 */
+	public ResponseVal getReviseList() {
+		
+		List<Revise> reviseList = blogMapper.getReviseList();
+		
+		HashMap<String, Object> resData = new HashMap<>();
+		
+		ResponseVal res = new ResponseVal();
+		
+		int len = reviseList.size();
+		
+		if (len > 0) {
+			for (int i = 0; i < len; i++) {
+				Revise curBlog = reviseList.get(i);
+				String createTime = curBlog.getCreateTime();
+				// 去掉 2018-09-04 13:24:05 的时分秒
+				curBlog.setCreateTime(createTime.split(" ")[0]);
+			}
+			res.setCode(200);
+		} else {
+			res.setCode(404);
+		}
+
+		resData.put("data", reviseList);
 		
 		res.setResult(resData);
 		

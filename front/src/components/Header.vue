@@ -26,9 +26,17 @@
               </li>
             </ul>
           </li>
-          <router-link :to="{name: 'archive'}">
-            <li>时之馆</li>
-          </router-link>
+          <li class="sub-item">
+            时之馆
+            <ul class="nav-child">
+              <li>
+                <router-link to="/archive">时间归档</router-link>
+              </li>
+              <li>
+                <router-link to="/revise">更新历程</router-link>
+              </li>
+            </ul>
+          </li>
           <!-- <li class="sub-item">
             主题
             <ul class="nav-child">
@@ -64,11 +72,15 @@
               </li>
             </ul>
           </li>
-          <router-link to="/archive">
-            <li>
-              <Icon type="ios-timer"/>时之馆
-            </li>
-          </router-link>
+          <li class="sub-item">
+            <Icon type="ios-timer"/>时之馆
+            <ul class="nav-child">
+              <li>
+                <router-link to="/archive">时间归档</router-link>
+                <router-link to="/revise">Experience</router-link>
+              </li>
+            </ul>
+          </li>
           <!-- <li class="sub-item">
             <Icon type="md-color-palette" />
             主题

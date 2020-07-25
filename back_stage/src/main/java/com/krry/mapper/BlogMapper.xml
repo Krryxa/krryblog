@@ -208,6 +208,19 @@
  			b.id desc
 	</select>
 	
+	<!-- 查询更新历程 -->
+	<select id="getReviseList" resultType="Revise">
+		select
+			id,
+			title,
+			createTime,
+			remark
+		from
+			revise
+		order by
+ 			id desc
+	</select>
+	
 	<!-- 查询汇总数据 -->
 	<select id="getSummarizedData" resultType="HashMap">
 		select

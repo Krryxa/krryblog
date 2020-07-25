@@ -129,6 +129,20 @@ public class BlogController {
 	}
 	
 	/**
+	 * 查询更新历程
+	 * @param params
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/getReviseList")
+	public ResponseVal getReviseList(){
+		
+		ResponseVal resData = blogService.getReviseList();
+		
+		return resData;
+	}
+	
+	/**
 	 * 查询汇总数据
 	 * @param params
 	 * @return

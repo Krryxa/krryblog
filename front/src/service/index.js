@@ -212,6 +212,15 @@ export async function getAllBlog(reqData) {
 }
 
 /**
+ * 获取更新历程
+ *
+ */
+export async function getReviseList() {
+  let res = await Api.fetchReviseList()
+  return res
+}
+
+/**
  * 获取汇总数据
  *
  */

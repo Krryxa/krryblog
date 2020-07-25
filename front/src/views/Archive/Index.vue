@@ -1,8 +1,8 @@
 <template>
   <main>
-    <SectionHeader title="时间归档" description="Archive"></SectionHeader>
-    <article class="detail-article">
-      <div class="summarize">
+    <SectionHeader :title="title" :description="description"></SectionHeader>
+    <article class="detail-article" ref="container">
+      <div class="summarize" v-if="!isRevise">
         <div class="text">
           <span>数据统计</span>
         </div>
@@ -33,8 +33,9 @@
             <span class="month-word" @click="handleToogle($event)">{{ jcl[0] }}</span>
             <div class="day">
               <div v-for="item in jcl[1]" :key="item.id">
-                <span class="day-word">{{ item.day }}日：</span>
-                <router-link class="link" :to="'/' + item.id">{{ item.title }}</router-link>
+                <span class="day-word">{{ item.day }}日{{item.remark}}：</span>
+                <router-link v-if="!isRevise" class="link" :to="'/' + item.id">{{ item.title }}</router-link>
+                <span v-else class="link">{{ item.title }}</span>
               </div>
             </div>
           </div>
@@ -45,7 +46,7 @@
 </template>
 
 <script>
-import { getAllBlog, getSummarizedData } from '@/service'
+import { getAllBlog, getReviseList, getSummarizedData } from '@/service'
 import { formatKM, slideToogle } from '@/util'
 export default {
   data() {
@@ -56,7 +57,27 @@ export default {
       formatKM: formatKM
     }
   },
-  computed: {},
+  computed: {
+    isRevise() {
+      return this.$route.name === 'revise'
+    },
+    title() {
+      return this.isRevise ? '更新历程' : '时间归档'
+    },
+    description() {
+      return this.isRevise ? 'Experience' : 'Archive'
+    }
+  },
+  watch: {
+    $route(to, from) {
+      this.$refs.container.style.display = 'none'
+      setTimeout(() => {
+        this.$refs.container.style.display = 'block'
+      }, 0)
+      this.getBlogData()
+      !this.isRevise && this.summarize()
+    }
+  },
   created() {
     this.getBlogData()
     this.summarize()
@@ -67,7 +88,8 @@ export default {
       this.summarizedData = result ? result.data : {}
     },
     async getBlogData() {
-      const { result } = await getAllBlog({
+      this.$set(this, 'dataObj', {})
+      const { result } = this.isRevise ? await getReviseList() : await getAllBlog({
         type: 'NO'
       })
       let year = ''
@@ -93,7 +115,8 @@ export default {
             title: ele.title,
             year,
             month,
-            day: timeList[2]
+            day: timeList[2],
+            remark: ele.remark
           })
         })
       this.$nextTick(() => {
@@ -136,7 +159,7 @@ article {
       padding: 4.5px;
       position: absolute;
       top: -15px;
-      left: 60px;
+      left: 56px;
       background: #fff;
 
       span {

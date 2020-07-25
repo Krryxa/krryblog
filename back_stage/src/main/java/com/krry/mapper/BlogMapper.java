@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.krry.entity.Blog;
 import com.krry.entity.Classify;
+import com.krry.entity.Revise;
 
 /**
  * 持久层
@@ -72,6 +73,12 @@ public interface BlogMapper {
 	 * @return
 	 */
 	public List<Blog> getAllBlogWithNoOrder();
+	
+	/**
+	 * 查询更新历程
+	 * @return
+	 */
+	public List<Revise> getReviseList();
 	
 	/**
 	 * 查询汇总数据
