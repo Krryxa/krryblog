@@ -2,6 +2,30 @@
   <main>
     <SectionHeader title="时间归档" description="Archive"></SectionHeader>
     <article class="detail-article">
+      <div class="summarize">
+        <div class="text">
+          <span>数据统计</span>
+        </div>
+        <ul>
+          <li>
+            <span class="num">{{ blogLen }}</span>
+            <span>章节</span>
+          </li>
+          <li>
+            <span class="num">4</span>
+            <span>类别</span>
+          </li>
+          <li>
+            <span class="num">{{ formatKM(summarizedData.commentSum, 1) }}+</span>
+            <span>评论</span>
+          </li>
+          <li>
+            <span class="num">{{ formatKM(summarizedData.hitSum, 1) }}+</span>
+            <span>阅读</span>
+          </li>
+          <div class="clear"></div>
+        </ul>
+      </div>
       <div class="year" v-for="ele in Object.entries(dataObj)" :key="ele[0] + 'year'">
         <span class="year-word" @click="handleToogle($event)">{{ ele[0] }}</span>
         <div class="month" style="display: none;">
@@ -21,22 +45,29 @@
 </template>
 
 <script>
-import { getAllBlog } from '@/service'
-import { slideToogle } from '@/util'
+import { getAllBlog, getSummarizedData } from '@/service'
+import { formatKM, slideToogle } from '@/util'
 export default {
   data() {
     return {
+      summarizedData: {},
       dataObj: {},
       top: [],
-      blogLen: 0
+      blogLen: 0,
+      formatKM: formatKM
     }
   },
   computed: {},
   created() {
-    this.getData()
+    this.getBlogData()
+    this.summarize()
   },
   methods: {
-    async getData() {
+    async summarize() {
+      const { result } = await getSummarizedData()
+      this.summarizedData = result ? result.data : {}
+    },
+    async getBlogData() {
       const { result } = await getAllBlog()
       let year = ''
       let month = ''
@@ -100,6 +131,46 @@ article {
   animation: fadeIn 0.6s linear;
   font-size: 14px;
   color: #24292e;
+
+  .summarize {
+    border: 1px dashed #e0e0e0;
+    padding: 20px 50px;
+    margin: 32px 0 24px;
+    border-radius: 6px;
+
+    .text {
+      color: #fff;
+      padding: 4.5px;
+      position: absolute;
+      top: -15px;
+      left: 60px;
+      background: #fff;
+
+      span {
+        background: #eb5055;
+        padding: 6px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+      }
+    }
+
+    ul li {
+      float: left;
+      width: 25%;
+      text-align: center;
+      padding: 6px 0;
+      color: #666;
+      font-weight: 500;
+
+      .num {
+        width: 100%;
+        display: inline-block;
+        font-size: 32px;
+        color: #adabab;
+      }
+    }
+  }
 
   .year {
     .year-word {

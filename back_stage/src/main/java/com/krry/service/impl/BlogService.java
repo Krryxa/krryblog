@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -271,6 +272,27 @@ public class BlogService implements IBlogService{
 		}
 
 		resData.put("data", blogList);
+		
+		res.setResult(resData);
+		
+		return res;
+	}
+	
+	/**
+	 * 查询汇总数据
+	 * @return
+	 */
+	public ResponseVal getSummarizedData() {
+		
+		HashMap<String, Object> sumData = blogMapper.getSummarizedData();
+		
+		HashMap<String, Object> resData = new HashMap<>();
+		
+		ResponseVal res = new ResponseVal();
+		
+		res.setCode(200);
+
+		resData.put("data", sumData);
 		
 		res.setResult(resData);
 		

@@ -195,5 +195,13 @@ export default {
    */
   fetchAllBlog() {
     return Ax.get(`/krryblog/blog/getAllBlog`)
+  },
+
+  /**
+   * 获取汇总数据
+   * @param {*} reqData
+   */
+  fetchSummarizedData() {
+    return Ax.get(`/krryblog/blog/getSummarizedData`)
   }
 }

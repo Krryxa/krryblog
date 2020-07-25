@@ -257,7 +257,7 @@ article {
     position: relative;
     padding-top: 100px;
     padding-bottom: 12px;
-    border-bottom: 1px dashed #b7b7b7;
+    border-bottom: 1px dashed #e0e0e0;
 
     h1 {
       font-size: 22px;

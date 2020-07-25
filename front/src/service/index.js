@@ -210,3 +210,12 @@ export async function getAllBlog() {
   let res = await Api.fetchAllBlog()
   return res
 }
+
+/**
+ * 获取汇总数据
+ *
+ */
+export async function getSummarizedData() {
+  let res = await Api.fetchSummarizedData()
+  return res
+}

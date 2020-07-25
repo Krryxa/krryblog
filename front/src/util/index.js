@@ -1,3 +1,30 @@
+export function formatKM(_value, _decimal) {
+  if (!_value || isNaN(Number(_value))) return 0
+  let _k = 1000
+  let _m = 10000
+  let _d = '1'
+  let _y = 100000000
+  if (_decimal > 0) {
+    for (let i = 0; i < _decimal; i++) {
+      _d += '0'
+    }
+  }
+  _d = Number(_d)
+  _k = _k / _d
+  _m = _m / _d
+  _y = _y / _d
+
+  _value = Number(_value)
+  if (_value > 100000000) {
+    _value = Math.round(_value / _y) / _d + '亿'
+  } else if (_value > 100000) {
+    _value = Math.round(_value / _m) / _d + 'w'
+  } else if (_value > 10000) {
+    _value = Math.round(_value / _k) / _d + 'k'
+  }
+  return _value
+}
+
 export function slideToogle(dom, duration = 1000) {
   if (!dom.tagTimer) {
     dom.status = dom.status || dom.style.display

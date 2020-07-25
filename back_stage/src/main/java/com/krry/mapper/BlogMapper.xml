@@ -183,4 +183,14 @@
  			b.id desc
 	</select>
 	
+	<!-- 查询汇总数据 -->
+	<select id="getSummarizedData" resultType="HashMap">
+		select
+			count(*) as blogSum,
+			SUM(hit) as hitSum,
+			SUM(comment) as commentSum
+		from
+			blog
+	</select>
+	
 </mapper>

@@ -127,6 +127,20 @@ public class BlogController {
 		return resData;
 	}
 	
+	/**
+	 * 查询汇总数据
+	 * @param params
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/getSummarizedData")
+	public ResponseVal getSummarizedData(){
+		
+		ResponseVal resData = blogService.getSummarizedData();
+		
+		return resData;
+	}
+	
 }
 
 

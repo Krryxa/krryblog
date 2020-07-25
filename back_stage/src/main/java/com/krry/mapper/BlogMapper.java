@@ -1,5 +1,6 @@
 package com.krry.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.krry.entity.Blog;
@@ -65,6 +66,12 @@ public interface BlogMapper {
 	 * @return
 	 */
 	public List<Blog> getAllBlog();
+	
+	/**
+	 * 查询汇总数据
+	 * @return
+	 */
+	public HashMap<String, Object> getSummarizedData();
 	
 
 }

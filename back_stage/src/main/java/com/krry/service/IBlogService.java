@@ -53,4 +53,10 @@ public interface IBlogService {
 	 */
 	public ResponseVal getAllBlog();
 	
+	/**
+	 * 查询汇总数据
+	 * @return
+	 */
+	public ResponseVal getSummarizedData();
+	
 }
