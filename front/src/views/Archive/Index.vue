@@ -74,6 +74,7 @@ export default {
       setTimeout(() => {
         this.$refs.container.style.display = 'block'
       }, 0)
+      this.blogLen = '--'
       this.getBlogData()
       !this.isRevise && this.summarize()
     }

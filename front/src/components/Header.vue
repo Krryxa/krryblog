@@ -33,7 +33,7 @@
                 <router-link to="/archive">时间归档</router-link>
               </li>
               <li>
-                <router-link to="/revise">更新历程</router-link>
+                <router-link to="/revise">Experience</router-link>
               </li>
             </ul>
           </li>
