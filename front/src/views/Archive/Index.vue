@@ -52,7 +52,6 @@ export default {
     return {
       summarizedData: {},
       dataObj: {},
-      top: [],
       blogLen: 0,
       formatKM: formatKM
     }
@@ -68,7 +67,9 @@ export default {
       this.summarizedData = result ? result.data : {}
     },
     async getBlogData() {
-      const { result } = await getAllBlog()
+      const { result } = await getAllBlog({
+        type: 'NO'
+      })
       let year = ''
       let month = ''
       let temp = {}
@@ -77,31 +78,23 @@ export default {
         Array.isArray(result.data) &&
         result.data.forEach((ele) => {
           const timeList = ele.createTime.split('-')
-          if (ele.isTop) {
-            this.top.push({
-              id: ele.id,
-              title: ele.title,
-              createTime: ele.createTime
-            })
-          } else {
-            if (timeList[0] !== year || timeList[1] !== month) {
-              month = timeList[1]
-              if (timeList[0] !== year) {
-                year = timeList[0]
-                this.$set(this.dataObj, year + ' 年', {})
-              }
-              temp = this.dataObj[year + ' 年']
-              // 这里需要加个字符，不能是纯数字，否则 Object.entries 的时候会自动把 10、11 月份提前，不知道为啥
-              this.$set(temp, month + '月', [])
+          if (timeList[0] !== year || timeList[1] !== month) {
+            month = timeList[1]
+            if (timeList[0] !== year) {
+              year = timeList[0]
+              this.$set(this.dataObj, year + ' 年', {})
             }
-            temp[month + '月'].push({
-              id: ele.id,
-              title: ele.title,
-              year,
-              month,
-              day: timeList[2]
-            })
+            temp = this.dataObj[year + ' 年']
+            // 这里需要加个字符，不能是纯数字，否则 Object.entries 的时候会自动把 10、11 月份提前，不知道为啥
+            this.$set(temp, month + '月', [])
           }
+          temp[month + '月'].push({
+            id: ele.id,
+            title: ele.title,
+            year,
+            month,
+            day: timeList[2]
+          })
         })
       this.$nextTick(() => {
         const firstDom = document.getElementsByClassName('month')[0]

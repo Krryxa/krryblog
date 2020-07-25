@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.krry.entity.Blog;
@@ -120,9 +121,9 @@ public class BlogController {
 	 */
 	@ResponseBody
 	@RequestMapping("/getAllBlog")
-	public ResponseVal getAllBlog(){
+	public ResponseVal getAllBlog(@RequestParam("type") String type){
 		
-		ResponseVal resData = blogService.getAllBlog();
+		ResponseVal resData = blogService.getAllBlog(type);
 		
 		return resData;
 	}

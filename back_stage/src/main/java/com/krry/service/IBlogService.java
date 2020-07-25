@@ -51,7 +51,7 @@ public interface IBlogService {
 	 * 查询所有已发布博客
 	 * @return
 	 */
-	public ResponseVal getAllBlog();
+	public ResponseVal getAllBlog(String type);
 	
 	/**
 	 * 查询汇总数据

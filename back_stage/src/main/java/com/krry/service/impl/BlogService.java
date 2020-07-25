@@ -247,9 +247,10 @@ public class BlogService implements IBlogService{
 	 * @param params
 	 * @return
 	 */
-	public ResponseVal getAllBlog() {
+	public ResponseVal getAllBlog(String type) {
 		
-		List<Blog> blogList = blogMapper.getAllBlog();
+		
+		List<Blog> blogList = type.equals("NO") ? blogMapper.getAllBlogWithNoOrder() : blogMapper.getAllBlog();
 		
 		HashMap<String, Object> resData = new HashMap<>();
 		

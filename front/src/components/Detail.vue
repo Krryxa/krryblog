@@ -124,7 +124,9 @@ export default {
   },
   methods: {
     async setNextPreBlog() {
-      const { result } = await getAllBlog()
+      const { result } = await getAllBlog({
+        type: 'YES'
+      })
       this.allBlogList = (result && result.data) || []
       if (result && result.data) {
         const currentIndex = result.data.findIndex(ele => ele.id === this.blog.id)

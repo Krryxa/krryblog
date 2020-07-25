@@ -193,8 +193,10 @@ export default {
    * 获取所有博客
    * @param {*} reqData
    */
-  fetchAllBlog() {
-    return Ax.get(`/krryblog/blog/getAllBlog`)
+  fetchAllBlog(reqData) {
+    return Ax.get(`/krryblog/blog/getAllBlog`, {
+      params: reqData
+    })
   },
 
   /**

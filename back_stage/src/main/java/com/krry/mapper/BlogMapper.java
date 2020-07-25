@@ -68,6 +68,12 @@ public interface BlogMapper {
 	public List<Blog> getAllBlog();
 	
 	/**
+	 * 查询所有已发布博客，正常排序
+	 * @return
+	 */
+	public List<Blog> getAllBlogWithNoOrder();
+	
+	/**
 	 * 查询汇总数据
 	 * @return
 	 */

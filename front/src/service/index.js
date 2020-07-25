@@ -206,8 +206,8 @@ export async function deleteFile(reqData) {
  * 获取所有博客
  *
  */
-export async function getAllBlog() {
-  let res = await Api.fetchAllBlog()
+export async function getAllBlog(reqData) {
+  let res = await Api.fetchAllBlog(reqData)
   return res
 }
 
