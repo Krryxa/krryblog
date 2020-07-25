@@ -9,7 +9,7 @@
         <ul>
           <li>
             <span class="num">{{ blogLen }}</span>
-            <span>章节</span>
+            <span>文章</span>
           </li>
           <li>
             <span class="num">4</span>
