@@ -13,7 +13,7 @@
           </li>
           <li>
             <span class="num">4</span>
-            <span>类别</span>
+            <span>存档</span>
           </li>
           <li>
             <span class="num">{{ formatKM(summarizedData.commentSum, 1) }}+</span>
@@ -59,13 +59,13 @@ export default {
   },
   computed: {
     isRevise() {
-      return this.$route.name === 'revise'
+      return this.$route.name === 'stars'
     },
     title() {
-      return this.isRevise ? '更新历程' : '时间归档'
+      return this.isRevise ? '星茶会' : '时间归档'
     },
     description() {
-      return this.isRevise ? 'Experience' : 'Archive'
+      return this.isRevise ? 'Stars' : 'Archive'
     }
   },
   watch: {

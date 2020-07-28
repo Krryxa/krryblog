@@ -39,10 +39,10 @@ export default new Router({
       meta: { title: '时间归档 - 你的美好，我都记得' }
     },
     {
-      path: '/revise',
+      path: '/stars',
       component: () => import('@/views/Archive'),
-      name: 'revise',
-      meta: { title: '更新历程 - 你的美好，我都记得' }
+      name: 'stars',
+      meta: { title: '星茶会 - 你的美好，我都记得' }
     },
     {
       path: '/category/:id(\\d+)/:page?',

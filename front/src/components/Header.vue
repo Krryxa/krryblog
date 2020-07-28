@@ -33,7 +33,7 @@
                 <router-link to="/archive">时间归档</router-link>
               </li>
               <li>
-                <router-link to="/revise">Experience</router-link>
+                <router-link to="/stars">星茶会</router-link>
               </li>
             </ul>
           </li>
@@ -77,7 +77,7 @@
             <ul class="nav-child">
               <li>
                 <router-link to="/archive">时间归档</router-link>
-                <router-link to="/revise">Experience</router-link>
+                <router-link to="/stars">星茶会</router-link>
               </li>
             </ul>
           </li>
