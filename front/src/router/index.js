@@ -10,13 +10,13 @@ export default new Router({
       path: '/',
       component: () => import('@/views/Home'),
       name: 'home',
-      meta: { title: 'Krryblog - 你的美好，我都记得' }
+      meta: { title: 'Krryblog' }
     },
     {
       path: '/page/:pageIndex(\\d+)',
       component: () => import('@/views/Home'),
       name: 'homePage',
-      meta: { title: 'Krryblog - 你的美好，我都记得' }
+      meta: { title: 'Krryblog' }
     },
     {
       path: '/2',
@@ -29,86 +29,82 @@ export default new Router({
     {
       path: '/:id(\\d+)',
       component: () => import('@/views/Blog'),
-      name: 'blog',
-      meta: { title: '你的美好，我都记得' }
+      name: 'blog'
     },
     {
       path: '/archive',
       component: () => import('@/views/Archive'),
       name: 'archive',
-      meta: { title: '时间归档 - 你的美好，我都记得' }
+      meta: { title: '时间归档' }
     },
     {
       path: '/stars',
       component: () => import('@/views/Archive'),
       name: 'stars',
-      meta: { title: '星茶会 - 你的美好，我都记得' }
+      meta: { title: '星茶会' }
     },
     {
       path: '/category/:id(\\d+)/:page?',
       component: () => import('@/views/Category'),
-      name: 'category',
-      meta: { title: '你的美好，我都记得' }
+      name: 'category'
     },
     {
       path: '/tag/:name/:page?',
       component: () => import('@/views/Tag'),
-      name: 'tag',
-      meta: { title: '你的美好，我都记得' }
+      name: 'tag'
     },
     {
       path: '/about',
       component: () => import('@/views/About'),
       name: 'about',
-      meta: { title: '你的美好，我都记得' }
+      meta: { title: '关于我' }
     },
     {
       path: '/link',
       component: () => import('@/views/Link'),
       name: 'link',
-      meta: { title: '你的美好，我都记得' }
+      meta: { title: '友情链接' }
     },
     {
       path: '/search/:keyword/:page?',
       component: () => import('@/views/Search'),
-      name: 'search',
-      meta: { title: '你的美好，我都记得' }
+      name: 'search'
     },
     {
       path: '/backstage',
       component: () => import('@/views/BackstageLogin'),
       name: 'login',
-      meta: { title: '管理员登录 - 你的美好，我都记得', keepAlive: true }
+      meta: { title: '管理员登录', keepAlive: true }
     },
     {
       path: '/backstage/list/:page?',
       component: () => import('@/views/BackstageList'),
       name: 'list',
-      meta: { title: '后台中心 - 你的美好，我都记得', requireAuth: true }
+      meta: { title: '后台中心', requireAuth: true }
     },
     {
       path: '/backstage/music',
       component: () => import('@/views/BackstageMusic'),
       name: 'music',
-      meta: { title: '音乐 - 你的美好，我都记得', requireAuth: true }
+      meta: { title: '音乐', requireAuth: true }
     },
     {
       path: '/backstage/edit',
       component: () => import('@/views/BackstageEdit'),
       name: 'edit',
-      meta: { title: '新增博客 - 你的美好，我都记得', requireAuth: true }
+      meta: { title: '新增博客', requireAuth: true }
     },
     {
       path: '/error',
       component: () => import('@/components/NotFound'),
       name: 'error',
-      meta: { title: '404 - 找不到页面' }
+      meta: { title: '404 - 找不到页面', cover: true }
     },
     {
       path: '*',
       component: () => import('@/components/NotFound'),
       name: 'NotFound',
-      meta: { title: '404 - 找不到页面' }
+      meta: { title: '404 - 找不到页面', cover: true }
     }
   ],
   scrollBehavior(to, from, savedPosition) {

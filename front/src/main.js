@@ -17,6 +17,8 @@ Object.keys(components).forEach(key => {
   Vue.component(key, components[key])
 })
 
+Vue.prototype.documentTitle = '你的美好，我都记得'
+
 // 以下配置 Valine 评论插件
 // Register AV objects to the global
 window.AV = require('leancloud-storage')
@@ -62,8 +64,9 @@ router.afterEach((to, from) => {
   if (to.name === 'NotFound') {
     iView.LoadingBar.error()
   }
-  let title = to.meta.title
-  document.title = title
+  if (to.meta && to.meta.title) {
+    document.title = to.meta.cover ? to.meta.title : to.meta.title + ' - ' + Vue.prototype.documentTitle
+  }
 })
 
 /* eslint-disable no-new */

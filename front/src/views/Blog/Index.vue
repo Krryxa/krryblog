@@ -30,7 +30,7 @@ export default {
       this.blog = res.result.data
       // 404 的标题在 axios 拦截器已经定义
       if (this.status === 200) {
-        document.title = `${this.blog['title']} - ${document.title}`
+        document.title = `${this.blog['title']} - ${this.documentTitle}`
       }
     },
     clearBlog() {

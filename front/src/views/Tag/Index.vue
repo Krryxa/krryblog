@@ -50,7 +50,7 @@ export default {
       if (this.status === 200) {
         this.blogList = res.result.data
         this.blogLen = res.result.blogLen
-        document.title = `${this.TagName} - ${document.title}`
+        document.title = `${this.TagName} - ${this.documentTitle}`
       }
     },
     async changePage(pageNo) {

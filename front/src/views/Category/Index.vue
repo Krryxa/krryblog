@@ -55,7 +55,7 @@ export default {
         this.blogList = res.result.data
         this.blogLen = res.result.blogLen
         this.categoryName = res.result.categoryName
-        document.title = `${this.categoryName} - ${document.title}`
+        document.title = `${this.categoryName} - ${this.documentTitle}`
 
         // if (this.status === 406) {
         //   // 分类下没有发布过任何博客的情况

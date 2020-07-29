@@ -38,7 +38,7 @@ export default {
   methods: {
     async getSearch() {
       this.keyword = this.$route.params['keyword']
-      document.title = `${this.keyword} 的搜索结果 - ${document.title}`
+      document.title = `${this.keyword} 的搜索结果 - ${this.documentTitle}`
       let reqData = {
         pageNo: this.pageNo,
         pageSize: this.pageSize,
