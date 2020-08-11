@@ -187,15 +187,14 @@ export default {
         el: '#vcomments',
         appId: 'AXcd7u8mPqn0JWnsXku8MgdU-gzGzoHsz',
         appKey: 'xDI01iWSsPVlKzITBp5ODinq',
-        verify: true,
         path: window.location.pathname,
         avatar: 'mp',
         placeholder: '留下你的足迹... （支持 Markdown）'
       })
-      // 获取按钮的容器
-      let buttonContainer = document.getElementsByClassName('text-right')[0]
       // 获取提交按钮并移除提交按钮
       this.submitBtn = document.getElementsByClassName('vsubmit')[0]
+      // 获取按钮的容器
+      let buttonContainer = this.submitBtn.parentElement
       this.submitBtn.style['display'] = 'none'
       buttonContainer.removeChild(this.submitBtn)
 
@@ -210,7 +209,7 @@ export default {
       // 创建新的按钮替换
       let btn = document.createElement('button')
       btn.className = 'new-btn'
-      btn.innerText = '提交评论'
+      btn.innerText = '提交'
       buttonContainer.appendChild(btn)
       // 提交评论的事件
       btn.addEventListener('click', async e => {
@@ -505,48 +504,32 @@ article {
     max-height: 12rem;
   }
 
-  .vcontrol {
-    padding-top: 10px;
-
-    & > .col:first-child {
-      visibility: hidden;
-    }
-
-    .text-right {
-      .new-btn {
-        padding: 0.5rem 1.25rem;
-        font-size: 0.875rem;
-        line-height: 1.42857143;
-        color: #fff;
-        background: #ff9800;
-        border: none;
-        border: 1px solid #ff9800;
-        border-radius: 0.3rem;
-        outline: none;
-
-        &:hover {
-          border: 1px solid #f60;
-        }
-      }
-
-      .vsubmit {
-        color: #fff;
-        background: #ff9800;
-
-        &:hover {
-          border: 1px solid #f60;
-        }
-      }
-    }
-  }
-
-  .vinfo {
+  .vcount {
     display: none !important;
   }
 
-  .vlist {
+  .vrow {
+    .new-btn {
+      border: 1px solid #ededed;
+      padding: .5em 1.25em;
+      outline: none;
+      background: transparent;
+      font-size: .875em;
+      font-weight: 400;
+      border-radius: .3em;
+      color: #555;
+      transition: 0.3s;
+
+      &:hover {
+        border: 1px solid #eb5055;
+        color: #eb5055;
+      }
+    }
+  }
+
+  .vcards {
     & > .vcard > .vh {
-      border-bottom: 1px solid #e5e9ef !important;
+      border-bottom: 1px solid #eef2f7 !important;
     }
 
     .vcard {
@@ -606,23 +589,17 @@ article {
           padding-top: 2px;
           margin-bottom: 0;
 
-          .at {
-            color: #ff9800;
-
-            &::before {
-              background: #eb5055;
+          a {
+            color: #666;
+            border-bottom: 1px solid #ccc;
+            display: inline;
+            &:hover {
+              border-bottom: 1px solid #eb5055;
             }
           }
 
           p {
             display: inline;
-            margin-left: 6px;
-          }
-
-          a {
-            &::before {
-              background: #eb5055;
-            }
           }
         }
       }
@@ -631,6 +608,27 @@ article {
         padding-left: 0;
         margin-top: 0;
         border: none;
+
+        /* @昵称 的样式 */
+        .vcontent {
+          &>a {
+            color: #ff9800;
+            margin-right: 6px;
+            border: none;
+            &:hover {
+              color: #ff9800 !important;
+              border: none;
+            }
+          }
+          &>p>a {
+            color: #ff9800;
+            border: none;
+            &:hover {
+              color: #ff9800 !important;
+              border: none;
+            }
+          }
+        }
 
         .vimg {
           width: 2.8rem;
@@ -649,18 +647,6 @@ article {
         border: 1px solid #f60;
       }
     }
-  }
-
-  .vcancel {
-    color: #fff;
-    background: #ff4d43;
-    border: 1px solid #ff6969;
-  }
-
-  .vsure {
-    color: #fff;
-    background: #4373ff;
-    border: 1px solid #4f87ff;
   }
 }
 </style>
