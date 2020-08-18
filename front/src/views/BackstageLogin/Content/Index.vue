@@ -60,7 +60,11 @@ export default {
         sessionStorage.setItem('username', this.name)
         this.$store.dispatch('user/SETUSERID', userId)
         this.$store.dispatch('user/SETUSERNAME', this.name)
-        this.$router.push({ name: 'list' })
+        if (this.$route.query && this.$route.query.returnUrl) {
+          window.location.href = this.$route.query.returnUrl
+        } else {
+          this.$router.push({ name: 'list' })
+        }
       }
       this.$Spin.hide()
     },

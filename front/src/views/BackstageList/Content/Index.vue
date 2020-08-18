@@ -271,10 +271,8 @@ export default {
                   props: {
                     to: {
                       name: 'edit',
-                      params: {
-                        id: params.row.id,
-                        imgName: params.row.imageName,
-                        uploadImgUrl: params.row.image
+                      query: {
+                        id: params.row.id
                       }
                     }
                   }

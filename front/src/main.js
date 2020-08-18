@@ -53,7 +53,10 @@ router.beforeEach((to, from, next) => {
       next()
     } else {
       // 否则进入登录页面
-      next({ name: 'login' })
+      next({
+        name: 'login',
+        query: { returnUrl: window.location.href }
+      })
     }
   } else {
     next()

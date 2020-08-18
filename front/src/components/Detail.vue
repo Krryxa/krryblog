@@ -30,10 +30,8 @@
       v-if="isLogined"
       :to="{
       name: 'edit',
-      params: {
-        id: blog.id,
-        imgName: blog.imageName,
-        uploadImgUrl: blog.image
+      query: {
+        id: blog.id
       }}"
     >修改</router-link>
     <div id="blog" class="content markdown-body" v-html="blog.content_hm"></div>

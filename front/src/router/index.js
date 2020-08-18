@@ -71,7 +71,7 @@ export default new Router({
       name: 'search'
     },
     {
-      path: '/backstage',
+      path: '/backstage/:returnUrl?',
       component: () => import('@/views/BackstageLogin'),
       name: 'login',
       meta: { title: '管理员登录', keepAlive: true }
@@ -89,7 +89,7 @@ export default new Router({
       meta: { title: '音乐', requireAuth: true }
     },
     {
-      path: '/backstage/edit',
+      path: '/backstage/edit/:id?',
       component: () => import('@/views/BackstageEdit'),
       name: 'edit',
       meta: { title: '新增博客', requireAuth: true }

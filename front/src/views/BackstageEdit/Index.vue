@@ -92,7 +92,7 @@ export default {
   mixins: [loading],
   data() {
     return {
-      id: this.$route.params.id || 0,
+      id: this.$route.query.id || 0,
       title: '',
       markdownDesc: '',
       translateDesc: '',
@@ -136,15 +136,6 @@ export default {
       // get blog when edit
       document.title = document.title.replace('新增', '编辑')
 
-      this.imgName = this.$route.params['imgName']
-      this.uploadImgUrl = this.$route.params['uploadImgUrl']
-      this.defaultUploadList = [
-        {
-          name: this.imgName,
-          url: window.location.origin + '/krryblog/' + this.uploadImgUrl
-        }
-      ]
-
       let res = await getEditBlogDetail(this.id)
       let status = res.code
       let blogObj = res.result.data
@@ -156,6 +147,15 @@ export default {
         this.description = blogObj['description']
         this.classifyId = blogObj['classifyId']
         this.label = blogObj['label']
+
+        this.imgName = blogObj.imageName
+        this.uploadImgUrl = blogObj.image
+        this.defaultUploadList = [
+          {
+            name: this.imgName,
+            url: window.location.origin + '/krryblog/' + this.uploadImgUrl
+          }
+        ]
       }
     },
     async getBlogCount() {

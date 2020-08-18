@@ -54,7 +54,11 @@ $axios.interceptors.response.use(
         sessionStorage.clear()
         iView.Message.error(apiRes.message)
         flag && iView.LoadingBar.finish()
-        router.push({name: 'login'})
+        const returnUrl = window.location.href
+        router.push({
+          name: 'login',
+          query: { returnUrl }
+        })
         break
       default:
         flag && iView.LoadingBar.finish()
