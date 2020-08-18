@@ -37,7 +37,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 				response.getWriter().print(res);
 			} else {
 				// 定位到登录页
-				response.sendRedirect("/backstage");
+				response.sendRedirect("/login");
 			}
 			return false;
 		} else {

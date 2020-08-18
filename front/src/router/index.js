@@ -71,7 +71,7 @@ export default new Router({
       name: 'search'
     },
     {
-      path: '/backstage/:returnUrl?',
+      path: '/login/:returnUrl?',
       component: () => import('@/views/BackstageLogin'),
       name: 'login',
       meta: { title: '管理员登录', keepAlive: true }
