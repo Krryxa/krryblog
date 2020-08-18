@@ -38,6 +38,7 @@
         </FormItem>
         <!-- upload image -->
         <uploadImg
+          v-if="id ? uploadImgUrl : true"
           :id="id"
           :defaultList="defaultUploadList"
           :uploadImgUrl="uploadImgUrl"
