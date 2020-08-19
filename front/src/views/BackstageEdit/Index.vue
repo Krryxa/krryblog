@@ -38,7 +38,7 @@
         </FormItem>
         <!-- upload image -->
         <uploadImg
-          v-if="id ? uploadImgUrl : true"
+          v-if="id ? uploadImgUrl || manualDeleteImg : true"
           :id="id"
           :defaultList="defaultUploadList"
           :uploadImgUrl="uploadImgUrl"
@@ -104,6 +104,7 @@ export default {
       label: '',
       blogCount: 0,
       statusFlag: true,
+      manualDeleteImg: false,
 
       defaultUploadList: []
     }
@@ -190,7 +191,8 @@ export default {
     },
 
     // from child
-    changeImg(name, url) {
+    changeImg(name, url, isDelete) {
+      isDelete && (this.manualDeleteImg = true)
       this.imgName = name
       this.uploadImgUrl = url
     },

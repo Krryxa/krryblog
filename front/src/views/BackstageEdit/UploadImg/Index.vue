@@ -98,7 +98,7 @@ export default {
           if (res === 'success') {
             this.$Message.success('删除成功！')
             // 清空图片区域
-            this.$emit('changeImg', '', '')
+            this.$emit('changeImg', '', '', true)
             const fileList = this.$refs.upload.fileList
             this.$refs.upload.fileList.splice(fileList.indexOf(file), 1)
           } else {
