@@ -18,6 +18,7 @@ Object.keys(components).forEach(key => {
 })
 
 Vue.prototype.documentTitle = '你的美好，我都记得'
+Vue.prototype.basePath = window.location.protocol + '//' + window.location.hostname
 
 // 以下配置 Valine 评论插件
 // Register AV objects to the global

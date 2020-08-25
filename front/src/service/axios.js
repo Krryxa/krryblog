@@ -6,9 +6,10 @@ import router from '@/router'
 import store from '@/store'
 import { codeStatus } from '@/util/enum'
 
+const origin = window.location.protocol + '//' + window.location.hostname
+
 // 自动识别接口使用开发环境地址（开发环境地址做了 proxyTable 代理，故设置为空）或线上地址
-const baseURL =
-  process.env.NODE_ENV === 'production' ? process.env.API_ROOT : ''
+const baseURL = process.env.NODE_ENV === 'production' ? origin : ''
 // 开发环境直接打包测试
 // axios.defaults.baseURL = '';
 

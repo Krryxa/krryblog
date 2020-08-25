@@ -29,9 +29,6 @@ import Bus from '@/bus'
 export default {
   data() {
     return {
-      // basePath: window.location.origin + '/',
-      basePath: process.env.API_ROOT,
-      // basePath: 'https://ainyi.com',
       isPlay: false,
       firstTime: true, // 是否是第一次播放
       musicList: [],

@@ -110,9 +110,6 @@ export default {
     }
   },
   computed: {
-    basePath() {
-      return process.env.API_ROOT + '/krryblog/'
-    },
     status() {
       return +this.statusFlag
     },
@@ -169,7 +166,7 @@ export default {
       formData.append('imgFile', $file)
       let id = this.id || this.blogCount + 1
       let result = await uploadContent(id, formData)
-      this.$refs.mdEdit.$img2Url(pos, this.basePath + result.url)
+      this.$refs.mdEdit.$img2Url(pos, this.basePath + '/' + result.url)
     },
     async delImg(fileArr) {
       this.openLoading('Deleting~~')

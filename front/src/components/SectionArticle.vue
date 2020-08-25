@@ -7,7 +7,7 @@
       <div class="bg-container">
         <div
           class="bg-img"
-          :style="val.id | setLink({background: `url(${basePath}${val.image}) 0% 0% / cover`})"
+          :style="val.id | setLink({background: `url(${basePath}/${val.image}) 0% 0% / cover`})"
         ></div>
       </div>
       <!-- 这里使用命名路由，效果与下面一样，使用过滤器控制骨架屏的链接 -->
@@ -101,9 +101,6 @@ export default {
     }
   },
   computed: {
-    basePath() {
-      return process.env.API_ROOT + '/krryblog/'
-    },
     isHome() {
       return this.$route.name === 'home' || this.$route.name === 'homePage'
     }
