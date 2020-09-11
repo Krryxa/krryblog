@@ -187,11 +187,13 @@ export default {
         appKey: 'xDI01iWSsPVlKzITBp5ODinq',
         path: window.location.pathname,
         avatar: 'mp',
-        placeholder: '留下你的足迹... （昵称输入QQ号可自动补全信息；支持 Markdown）',
+        placeholder: '留下你的足迹... （支持 Markdown）',
         enableQQ: true
       })
       const nickInp = document.getElementsByClassName('vnick vinput')[0]
+      const urlInp = document.getElementsByClassName('vlink vinput')[0]
       nickInp.placeholder = '昵称（QQ号）'
+      urlInp.placeholder = '网址'
 
       // 获取提交按钮并移除提交按钮
       this.submitBtn = document.getElementsByClassName('vsubmit')[0]

@@ -110,7 +110,7 @@ export default {
         },
         {
           title: 'Title',
-          width: 151,
+          width: 150,
           key: 'title',
           render: (h, params) => {
             return h(
@@ -189,7 +189,7 @@ export default {
         },
         {
           title: 'Status',
-          width: 79,
+          width: 81,
           key: 'status',
           align: 'center',
           render: (h, params) => {
@@ -224,7 +224,7 @@ export default {
         },
         {
           title: 'Top',
-          width: 79,
+          width: 81,
           key: 'isTop',
           align: 'center',
           render: (h, params) => {
@@ -260,7 +260,7 @@ export default {
         {
           title: 'Operation',
           key: 'action',
-          width: 130,
+          width: 127,
           align: 'center',
           render: (h, params) => {
             return h('div', {}, [
@@ -472,7 +472,12 @@ section {
 <style lang="scss">
 .list {
   .a-button {
-    margin: 0 4px;
+    &:last-child {
+      margin-left: 4px;
+    }
+    &:first-child {
+      margin-right: 4px;
+    }
     color: #5cadff;
     &:hover {
       color: #2d8cf0 !important;
