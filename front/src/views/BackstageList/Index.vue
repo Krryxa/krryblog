@@ -8,7 +8,10 @@
       :current="pageNo"
       :page-size="pageSize"
       show-elevator
+      show-sizer
+      :page-size-opts="[10, 20, 50]"
       @on-change="changePage"
+      @on-page-size-change="changePageSize"
     />
   </main>
   <not-found v-else></not-found>
@@ -81,12 +84,20 @@ export default {
       this.flag = false
       let query = pageNo === 1 ? {} : { page: pageNo }
       this.$router.push({ name: 'list', query: query })
+    },
+    async changePageSize(pageSize) {
+      this.pageSize = pageSize
+      await this.getBlog()
+      this.flag = false
+      let query = pageSize === 10 ? {} : { pageSize: pageSize }
+      this.$router.push({ name: 'list', query: query })
     }
   },
   watch: {
     $route(to, from) {
       if (this.flag) {
         this.pageNo = +to.query.page || 1
+        this.pageSize = +to.query.pageSize || 10
         this.getBlog()
       }
       this.flag = true
