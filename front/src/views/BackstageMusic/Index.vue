@@ -70,19 +70,15 @@ export default {
       let query = pageNo === 1 ? {} : { page: pageNo }
       this.$router.push({ name: 'music', query: query })
     },
-    async changePageSize(pageSize) {
+    changePageSize(pageSize) {
       this.pageSize = pageSize
-      await this.getMusic()
-      this.flag = false
-      let query = pageSize === 10 ? {} : { pageSize: pageSize }
-      this.$router.push({ name: 'music', query: query })
+      this.changePage(1)
     }
   },
   watch: {
     $route(to, from) {
       if (this.flag) {
         this.pageNo = +to.query.page || 1
-        this.pageSize = +to.query.pageSize || 10
         this.getMusic()
       }
       this.flag = true
