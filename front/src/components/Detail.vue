@@ -298,13 +298,13 @@ article {
         background: #f16d71;
         border: 1px solid #f16d71;
         border-radius: 15px;
-        transition: 0.4s;
+        transition: 0.2s;
 
         &:hover {
-          color: #5f5f5f !important;
-          background: #f7f7f7;
-          border: 1px solid #f7f7f7;
+          color: #fff !important;
+          background: #ff4046;
           outline-style: none;
+          border: 1px solid #ff4046;
         }
       }
     }
