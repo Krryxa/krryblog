@@ -34,7 +34,12 @@
             <div class="day">
               <div v-for="item in jcl[1]" :key="item.id">
                 <span class="day-word">{{ item.day }}日{{item.remark}}：</span>
-                <router-link v-if="!isRevise" class="link" :to="'/' + item.id">{{ item.title }}</router-link>
+                <Tooltip v-if="!isRevise" theme="light" placement="right">
+                  <router-link class="link" :to="'/' + item.id">{{ item.title }}</router-link>
+                  <div slot="content">
+                    <img :src="item.imgUrl" width="200" />
+                  </div>
+                </Tooltip>
                 <span v-else class="link">{{ item.title }}</span>
               </div>
             </div>
@@ -117,6 +122,7 @@ export default {
             year,
             month,
             day: timeList[2],
+            imgUrl: ele.image,
             remark: ele.remark
           })
         })
