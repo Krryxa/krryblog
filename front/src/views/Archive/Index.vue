@@ -35,7 +35,7 @@
               <div v-for="item in jcl[1]" :key="item.id">
                 <span class="day-word">{{ item.day }}日{{item.remark}}：</span>
                 <Tooltip v-if="!isRevise" theme="light" placement="right">
-                  <router-link class="link" :to="'/' + item.id">{{ item.title }}</router-link>
+                  <a class="link" :href="'/' + item.id">{{ item.title }}</a>
                   <div slot="content">
                     <img :src="item.imgUrl" width="200" />
                   </div>
@@ -134,6 +134,9 @@ export default {
     handleToogle(e) {
       const monthDom = e.currentTarget.nextElementSibling
       slideToogle(monthDom, 600)
+    },
+    gotoDetail(id) {
+      window.location.href = `/${id}`
     }
   },
   components: {
