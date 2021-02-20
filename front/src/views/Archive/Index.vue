@@ -134,9 +134,6 @@ export default {
     handleToogle(e) {
       const monthDom = e.currentTarget.nextElementSibling
       slideToogle(monthDom, 600)
-    },
-    gotoDetail(id) {
-      window.location.href = `/${id}`
     }
   },
   components: {
