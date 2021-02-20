@@ -32,12 +32,12 @@
           <div v-for="jcl in Object.entries(ele[1])" :key="ele[0] + 'year' + jcl[0]">
             <span class="month-word" @click="handleToogle($event)">{{ jcl[0] }}</span>
             <div class="day">
-              <div v-for="item in jcl[1]" :key="item.id">
+              <div v-for="(item, index) in jcl[1]" :key="item.id">
                 <span class="day-word">{{ item.day }}日{{item.remark}}：</span>
-                <Tooltip v-if="!isRevise" theme="light" placement="right">
-                  <a class="link" :href="'/' + item.id">{{ item.title }}</a>
-                  <div slot="content">
-                    <img :src="item.imgUrl" width="200" />
+                <Tooltip v-if="!isRevise" theme="light" placement="right" @on-popper-show="showImg(ele[0], jcl[0], index)">
+                  <router-link class="link" :to="'/' + item.id">{{ item.title }}</router-link>
+                  <div slot="content" style="height: 160px; width: 194px;">
+                    <img :src="item.isShow ? item.imgUrl : ''" height="160" />
                   </div>
                 </Tooltip>
                 <span v-else class="link">{{ item.title }}</span>
@@ -123,6 +123,7 @@ export default {
             month,
             day: timeList[2],
             imgUrl: ele.image,
+            isShow: false,
             remark: ele.remark
           })
         })
@@ -134,6 +135,9 @@ export default {
     handleToogle(e) {
       const monthDom = e.currentTarget.nextElementSibling
       slideToogle(monthDom, 600)
+    },
+    showImg(year, month, index) {
+      this.dataObj[year][month][index].isShow = true
     }
   },
   components: {
