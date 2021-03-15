@@ -105,7 +105,7 @@ export default {
       columns: [
         {
           title: 'ID',
-          width: 50,
+          width: 57,
           key: 'id'
         },
         {
@@ -147,7 +147,7 @@ export default {
         },
         {
           title: 'Label',
-          width: 111,
+          width: 106,
           key: 'label',
           render: (h, params) => {
             let labelList = params.row.label.split(',')
@@ -260,7 +260,7 @@ export default {
         {
           title: 'Operation',
           key: 'action',
-          width: 127,
+          width: 125,
           align: 'center',
           render: (h, params) => {
             return h('div', {}, [
