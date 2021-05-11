@@ -36,7 +36,7 @@
                 <span class="day-word">{{ item.day }}日{{item.remark}}：</span>
                 <Tooltip v-if="!isRevise" theme="light" placement="right" @on-popper-show="showImg(ele[0], jcl[0], index)">
                   <router-link class="link" :to="'/' + item.id">{{ item.title }}</router-link>
-                  <div slot="content" style="height: 160px; width: 194px;">
+                  <div slot="content" style="height: 160px;">
                     <img :src="item.isShow ? item.imgUrl : ''" height="160" />
                   </div>
                 </Tooltip>
