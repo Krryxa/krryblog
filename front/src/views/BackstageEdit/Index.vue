@@ -3,7 +3,7 @@
     <section class="add-blog">
       <Breadcrumb>
         <BreadcrumbItem to="/">博客首页</BreadcrumbItem>
-        <BreadcrumbItem :to="{name: 'list'}">后台中心</BreadcrumbItem>
+        <BreadcrumbItem :to="{ name: 'list' }">后台中心</BreadcrumbItem>
         <BreadcrumbItem>博客编辑页</BreadcrumbItem>
       </Breadcrumb>
       <Form>
@@ -14,7 +14,7 @@
           v-model.trim="title"
           placeholder="博客标题..."
           style="width: 100%"
-        >
+        />
         <mavon-editor
           :value="markdownDesc"
           :tabSize="2"
@@ -29,7 +29,7 @@
         <FormItem label="博客描述：" style="padding-top: 42px">
           <Input
             v-model.trim="description"
-            :autosize="{minRows: 4,maxRows: 10}"
+            :autosize="{ minRows: 4, maxRows: 10 }"
             style="width: 460px"
             type="textarea"
             :rows="4"
@@ -47,8 +47,12 @@
         ></uploadImg>
         <FormItem label="分类存档：">
           <RadioGroup v-model="classifyId">
-            <Radio :label="item.id" v-for="(item, index) in classifyList" :key="index">
-              <span>{{item.name}}</span>
+            <Radio
+              :label="item.id"
+              v-for="(item, index) in classifyList"
+              :key="index"
+            >
+              <span>{{ item.name }}</span>
             </Radio>
           </RadioGroup>
         </FormItem>
@@ -69,7 +73,9 @@
       </Form>
       <div class="blog-btn">
         <Button type="primary" size="large" @click="beforeCommit">保存</Button>
-        <Button style="margin-left: 50px" size="large" @click="back">返回</Button>
+        <Button style="margin-left: 50px" size="large" @click="back"
+          >返回</Button
+        >
       </div>
     </section>
   </main>
@@ -172,7 +178,9 @@ export default {
       this.openLoading('Deleting~~')
       // fileArr: ['http://...', { name: 'xxx', ... }]
       let id = this.id || this.blogCount + 1
-      let res = await deleteFile({ filePath: `upload/content/${id}/${fileArr[1].name}` })
+      let res = await deleteFile({
+        filePath: `upload/content/${id}/${fileArr[1].name}`
+      })
       if (res === 'success') {
         this.$Message.success('删除成功！')
       } else {
@@ -257,7 +265,7 @@ export default {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 section {
   animation: fadeIn 0.6s linear;
   padding: 40px 50px 30px;
