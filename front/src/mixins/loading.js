@@ -1,4 +1,4 @@
-export let loading = {
+export const loading = {
   methods: {
     openLoading(message) {
       this.$Spin.show({
