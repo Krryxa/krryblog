@@ -9,6 +9,7 @@ import iView from 'iview'
 // import 'mavon-editor/dist/css/index.css';
 // import 'iview/dist/styles/iview.css';
 // import 'animate.css';
+import '@/assets/css/global.scss'
 
 // 加载全局组件
 import components from './components'

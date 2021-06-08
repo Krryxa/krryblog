@@ -16,7 +16,9 @@
             <span>存档</span>
           </li>
           <li>
-            <span class="num">{{ formatKM(summarizedData.commentSum, 1) }}+</span>
+            <span class="num"
+              >{{ formatKM(summarizedData.commentSum, 1) }}+</span
+            >
             <span>评论</span>
           </li>
           <li>
@@ -26,25 +28,62 @@
           <div class="clear"></div>
         </ul>
       </div>
-      <div class="year" v-for="ele in Object.entries(dataObj)" :key="ele[0] + 'year'">
-        <span class="year-word" @click="handleToogle($event)">{{ ele[0] }}</span>
-        <div class="month" style="display: none;">
-          <div v-for="jcl in Object.entries(ele[1])" :key="ele[0] + 'year' + jcl[0]">
-            <span class="month-word" @click="handleToogle($event)">{{ jcl[0] }}</span>
-            <div class="day">
-              <div v-for="(item, index) in jcl[1]" :key="item.id">
-                <span class="day-word">{{ item.day }}日{{item.remark}}：</span>
-                <Tooltip v-if="!isRevise" theme="light" placement="right" @on-popper-show="showImg(ele[0], jcl[0], index)">
-                  <router-link class="link" :to="'/' + item.id">{{ item.title }}</router-link>
-                  <div slot="content" style="height: 160px;">
-                    <img :src="item.isShow ? item.imgUrl : ''" height="160" />
-                  </div>
-                </Tooltip>
-                <span v-else class="link">{{ item.title }}</span>
+      <div class="spin-box">
+        <div
+          class="year"
+          v-for="ele in Object.entries(dataObj)"
+          :key="ele[0] + 'year'"
+        >
+          <span class="year-word" @click="handleToogle($event)">{{
+            ele[0]
+          }}</span>
+          <div class="month" style="display: none;">
+            <div
+              v-for="jcl in Object.entries(ele[1])"
+              :key="ele[0] + 'year' + jcl[0]"
+            >
+              <span class="month-word" @click="handleToogle($event)">{{
+                jcl[0]
+              }}</span>
+              <div class="day">
+                <div v-for="(item, index) in jcl[1]" :key="item.id">
+                  <span class="day-word"
+                    >{{ item.day }}日{{ item.remark }}：</span
+                  >
+                  <Tooltip
+                    v-if="!isRevise"
+                    theme="light"
+                    placement="right"
+                    @on-popper-show="showImg(ele[0], jcl[0], index)"
+                  >
+                    <router-link class="link" :to="'/' + item.id">{{
+                      item.title
+                    }}</router-link>
+                    <div slot="content" style="height: 160px;">
+                      <img :src="item.isShow ? item.imgUrl : ''" height="160" />
+                    </div>
+                  </Tooltip>
+                  <span v-else class="link">{{ item.title }}</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <Spin fix v-if="spinShow">
+          <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+              <circle
+                class="path"
+                cx="50"
+                cy="50"
+                r="20"
+                fill="none"
+                stroke-width="5"
+                stroke-miterlimit="10"
+              ></circle>
+            </svg>
+          </div>
+        </Spin>
       </div>
     </article>
   </main>
@@ -59,6 +98,7 @@ export default {
       summarizedData: {},
       dataObj: {},
       blogLen: 0,
+      spinShow: true,
       formatKM: formatKM
     }
   },
@@ -75,6 +115,7 @@ export default {
   },
   watch: {
     $route(to, from) {
+      this.spinShow = true
       this.$refs.container.style.display = 'none'
       setTimeout(() => {
         this.$refs.container.style.display = 'block'
@@ -86,7 +127,7 @@ export default {
   },
   created() {
     this.getBlogData()
-    this.summarize()
+    !this.isRevise && this.summarize()
   },
   methods: {
     async summarize() {
@@ -95,9 +136,12 @@ export default {
     },
     async getBlogData() {
       this.$set(this, 'dataObj', {})
-      const { result } = this.isRevise ? await getReviseList() : await getAllBlog({
-        type: 'NO'
-      })
+      const { result } = this.isRevise
+        ? await getReviseList()
+        : await getAllBlog({
+          type: 'NO'
+        })
+      this.spinShow = false
       let year = ''
       let month = ''
       let temp = {}
@@ -147,7 +191,7 @@ export default {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 article {
   position: relative;
   max-width: 700px;
@@ -158,6 +202,36 @@ article {
   animation: fadeIn 0.6s linear;
   font-size: 14px;
   color: #24292e;
+
+  .spin-box {
+    min-height: 200px;
+    position: relative;
+    .loader {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      margin: 0 auto;
+      .circular {
+        animation: rotate 2s linear infinite;
+        height: 100%;
+        transform-origin: center center;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        .path {
+          stroke-dasharray: 1, 200;
+          stroke-dashoffset: 0;
+          animation: dash 1.5s ease-in-out infinite,
+            color 6s ease-in-out infinite;
+          stroke-linecap: round;
+        }
+      }
+    }
+  }
 
   .summarize {
     border: 1px dashed #e0e0e0;
@@ -218,7 +292,7 @@ article {
         font-weight: 500;
       }
 
-      &>div:last-child {
+      & > div:last-child {
         padding-bottom: 12px;
       }
 
@@ -230,7 +304,7 @@ article {
           color: #666;
         }
 
-        &>div {
+        & > div {
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
