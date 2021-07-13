@@ -2,8 +2,10 @@
   <header class="head-page">
     <div class="container">
       <div class="home left">
-        <Icon type="md-headset"/>
-        <router-link to="/">Krryblog</router-link>
+        <router-link to="/">
+          <i class="iconfont music-note icon-musicnote"></i>
+          Krryblog
+          </router-link>
       </div>
       <div
         class="nav-coll-menu"
@@ -212,12 +214,17 @@ header {
     .home {
       height: 100%;
       font-size: 24px;
-      line-height: 70px;
+      line-height: 67px;
 
       a {
         position: relative;
         z-index: 1;
         font-size: 20px;
+
+        i {
+          font-size: 24px;
+          vertical-align: bottom;
+        }
       }
     }
 
