@@ -9,6 +9,10 @@
 <script>
 import { getLinkOrAbout } from '@/service'
 export default {
+  components: {
+    SectionHeader: () => import('@/components/SectionHeader'),
+    Detail: () => import('@/components/Detail')
+  },
   data() {
     return {
       blog: {},
@@ -37,10 +41,6 @@ export default {
         this.blog = res.result.data
       }
     }
-  },
-  components: {
-    SectionHeader: () => import('@/components/SectionHeader'),
-    Detail: () => import('@/components/Detail')
   }
 }
 </script>
