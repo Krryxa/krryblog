@@ -57,7 +57,7 @@ export default {
     $route(to, from) {
       if (this.flag) {
         this.pageNo = +to.params.pageIndex || 1
-        this.getBlogList()
+        // this.getBlogList()
       }
       this.flag = true
     }

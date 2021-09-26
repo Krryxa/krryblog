@@ -6,15 +6,16 @@ import router from '@/router'
 import store from '@/store'
 import { codeStatus } from '@/util/enum'
 
-const origin = window.location.protocol + '//' + window.location.hostname
+// const origin = window.location.protocol + '//' + window.location.hostname
+// const origin = 'https://ainyi.com'
 
 // 自动识别接口使用开发环境地址（开发环境地址做了 proxyTable 代理，故设置为空）或线上地址
-const baseURL = process.env.NODE_ENV === 'production' ? origin : ''
+// const baseURL = process.env.NODE_ENV === 'production' ? origin : ''
 // 开发环境直接打包测试
 // axios.defaults.baseURL = '';
 
 const $axios = axios.create({
-  baseURL: baseURL,
+  // baseURL: baseURL,
   timeout: 20000,
   headers: { 'X-Requested-With': 'XMLHttpRequest' }
 })
@@ -29,7 +30,7 @@ $axios.interceptors.request.use(
     if (noLoading.includes(url.split('/').pop())) {
       flag = false
     } else {
-      iView.LoadingBar.start()
+      // iView.LoadingBar.start()
       flag = true
     }
     return config
@@ -46,7 +47,7 @@ $axios.interceptors.response.use(
     switch (+apiRes.code) {
       case codeStatus.NOTFOUND:
         document.title = '404 - 找不到页面'
-        flag && iView.LoadingBar.error()
+        // flag && iView.LoadingBar.error()
         // 可以在这里直接设置跳转到 404 页面，已经不需要啦，在组件中已经设置，为了不改变 url，实现转发的效果
         // router.push({name: 'error'})
         break
@@ -54,7 +55,7 @@ $axios.interceptors.response.use(
         store.dispatch('user/CLEARUSER')
         sessionStorage.clear()
         iView.Message.error(apiRes.message)
-        flag && iView.LoadingBar.finish()
+        // flag && iView.LoadingBar.finish()
         const returnUrl = window.location.href
         router.push({
           name: 'login',
@@ -62,13 +63,13 @@ $axios.interceptors.response.use(
         })
         break
       default:
-        flag && iView.LoadingBar.finish()
+        // flag && iView.LoadingBar.finish()
         break
     }
     return apiRes
   },
   async error => {
-    iView.LoadingBar.error()
+    // iView.LoadingBar.error()
     console.dir(error)
     return Promise.reject(error)
   }

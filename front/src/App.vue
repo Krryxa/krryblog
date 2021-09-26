@@ -14,9 +14,15 @@
 
 <script>
 import { mapActions } from 'vuex'
-import '@/util/mouseHeart'
+import AV from 'leancloud-storage'
+// import '@/util/mouseHeart'
 export default {
   name: 'App',
+  // asyncData({ store }) {
+  //   console.log('进来执行了')
+  //   // 自定义静态方法 asyncData
+  //   return store.dispatch('blog/SETCLASSIFY')
+  // },
   components: {
     Music: () => import('@/components/Music')
   },
@@ -24,7 +30,10 @@ export default {
     return {}
   },
   created() {
-    this.getClassifyList()
+    // this.getClassifyList()
+  },
+  mounted() {
+    window.AV = AV
   },
   methods: {
     // 将 `this.setClassify()` 映射为 `this.$store.dispatch('blog/SETCLASSIFY')`
